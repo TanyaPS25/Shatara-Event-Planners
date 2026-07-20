@@ -25,8 +25,11 @@ export type StoryItem = {
 export type MonthItem = {
   slug: string;
   month: string;
+  abbr: string;
   count: string;
   image: string;
+  theme: string;
+  eventTypes: string[];
 };
 
 export const primaryNav: NavItem[] = [
@@ -125,6 +128,8 @@ export const stories: StoryItem[] = [
       "The attention to detail for our daughter’s birthday was unparalleled. The floral arrangements were fresh and the theme was executed perfectly.",
     image:
       "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=1000&q=80",
+    rating: 5,
+    longReview: "The attention to detail for our daughter’s birthday was unparalleled. The floral arrangements were fresh and the theme was executed perfectly. The Shatara team managed everything effortlessly, turning our vision into reality.",
   },
   {
     slug: "arjun-k",
@@ -134,6 +139,8 @@ export const stories: StoryItem[] = [
       "Planning our wedding with Shatara was the best decision. They managed everything with such poise that we could truly enjoy our big day.",
     image:
       "https://images.unsplash.com/photo-1496458590527-3b5b5f4f8d5c?auto=format&fit=crop&w=1000&q=80",
+    rating: 5,
+    longReview: "Planning our wedding with Shatara was the best decision. They managed everything with such poise that we could truly enjoy our big day. From the first consultation to the final dance, their team was exceptional.",
   },
   {
     slug: "ananya",
@@ -143,6 +150,8 @@ export const stories: StoryItem[] = [
       "Our corporate launch needed to feel elegant and modern. Shatara delivered an experience that our partners still talk about.",
     image:
       "https://images.unsplash.com/photo-1485954158468-1c1f2f3ad9f4?auto=format&fit=crop&w=1000&q=80",
+    rating: 5,
+    longReview: "Our corporate launch needed to feel elegant and modern. Shatara delivered an experience that our partners still talk about. The branding integration and sleek aesthetics were handled flawlessly.",
   },
   {
     slug: "meena-b",
@@ -174,6 +183,8 @@ export const stories: StoryItem[] = [
       "The reception was the pinnacle of our wedding festivities. Shatara’s vision for a midnight star theme was executed with such grace and grandeur.",
     image:
       "https://images.unsplash.com/photo-1523438097201-512ae7d59c0b?auto=format&fit=crop&w=1000&q=80",
+    rating: 5,
+    longReview: "The reception was the pinnacle of our wedding festivities. Shatara’s vision for a midnight star theme was executed with such grace and grandeur. It was truly a night to remember for all of our family and friends.",
   },
 ];
 
@@ -181,29 +192,37 @@ export const months: MonthItem[] = [
   {
     slug: "january",
     month: "January",
+    abbr: "JAN",
     count: "2 Events",
-    image:
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80",
+    theme: "Winter Gala",
+    eventTypes: ["Corporate", "Gala"],
   },
   {
     slug: "february",
     month: "February",
+    abbr: "FEB",
     count: "1 Event",
-    image:
-      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+    theme: "Romance & Luxury",
+    eventTypes: ["Wedding", "Intimate"],
   },
   {
     slug: "march",
     month: "March",
+    abbr: "MAR",
     count: "5 Events",
-    image:
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
+    theme: "Spring Blooms",
+    eventTypes: ["Wedding", "Birthday", "Cultural"],
   },
   {
     slug: "april",
     month: "April",
+    abbr: "APR",
     count: "4 Events",
-    image:
-      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1505236858368-dc19be374eb0?auto=format&fit=crop&w=1200&q=80",
+    theme: "Garden Soirée",
+    eventTypes: ["Wedding", "Corporate", "Launch"],
   },
 ];

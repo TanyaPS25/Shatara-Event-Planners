@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GenericPage } from "@/components/generic-page";
 
 export default function ContactPage() {
   return (
@@ -14,8 +15,8 @@ export default function ContactPage() {
             <p className="text-[0.72rem] uppercase tracking-[0.3em] text-gold-500">{label}</p>
             <p className="mt-4 font-display text-3xl">{value}</p>
           </div>
-
-        </div>
+        ))}
+      </div>
 
       {/* CTA Button */}
       <div className="mt-12 text-center">
@@ -30,8 +31,6 @@ export default function ContactPage() {
           </svg>
         </Link>
       </div>
-
-    </div>
-    </section >
+    </GenericPage>
   );
 }

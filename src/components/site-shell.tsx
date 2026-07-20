@@ -13,7 +13,7 @@ function Logo() {
   return (
     <Link
       href="/"
-      className="font-display text-[1.65rem] font-bold tracking-[0.2em] text-primary-container shatara-glow hover:opacity-90 transition"
+      className="font-display text-[1.65rem] font-bold tracking-[0.2em] text-primary-container shatara-glow hover:opacity-90 transition-opacity duration-300"
     >
       SHATARA
     </Link>
@@ -32,7 +32,6 @@ export function SiteShell({ children }: SiteShellProps) {
       setNavVisible(true);
       return;
     }
-    // Reset when navigating back to home
     setNavVisible(false);
 
     const handleScroll = () => {
@@ -58,7 +57,11 @@ export function SiteShell({ children }: SiteShellProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-label-md tracking-[0.12em] text-on-surface-variant hover:text-primary transition"
+                className={`nav-link text-label-md tracking-[0.12em] transition-colors duration-200
+                  ${pathname === item.href
+                    ? "text-primary-container"
+                    : "text-on-surface-variant hover:text-primary"
+                  }`}
               >
                 {item.label}
               </Link>
@@ -67,13 +70,16 @@ export function SiteShell({ children }: SiteShellProps) {
           <div className="flex items-center gap-4">
             <Link
               href="/client-login"
-              className="hidden rounded-md border border-outline-variant/40 px-5 py-2.5 text-btn text-on-surface-variant hover:border-primary-container hover:text-primary transition sm:inline-flex"
+              className="hidden rounded-md border border-outline-variant/40 px-5 py-2.5 text-btn text-on-surface-variant
+                hover:border-primary-container hover:text-primary transition-all duration-300 sm:inline-flex"
             >
               Client Login
             </Link>
             <Link
               href="/enquire"
-              className="rounded-md bg-primary-container px-6 py-2.5 text-btn font-semibold text-on-primary-container shadow-[0_4px_15px_rgba(200,155,60,0.25)] hover:bg-[#b88c2f] transition"
+              className="btn-shimmer rounded-md bg-primary-container px-6 py-2.5 text-btn font-semibold text-on-primary-container
+                shadow-[0_4px_15px_rgba(200,155,60,0.25)] hover:bg-[#b88c2f] hover:shadow-[0_6px_25px_rgba(200,155,60,0.38)]
+                transition-all duration-300"
             >
               Enquire Now
             </Link>
@@ -81,7 +87,7 @@ export function SiteShell({ children }: SiteShellProps) {
         </div>
       </header>
 
-      {/* ── Main Content — pt-20 on non-home so content isn't hidden under fixed header ── */}
+      {/* ── Main Content ── */}
       <main className={`min-h-[80vh] ${isHome ? "" : "pt-20"}`}>
         {children}
       </main>
@@ -92,7 +98,7 @@ export function SiteShell({ children }: SiteShellProps) {
           <div className="space-y-6">
             <Link
               href="/"
-              className="font-display text-[2.2rem] font-bold tracking-[0.2em] text-primary-container shatara-glow"
+              className="font-display text-[2.2rem] font-bold tracking-[0.2em] text-primary-container shatara-glow inline-block"
             >
               SHATARA
             </Link>
@@ -107,34 +113,36 @@ export function SiteShell({ children }: SiteShellProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="transition hover:text-white hover:translate-x-0.5 inline-block duration-200"
+                  className="group inline-flex items-center gap-2 transition-all duration-200 hover:text-white w-fit"
                 >
+                  <span className="w-0 h-px bg-primary-container/60 transition-all duration-300 group-hover:w-4 rounded-full" />
                   {item.label}
                 </Link>
               ))}
               <Link
                 href="/client-login"
-                className="transition hover:text-white hover:translate-x-0.5 inline-block duration-200"
+                className="group inline-flex items-center gap-2 transition-all duration-200 hover:text-white w-fit"
               >
+                <span className="w-0 h-px bg-primary-container/60 transition-all duration-300 group-hover:w-4 rounded-full" />
                 Client Login
               </Link>
               <Link
                 href="/enquire"
-                className="text-primary-container font-semibold hover:text-inverse-primary transition hover:translate-x-0.5 inline-block duration-200"
+                className="group inline-flex items-center gap-2 text-primary-container font-semibold transition-all duration-200 hover:text-inverse-primary w-fit mt-1"
               >
+                <span className="w-0 h-px bg-primary-container/60 transition-all duration-300 group-hover:w-4 rounded-full" />
                 Enquire Now →
               </Link>
             </div>
           </div>
           <div>
-<<<<<<< HEAD
-            <p className="text-xs uppercase tracking-[0.3em] text-gold-400">Follow the Journey</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-primary-container/80">Follow the Journey</p>
             <div className="mt-4 flex gap-3">
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="grid h-9 w-9 place-items-center rounded-full border border-white/12 text-stone-300 hover:text-white hover:border-white/30 transition"
+                className="social-icon grid h-9 w-9 place-items-center rounded-full border border-white/12 text-stone-300"
                 aria-label="Instagram"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -147,7 +155,7 @@ export function SiteShell({ children }: SiteShellProps) {
                 href="https://pinterest.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="grid h-9 w-9 place-items-center rounded-full border border-white/12 text-stone-300 hover:text-white hover:border-white/30 transition"
+                className="social-icon grid h-9 w-9 place-items-center rounded-full border border-white/12 text-stone-300"
                 aria-label="Pinterest"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -156,7 +164,7 @@ export function SiteShell({ children }: SiteShellProps) {
               </a>
               <a
                 href="mailto:hello@shatara.com"
-                className="grid h-9 w-9 place-items-center rounded-full border border-white/12 text-stone-300 hover:text-white hover:border-white/30 transition"
+                className="social-icon grid h-9 w-9 place-items-center rounded-full border border-white/12 text-stone-300"
                 aria-label="Email"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
@@ -164,66 +172,42 @@ export function SiteShell({ children }: SiteShellProps) {
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
               </a>
-=======
-            <p className="text-label-md tracking-[0.15em] text-primary-container">Follow the Journey</p>
-            <div className="mt-6 flex gap-3.5">
-              {["ig", "pt", "mail"].map((item) => (
-                <span
-                  key={item}
-                  className="grid h-10 w-10 place-items-center rounded-md border border-inverse-on-surface/20 text-body-md text-inverse-on-surface/75 hover:border-primary-container hover:text-white transition uppercase cursor-pointer"
-                >
-                  {item}
-                </span>
-              ))}
->>>>>>> upstream
             </div>
             <p className="mt-8 text-xs text-inverse-on-surface/50">© 2026 Shatara Event Planners. All Rights Reserved.</p>
           </div>
         </div>
       </footer>
-<<<<<<< HEAD
+
+      {/* ── Floating Chat Button ── */}
       <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2 group">
-        {/* Tooltip */}
-        <span className="mb-1 hidden group-hover:flex items-center gap-1.5 rounded-full bg-[var(--charcoal)] px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white shadow-lg whitespace-nowrap">
+        <span className="mb-1 hidden group-hover:flex items-center gap-1.5 rounded-full bg-[var(--charcoal,#1f1b14)] px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white shadow-lg whitespace-nowrap">
           <span>✨</span> Chat with us
         </span>
-        {/* Pulse ring */}
-        <span className="absolute bottom-0 right-0 h-16 w-16 rounded-full bg-gold-400/15 animate-ping pointer-events-none" />
+        <span className="absolute bottom-0 right-0 h-16 w-16 rounded-full bg-primary-container/15 animate-ping pointer-events-none" />
         <Link
           href="/contact"
-          className="relative grid h-16 w-16 place-items-center rounded-full bg-[#f5efe5] shadow-[0_8px_32px_rgba(0,0,0,0.18)] transition hover:scale-110 hover:shadow-[0_12px_40px_rgba(199,146,39,0.2)] border-2 border-gold-400/30 overflow-hidden"
+          className="relative grid h-16 w-16 place-items-center rounded-full bg-[#f5efe5] shadow-[0_8px_32px_rgba(0,0,0,0.18)]
+            transition-all duration-300 hover:scale-110 hover:shadow-[0_12px_40px_rgba(199,146,39,0.28)]
+            border-2 border-primary-container/30 overflow-hidden"
           aria-label="Open chat"
         >
-          {/* Cute Robot SVG */}
           <svg viewBox="0 0 64 64" className="h-11 w-11" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Antenna */}
             <line x1="32" y1="6" x2="32" y2="14" stroke="#c79227" strokeWidth="2.5" strokeLinecap="round"/>
             <circle cx="32" cy="5" r="3" fill="#c79227"/>
-            {/* Robot Head */}
             <rect x="14" y="14" width="36" height="28" rx="9" fill="#c79227"/>
-            {/* Face plate */}
             <rect x="17" y="17" width="30" height="22" rx="7" fill="#f5efe5"/>
-            {/* Left Eye */}
             <circle cx="24" cy="27" r="4" fill="#c79227"/>
             <circle cx="25" cy="26" r="1.5" fill="#fff"/>
-            {/* Right Eye */}
             <circle cx="40" cy="27" r="4" fill="#c79227"/>
             <circle cx="41" cy="26" r="1.5" fill="#fff"/>
-            {/* Smile */}
             <path d="M25 33 Q32 38 39 33" stroke="#c79227" strokeWidth="2" strokeLinecap="round" fill="none"/>
-            {/* Ears / bolts */}
             <rect x="10" y="22" width="5" height="8" rx="2.5" fill="#c79227"/>
             <rect x="49" y="22" width="5" height="8" rx="2.5" fill="#c79227"/>
-            {/* Neck */}
             <rect x="27" y="42" width="10" height="5" rx="2" fill="#c79227"/>
-            {/* Body stub */}
             <rect x="20" y="47" width="24" height="8" rx="4" fill="#c79227"/>
           </svg>
         </Link>
       </div>
-=======
-
->>>>>>> upstream
     </div>
   );
 }

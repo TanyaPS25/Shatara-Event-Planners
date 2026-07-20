@@ -48,6 +48,15 @@
   --accent-pink-text: #93000a;
   --accent-sage: #d8e2dc;
   --accent-sage-text: #2f5233;
+
+  /* Timing functions */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 200ms var(--ease-smooth);
+  --transition-base: 300ms var(--ease-smooth);
+  --transition-slow: 500ms var(--ease-spring);
+  --transition-xslow: 700ms var(--ease-spring);
 }
 
 @theme {
@@ -144,6 +153,13 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* ── Focus rings (accessibility) ── */
+*:focus-visible {
+  outline: 2px solid rgba(200, 155, 60, 0.7);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* Custom typography classes matching design system */
@@ -243,6 +259,7 @@ a {
 .border-gold-delicate {
   border: 1px solid rgba(200, 155, 60, 0.2);
 }
+
 /* ── Hero Animation ─────────────────────────────────────────── */
 
 /* Phase 1: Cinematic reveal — pitch black → dramatic zoom-out → full colour */
@@ -345,4 +362,375 @@ button:hover {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+/* ── NEW: Card Hover System ────────────────────────────────── */
+
+/* Gold shimmer card overlay — triggered via group-hover */
+@keyframes card-shimmer {
+  0%   { transform: translateX(-100%) skewX(-12deg); opacity: 0; }
+  30%  { opacity: 0.6; }
+  70%  { opacity: 0.3; }
+  100% { transform: translateX(200%) skewX(-12deg); opacity: 0; }
+}
+
+/* Glow pulse for featured/popular badge */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(200, 155, 60, 0.4), 0 0 20px rgba(200, 155, 60, 0.15); }
+  50%       { box-shadow: 0 0 14px rgba(200, 155, 60, 0.65), 0 0 35px rgba(200, 155, 60, 0.25); }
+}
+
+/* Fade-up for staggered list items */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scale-in for icons/badges */
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Subtle float animation for decorative elements */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* Gold border slide-in from left */
+@keyframes border-slide {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* ── Reusable Grid Card (image-overlay style) ─────────────── */
+.grid-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: transform 0.5s var(--ease-spring), box-shadow 0.5s var(--ease-spring);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.grid-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 60px rgba(31, 27, 20, 0.14), 0 0 0 1.5px rgba(200, 155, 60, 0.45);
+}
+
+.grid-card img {
+  transition: transform 0.7s var(--ease-spring);
+}
+.grid-card:hover img {
+  transform: scale(1.09);
+}
+
+/* Gold shimmer sweep — add .shimmer-on-hover class to the overlay div */
+.shimmer-on-hover {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shimmer-on-hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(200, 155, 60, 0.18) 48%,
+    rgba(255, 235, 160, 0.22) 52%,
+    transparent 70%
+  );
+  transform: translateX(-110%) skewX(-12deg);
+  transition: none;
+  opacity: 0;
+}
+
+.grid-card:hover .shimmer-on-hover::after {
+  animation: card-shimmer 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ── Service/Content Cards (flat, no image bg) ─────────────── */
+.content-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.06);
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s var(--ease-spring),
+    border-color 0.3s ease;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 20px 55px rgba(31, 27, 20, 0.10),
+    0 0 0 1.5px rgba(200, 155, 60, 0.35),
+    inset 0 0 35px rgba(200, 155, 60, 0.04);
+  border-color: rgba(200, 155, 60, 0.3);
+}
+
+/* Gold left accent line that slides up on hover */
+.content-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(200,155,60,0), rgba(200,155,60,0.8), rgba(200,155,60,0));
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.content-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── Nav underline effect ───────────────────────────────────── */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--primary-container), var(--primary));
+  border-radius: 2px;
+  transition: width 0.3s var(--ease-spring);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── Popular / featured badge glow ─────────────────────────── */
+.badge-popular {
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+/* ── Stat card number animation ─────────────────────────────── */
+.stat-card {
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s var(--ease-spring);
+  transform: translateZ(0);
+}
+
+.stat-card:hover {
+  transform: translateY(-7px) scale(1.02);
+  box-shadow:
+    0 24px 60px rgba(31, 27, 20, 0.12),
+    0 0 0 1.5px rgba(200, 155, 60, 0.4),
+    inset 0 0 40px rgba(200, 155, 60, 0.06);
+}
+
+/* ── Theme card (image cards in sub-pages) ──────────────────── */
+.theme-card {
+  transition:
+    transform 0.45s var(--ease-spring),
+    box-shadow 0.45s var(--ease-spring);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.theme-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 55px rgba(31, 27, 20, 0.12),
+    0 0 0 1.5px rgba(200, 155, 60, 0.4);
+}
+
+.theme-card .theme-img {
+  transition: transform 0.6s var(--ease-spring);
+}
+
+.theme-card:hover .theme-img {
+  transform: scale(1.07);
+}
+
+/* ── Package tier card ──────────────────────────────────────── */
+.tier-card {
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s var(--ease-spring),
+    border-color 0.3s ease;
+  transform: translateZ(0);
+}
+
+.tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 48px rgba(31, 27, 20, 0.10);
+}
+
+.tier-card-featured {
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s var(--ease-spring);
+}
+
+.tier-card-featured:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow:
+    0 24px 60px rgba(200, 155, 60, 0.2),
+    0 0 0 2px rgba(200, 155, 60, 0.6);
+}
+
+/* ── Button shimmer — for primary CTA buttons ──────────────── */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%) skewX(-10deg);
+  transition: none;
+}
+
+.btn-shimmer:hover::after {
+  animation: card-shimmer 0.55s ease forwards;
+}
+
+/* ── Form field focus effects ────────────────────────────────── */
+.form-input {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: rgba(200, 155, 60, 0.7);
+  box-shadow: 0 0 0 3px rgba(200, 155, 60, 0.12), inset 0 1px 3px rgba(0,0,0,0.04);
+  background-color: #fffef9;
+  outline: none;
+}
+
+/* ── Section reveal animation (via JS intersection) ─────────── */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s var(--ease-out-expo), transform 0.65s var(--ease-out-expo);
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.reveal-up:nth-child(1) { transition-delay: 0ms; }
+.reveal-up:nth-child(2) { transition-delay: 80ms; }
+.reveal-up:nth-child(3) { transition-delay: 160ms; }
+.reveal-up:nth-child(4) { transition-delay: 240ms; }
+.reveal-up:nth-child(5) { transition-delay: 320ms; }
+.reveal-up:nth-child(6) { transition-delay: 400ms; }
+
+/* ── Gallery strip cell ─────────────────────────────────────── */
+.gallery-cell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition:
+    transform 0.45s var(--ease-spring),
+    box-shadow 0.45s var(--ease-spring);
+  transform: translateZ(0);
+}
+
+.gallery-cell:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(31, 27, 20, 0.16), 0 0 0 1.5px rgba(200, 155, 60, 0.5);
+}
+
+.gallery-cell img {
+  transition: transform 0.6s var(--ease-spring), filter 0.4s ease;
+}
+
+.gallery-cell:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.05) contrast(1.02);
+}
+
+/* Gallery caption slides up */
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.75rem;
+  background: linear-gradient(to top, rgba(31,27,20,0.75), transparent);
+  transform: translateY(100%);
+  transition: transform 0.4s var(--ease-spring);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.gallery-cell:hover .gallery-caption {
+  transform: translateY(0);
+}
+
+/* ── Social icon hover ─────────────────────────────────────── */
+.social-icon {
+  transition:
+    transform 0.3s var(--ease-spring),
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px) scale(1.12);
+  border-color: rgba(200, 155, 60, 0.6);
+  color: white;
+  box-shadow: 0 6px 20px rgba(200, 155, 60, 0.2);
+}
+
+/* ── Feature immersion box (birthdays page) ─────────────────── */
+.feature-box {
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s var(--ease-spring);
+  transform: translateZ(0);
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 16px 40px rgba(31, 27, 20, 0.10),
+    0 0 0 1.5px rgba(200, 155, 60, 0.35);
+}
+
+.feature-box .feature-icon {
+  transition: transform 0.4s var(--ease-spring), color 0.3s ease;
+  display: inline-block;
+}
+
+.feature-box:hover .feature-icon {
+  transform: rotate(90deg) scale(1.2);
+  color: #b88c2f;
 }
