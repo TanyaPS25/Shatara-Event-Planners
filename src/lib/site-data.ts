@@ -33,6 +33,7 @@ export const primaryNav: NavItem[] = [
   { label: "Portfolio", href: "/portfolio" },
   { label: "Services", href: "/services" },
   { label: "Event Palette", href: "/event-palette" },
+  { label: "Event Palace", href: "/event-palace" },
   { label: "Client Stories", href: "/client-stories" },
   { label: "Contact", href: "/contact" },
   { label: "About Us", href: "/about" },
@@ -125,6 +126,9 @@ export const stories: StoryItem[] = [
       "The attention to detail for our daughter’s birthday was unparalleled. The floral arrangements were fresh and the theme was executed perfectly.",
     image:
       "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=1000&q=80",
+    rating: 5,
+    longReview:
+      "The attention to detail for our daughter’s birthday was unparalleled. The floral arrangements were fresh and the theme was executed perfectly. From initial setup to final departure, the execution was flawless and completely stress-free.",
   },
   {
     slug: "arjun-k",
@@ -134,6 +138,9 @@ export const stories: StoryItem[] = [
       "Planning our wedding with Shatara was the best decision. They managed everything with such poise that we could truly enjoy our big day.",
     image:
       "https://images.unsplash.com/photo-1496458590527-3b5b5f4f8d5c?auto=format&fit=crop&w=1000&q=80",
+    rating: 5,
+    longReview:
+      "Planning our wedding with Shatara was the best decision. They managed everything with such poise that we could truly enjoy our big day. The vendor coordination and aesthetic design was absolutely magnificent.",
   },
   {
     slug: "ananya",
@@ -143,6 +150,9 @@ export const stories: StoryItem[] = [
       "Our corporate launch needed to feel elegant and modern. Shatara delivered an experience that our partners still talk about.",
     image:
       "https://images.unsplash.com/photo-1485954158468-1c1f2f3ad9f4?auto=format&fit=crop&w=1000&q=80",
+    rating: 5,
+    longReview:
+      "Our corporate launch needed to feel elegant and modern. Shatara delivered an experience that our partners still talk about. The spatial coordination and visual displays were stunning and fit our brand story perfectly.",
   },
   {
     slug: "meena-b",
@@ -174,6 +184,9 @@ export const stories: StoryItem[] = [
       "The reception was the pinnacle of our wedding festivities. Shatara’s vision for a midnight star theme was executed with such grace and grandeur.",
     image:
       "https://images.unsplash.com/photo-1523438097201-512ae7d59c0b?auto=format&fit=crop&w=1000&q=80",
+    rating: 5,
+    longReview:
+      "The reception was the pinnacle of our wedding festivities. Shatara’s vision for a midnight star theme was executed with such grace and grandeur. The ambient projection mapping and celestial florals created an unforgettable experience.",
   },
 ];
 
