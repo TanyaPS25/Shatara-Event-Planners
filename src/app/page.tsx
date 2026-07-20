@@ -243,7 +243,6 @@ export default function Home() {
             <h2 className="mt-3 font-display text-headline-lg text-on-surface">Our Curation Spectrum</h2>
             <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
           </div>
-<<<<<<< HEAD
           <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {[
               ["Artful Ambiance", "Sculpting atmospheres that resonate with your soul.", "/services/artful-ambiance"],
@@ -290,34 +289,6 @@ export default function Home() {
                 </Link>
               );
             })}
-=======
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map(({ title, text, href, image }) => (
-              <Link
-                key={title}
-                href={href}
-                className="group relative overflow-hidden rounded-xl border border-outline-variant/20 bg-surface-container-lowest transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(200,155,60,0.25),0_0_0_1px_rgba(200,155,60,0.35)]"
-              >
-                {/* Image header */}
-                <div className="relative h-44 w-full overflow-hidden">
-                  <Image src={image} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  {/* Gold shimmer */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.2) 50%, transparent 75%)' }} />
-                </div>
-                {/* Content */}
-                <div className="p-6">
-                  <p className="font-display text-xl font-semibold text-on-surface group-hover:text-primary transition">{title}</p>
-                  <p className="mt-3 text-body-md text-on-surface-variant leading-relaxed">{text}</p>
-                  <div className="mt-5 flex items-center justify-between text-label-md tracking-[0.12em] text-primary-container pt-4 border-t border-outline-variant/10">
-                    <span>Explore</span>
-                    <span className="group-hover:translate-x-1 transition duration-300">→</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
->>>>>>> upstream
           </div>
         </div>
       </section>

@@ -127,7 +127,6 @@ export function SiteShell({ children }: SiteShellProps) {
             </div>
           </div>
           <div>
-<<<<<<< HEAD
             <p className="text-xs uppercase tracking-[0.3em] text-gold-400">Follow the Journey</p>
             <div className="mt-4 flex gap-3">
               <a
@@ -164,24 +163,11 @@ export function SiteShell({ children }: SiteShellProps) {
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
               </a>
-=======
-            <p className="text-label-md tracking-[0.15em] text-primary-container">Follow the Journey</p>
-            <div className="mt-6 flex gap-3.5">
-              {["ig", "pt", "mail"].map((item) => (
-                <span
-                  key={item}
-                  className="grid h-10 w-10 place-items-center rounded-md border border-inverse-on-surface/20 text-body-md text-inverse-on-surface/75 hover:border-primary-container hover:text-white transition uppercase cursor-pointer"
-                >
-                  {item}
-                </span>
-              ))}
->>>>>>> upstream
             </div>
             <p className="mt-8 text-xs text-inverse-on-surface/50">© 2026 Shatara Event Planners. All Rights Reserved.</p>
           </div>
         </div>
       </footer>
-<<<<<<< HEAD
       <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2 group">
         {/* Tooltip */}
         <span className="mb-1 hidden group-hover:flex items-center gap-1.5 rounded-full bg-[var(--charcoal)] px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white shadow-lg whitespace-nowrap">
@@ -221,9 +207,6 @@ export function SiteShell({ children }: SiteShellProps) {
           </svg>
         </Link>
       </div>
-=======
-
->>>>>>> upstream
     </div>
   );
 }
