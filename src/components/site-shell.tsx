@@ -31,21 +31,35 @@ export function SiteShell({ children }: SiteShellProps) {
   const [navVisible, setNavVisible] = useState(!isHome);
 
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    if (!isHome) {
+      setNavVisible(true);
+      return;
     }
+
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setNavVisible(true);
+      }
+    };
+
+    if (window.scrollY > 10) {
+      setNavVisible(true);
+    } else {
+      setNavVisible(false);
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => {
+      window.removeEventListener("scroll", handleScroll);
       document.body.style.overflow = "";
     };
-  }, [mobileMenuOpen]);
+  }, [isHome]);
 
   return (
     <div className="min-h-screen bg-background text-on-surface antialiased selection:bg-primary-container/20">
       {/* ── Fixed Header ── */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 border-b border-outline-variant/20 glass-surface ambient-shadow-gold
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-[#9b6f16]/30 site-nav-gold ambient-shadow-gold
           transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
           ${navVisible ? "header-visible" : "header-hidden"}`}
       >
@@ -83,7 +97,7 @@ export function SiteShell({ children }: SiteShellProps) {
       </header>
 
       {/* ── Main Content ── */}
-      <main className="min-h-[80vh] pt-[72px]">
+      <main className={`min-h-[80vh] ${isHome ? "pt-0" : "pt-20"}`}>
         {children}
       </main>
 

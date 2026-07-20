@@ -362,7 +362,6 @@ button:hover {
 
 /* ── Gold nav treatment ────────────────────────────────────── */
 .site-nav-gold {
-  position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #f7e7aa 0%, #e2b84d 22%, #c8952f 48%, #f5dd8a 72%, #a86f12 100%);
   background-size: 220% 220%;

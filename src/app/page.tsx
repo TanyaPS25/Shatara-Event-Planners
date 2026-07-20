@@ -122,7 +122,7 @@ function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[65vh] md:h-screen overflow-hidden hero-reveal hero-shimmer"
+      className="relative w-full h-[100dvh] overflow-hidden hero-reveal hero-shimmer"
     >
       <Image
         src="/hero.jpeg"
@@ -259,7 +259,7 @@ export default function Home() {
           </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map(({ title, text, href }) => (
+            {SERVICES.map(({ title, text, href, image }) => (
               <Link
                 key={title}
                 href={href}
