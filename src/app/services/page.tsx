@@ -26,12 +26,13 @@ export default function ServicesPage() {
         >
           Launch AI Experience
         </Link>
-        <Link
-          href="/brochure"
+        <a
+          href="/shatara-brochure.pdf"
+          download="Shatara-Luxury-Brochure.pdf"
           className="rounded-md border border-primary-container/40 px-6 py-3.5 text-btn font-semibold text-primary-container hover:bg-primary-container/10 transition"
         >
           Download Brochure
-        </Link>
+        </a>
       </div>
     </GenericPage>
   );

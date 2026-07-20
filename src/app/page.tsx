@@ -15,17 +15,15 @@ function playCinematicWelcome() {
     if (ctx.state === 'suspended') ctx.resume();
 
     const t = ctx.currentTime;
-    const TOTAL = 3.5; // total sound duration in seconds
+    const TOTAL = 3.5;
 
-    /* ── Master output with fade-out ── */
     const master = ctx.createGain();
     master.gain.setValueAtTime(0, t);
-    master.gain.linearRampToValueAtTime(0.92, t + 0.1);   // fast attack to full volume
-    master.gain.setValueAtTime(0.92, t + TOTAL - 1.2);    // hold at full
-    master.gain.linearRampToValueAtTime(0, t + TOTAL);    // smooth fade out
+    master.gain.linearRampToValueAtTime(0.92, t + 0.1);
+    master.gain.setValueAtTime(0.92, t + TOTAL - 1.2);
+    master.gain.linearRampToValueAtTime(0, t + TOTAL);
     master.connect(ctx.destination);
 
-    /* ── Programmatic hall reverb ── */
     const bufferSize = ctx.sampleRate * 3;
     const reverbBuffer = ctx.createBuffer(2, bufferSize, ctx.sampleRate);
     for (let c = 0; c < 2; c++) {
@@ -42,7 +40,6 @@ function playCinematicWelcome() {
 
     const connect = (node: AudioNode) => { node.connect(dry); node.connect(wet); };
 
-    /* ── Deep bass boom ── */
     const boom = ctx.createOscillator();
     const boomG = ctx.createGain();
     boom.type = 'sine';
@@ -54,7 +51,6 @@ function playCinematicWelcome() {
     boom.connect(boomG); connect(boomG);
     boom.start(t); boom.stop(t + 2.3);
 
-    /* ── Orchestral chord swell (C major, multi-octave) ── */
     const notes: [number, OscillatorType, number, number, number][] = [
       [130.81, 'sine', 0.0, 3.2, 0.28],   // C3 – warm bass
       [164.81, 'sine', 0.1, 3.0, 0.14],   // E3
@@ -82,7 +78,7 @@ function playCinematicWelcome() {
   } catch { /* silently ignored — audio unavailable */ }
 }
 
-/* ── Cinematic Hero — re-animates every visit with zero re-render lag ── */
+/* ── Cinematic Hero ── */
 function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -93,7 +89,6 @@ function HeroSection() {
     void el.offsetWidth;
     el.classList.add('hero-reveal', 'hero-shimmer');
 
-    /* Try immediate autoplay; if blocked by browser policy, play on first interaction */
     const tryPlay = () => playCinematicWelcome();
     const played = { done: false };
 
@@ -111,7 +106,6 @@ function HeroSection() {
           played.done = true;
           tryPlay();
         } else {
-          // Suspended — wait for first interaction
           ['click', 'touchstart', 'keydown'].forEach(e => document.addEventListener(e, onInteraction, { once: true }));
         }
         probe.close();
@@ -174,6 +168,7 @@ const SERVICES = [
   { title: "Eternal Memories", text: "Cinematic storytelling through world-class photography.", href: "/services/eternal-memories", image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" },
 ];
 
+
 /* ── Client stories data ── */
 const STORIES = [
   {
@@ -206,31 +201,47 @@ const GALLERY = [
   "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
 ];
 
+
+
 export default function Home() {
   return (
     <>
       <HeroSection />
-
 
       {/* ── Feature Highlights ── */}
       <section className="relative w-full bg-background py-16">
         <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
           <div className="grid gap-8 lg:grid-cols-3">
             {FEATURES.map(({ title, text, image }) => (
-              <div key={title} className="group relative h-80 overflow-hidden rounded-xl cursor-default shadow-md">
-                {/* Background image */}
-                <Image src={image} alt={title} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-110" />
+              <div
+                key={title}
+                className="group relative overflow-hidden rounded-xl h-80 cursor-default shadow-md
+                  transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                  hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(31,27,20,0.18),0_0_0_1.5px_rgba(200,155,60,0.5)]"
+              >
+                <Image
+                  src={image}
+                  alt={title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.1]"
+                />
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/25 to-black/5 transition-all duration-500 group-hover:from-black/45" />
                 {/* Gold shimmer on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ background: 'linear-gradient(135deg, transparent 30%, rgba(200,155,60,0.15) 50%, transparent 70%)' }} />
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ background: 'linear-gradient(135deg, transparent 30%, rgba(200,155,60,0.18) 50%, transparent 70%)' }}
+                />
                 {/* Gold border glow on hover */}
-                <div className="absolute inset-0 rounded-xl ring-1 ring-transparent group-hover:ring-primary-container/60 group-hover:shadow-[inset_0_0_30px_rgba(200,155,60,0.1)] transition-all duration-500" />
-                {/* Text */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                  <p className="font-display text-3xl font-bold text-white drop-shadow group-hover:text-gold-400 transition-colors duration-300">{title}</p>
-                  <p className="mt-2 text-sm font-semibold text-stone-200 drop-shadow-sm leading-relaxed">{text}</p>
+                <div className="absolute inset-0 rounded-xl ring-1 ring-transparent group-hover:ring-primary-container/60 group-hover:shadow-[inset_0_0_40px_rgba(200,155,60,0.12)] transition-all duration-500" />
+                {/* Text — slides up slightly on hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 transform transition-transform duration-500 group-hover:-translate-y-1">
+                  <p className="font-display text-3xl font-bold text-white drop-shadow group-hover:text-inverse-primary transition-colors duration-300">
+                    {title}
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-stone-200/90 drop-shadow-sm leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-20 group-hover:opacity-100 transition-all duration-500">
+                    {text}
+                  </p>
                 </div>
               </div>
             ))}
@@ -244,27 +255,29 @@ export default function Home() {
           <div className="text-center">
             <p className="text-label-md tracking-[0.2em] text-primary-container">Services We Offer</p>
             <h2 className="mt-3 font-display text-headline-lg text-on-surface">Our Curation Spectrum</h2>
-            <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-primary-container/40 to-transparent w-40 mx-auto mt-6" />
           </div>
-          <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map(({ title, text, href, image }) => (
               <Link
                 key={title}
                 href={href}
-                className="group relative overflow-hidden rounded-xl border border-outline-variant/20 bg-surface-container-lowest transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(200,155,60,0.25),0_0_0_1px_rgba(200,155,60,0.35)]"
+                className="content-card group p-6 flex flex-col"
               >
-                <div className="relative h-48 w-full overflow-hidden">
+                <div className="relative h-48 w-full overflow-hidden rounded-lg mb-4">
                   <Image src={image} alt={title} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                     style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.2) 50%, transparent 75%)' }} />
                 </div>
-                <div className="p-6">
-                  <p className="font-display text-2xl font-bold text-[var(--ink)] group-hover:text-gold-600 transition">{title}</p>
-                  <p className="mt-3 text-sm font-semibold text-[var(--muted)] leading-relaxed">{text}</p>
-                  <div className="mt-5 flex items-center justify-between text-xs font-bold uppercase tracking-[0.12em] text-gold-600 pt-4 border-t border-outline-variant/10">
-                    <span>Explore →</span>
-                  </div>
+                <p className="font-display text-2xl text-on-surface transition-colors duration-300 group-hover:text-primary-container">
+                  {title}
+                </p>
+                <p className="mt-4 text-sm leading-7 text-on-surface-variant">{text}</p>
+                <div className="mt-auto pt-5 flex items-center gap-2 text-[0.72rem] font-bold uppercase tracking-[0.18em] text-primary-container/70 transition-all duration-300 group-hover:text-primary-container">
+                  <span>Explore</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1.5 inline-block">→</span>
                 </div>
               </Link>
             ))}
@@ -272,102 +285,119 @@ export default function Home() {
         </div>
       </section>
 
-  {/* ── Gallery Strip ── */ }
-  <section className="bg-background py-16">
-    <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
-      <div className="text-center mb-10">
-        <p className="text-label-md tracking-[0.2em] text-primary-container">Portfolio Glimpse</p>
-        <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments We've Crafted</h2>
-        <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
-      </div>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 lg:gap-5">
-        {GALLERY.map((img, i) => (
-          <div key={i} className="group relative h-44 overflow-hidden rounded-xl cursor-pointer">
-            <Image src={img} alt={`Gallery ${i + 1}`} fill className="object-cover object-center transition-transform duration-600 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-black/18 group-hover:bg-black/5 transition-all duration-500" />
-            {/* Gold glow on hover */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl ring-1 ring-primary-container/60 shadow-[inset_0_0_20px_rgba(200,155,60,0.15)]" />
+      {/* ── Gallery Strip ── */}
+      <section className="bg-background py-16">
+        <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
+          <div className="text-center mb-10">
+            <p className="text-label-md tracking-[0.2em] text-primary-container">Portfolio Glimpse</p>
+            <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments We&apos;ve Crafted</h2>
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-primary-container/40 to-transparent w-40 mx-auto mt-6" />
           </div>
-        ))}
-      </div>
-      <div className="mt-8 text-center">
-        <Link href="/portfolio" className="inline-flex items-center gap-2 text-label-md tracking-[0.15em] text-primary-container hover:text-primary transition">
-          View Full Portfolio →
-        </Link>
-      </div>
-    </div>
-  </section>
-
-  {/* ── Client Stories ── */ }
-  <section className="bg-surface-container-low py-20 lg:py-[120px]">
-    <div className="mx-auto w-full max-w-[1280px] px-[20px] lg:px-[80px]">
-      <div className="text-center">
-        <p className="text-label-md tracking-[0.2em] text-primary-container">Client Stories</p>
-        <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments of Poise & Elegance</h2>
-        <p className="mt-4 text-body-md text-on-surface-variant italic">Every celebration leaves behind a beautiful memory.</p>
-        <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
-      </div>
-      <div className="mt-14 grid gap-8 lg:grid-cols-3">
-        {STORIES.map(({ client, eventType, href, text, image, bg }) => (
-          <Link
-            key={client}
-            href={href}
-            className="group relative overflow-hidden rounded-xl border border-outline-variant/20 bg-surface-container-lowest transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(200,155,60,0.25),0_0_0_1px_rgba(200,155,60,0.35)]"
-          >
-            {/* Event background image header */}
-            <div className="relative h-36 w-full overflow-hidden">
-              <Image src={bg} alt={eventType} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/15 to-transparent" />
-              {/* Gold shimmer on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.18) 50%, transparent 75%)' }} />
-              {/* Client avatar overlapping */}
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
-                <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-primary-container shadow-[0_4px_20px_rgba(200,155,60,0.3)]">
-                  <Image src={image} alt={client} fill className="object-cover" />
-                </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {GALLERY.map((img, i) => (
+              <div key={i} className="gallery-cell h-40">
+                <Image src={img} alt={`Gallery ${i + 1}`} fill className="object-cover" />
+                <div className="absolute inset-0 bg-black/30 transition-opacity duration-500 group-hover:opacity-0" />
+                <div className="absolute inset-0 rounded-xl ring-1 ring-transparent group-hover:ring-primary-container/60 transition-all duration-500" />
               </div>
-            </div>
-            {/* Content */}
-            <div className="mt-10 px-6 pb-6 text-center">
-              <div className="text-primary-container text-sm tracking-widest">★★★★★</div>
-              <p className="mt-3 font-display text-xl font-semibold text-on-surface">{client}</p>
-              <p className="mt-1 text-label-md tracking-[0.2em] text-on-surface-variant/80">{eventType}</p>
-              <p className="mt-4 text-body-md text-on-surface-variant leading-relaxed line-clamp-3">{text}</p>
-              <span className="mt-5 inline-flex text-label-md tracking-[0.1em] text-primary-container group-hover:text-primary transition pt-4 border-t border-outline-variant/10 w-full justify-center">
-                Read Story →
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-  </section>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link
+              href="/portfolio"
+              className="group inline-flex items-center gap-2 text-label-md tracking-[0.15em] text-primary-container hover:text-primary transition-colors duration-300"
+            >
+              View Full Portfolio
+              <span className="transition-transform duration-300 group-hover:translate-x-1.5 inline-block">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
 
-  {/* ── CTA ── */ }
-  <section className="relative overflow-hidden py-24 lg:py-[120px]">
-    <Image
-      src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1800&q=80"
-      alt="CTA Background"
-      fill
-      className="object-cover object-center"
-    />
-    <div className="absolute inset-0 bg-inverse-surface/80" />
-    <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col items-center px-[20px] text-center lg:px-[80px]">
-      <p className="text-label-md tracking-[0.22em] text-primary-container">BEGIN YOUR JOURNEY</p>
-      <h2 className="mt-4 font-display text-4xl sm:text-headline-lg text-white">Ready to start your story?</h2>
-      <p className="mt-4 max-w-xl text-body-lg text-white/75 leading-relaxed">
-        Let us bring your vision to life with the sophistication it deserves.
-      </p>
-      <div className="h-[1px] bg-primary-container/30 w-24 mx-auto mt-6" />
-      <Link
-        href="/enquire"
-        className="mt-8 rounded-md bg-primary-container px-10 py-4 text-btn font-semibold text-on-primary-container shadow-[0_4px_30px_rgba(200,155,60,0.35)] hover:bg-[#b88c2f] transition"
-      >
-        Contact Our Planners
-      </Link>
-    </div>
-  </section>
+      {/* ── Client Stories ── */}
+      <section className="bg-surface-container-low py-20 lg:py-[120px]">
+        <div className="mx-auto w-full max-w-[1280px] px-[20px] lg:px-[80px]">
+          <div className="text-center">
+            <p className="text-label-md tracking-[0.2em] text-primary-container">Client Stories</p>
+            <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments of Poise &amp; Elegance</h2>
+            <p className="mt-4 text-body-md text-on-surface-variant italic">Every celebration leaves behind a beautiful memory.</p>
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-primary-container/40 to-transparent w-40 mx-auto mt-6" />
+          </div>
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            {STORIES.map(({ client, eventType, href, text, image, bg }) => (
+              <Link
+                key={client}
+                href={href}
+                className="group relative overflow-hidden rounded-xl border border-outline-variant/20 bg-surface-container-lowest
+                  transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                  hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(200,155,60,0.25),0_0_0_1.5px_rgba(200,155,60,0.4)]"
+              >
+                {/* Event background image header */}
+                <div className="relative h-36 w-full overflow-hidden">
+                  <Image
+                    src={bg}
+                    alt={eventType}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.1]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.18) 50%, transparent 75%)' }}
+                  />
+                  {/* Client avatar overlapping */}
+                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
+                    <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-primary-container shadow-[0_4px_20px_rgba(200,155,60,0.3)]
+                      transition-all duration-500 group-hover:border-[3px] group-hover:shadow-[0_6px_28px_rgba(200,155,60,0.45)] group-hover:scale-105">
+                      <Image src={image} alt={client} fill className="object-cover" />
+                    </div>
+                  </div>
+                </div>
+                {/* Content */}
+                <div className="mt-10 px-6 pb-6 text-center">
+                  <div className="text-primary-container text-sm tracking-widest transition-all duration-300 group-hover:scale-105">★★★★★</div>
+                  <p className="mt-3 font-display text-xl font-semibold text-on-surface transition-colors duration-300 group-hover:text-primary-container">
+                    {client}
+                  </p>
+                  <p className="mt-1 text-label-md tracking-[0.2em] text-on-surface-variant/80">{eventType}</p>
+                  <p className="mt-4 text-body-md text-on-surface-variant leading-relaxed line-clamp-3">{text}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-label-md tracking-[0.1em] text-primary-container group-hover:text-primary transition-colors duration-300 pt-4 border-t border-outline-variant/10 w-full justify-center">
+                    Read Story
+                    <span className="transition-transform duration-300 group-hover:translate-x-1.5 inline-block">→</span>
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="relative overflow-hidden py-24 lg:py-[120px]">
+        <Image
+          src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1800&q=80"
+          alt="CTA Background"
+          fill
+          className="object-cover scale-[1.02] transition-transform duration-[20s] ease-linear hover:scale-100"
+        />
+        <div className="absolute inset-0 bg-inverse-surface/80" />
+        <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col items-center px-[20px] text-center lg:px-[80px]">
+          <p className="text-label-md tracking-[0.22em] text-primary-container">BEGIN YOUR JOURNEY</p>
+          <h2 className="mt-4 font-display text-4xl sm:text-headline-lg text-white">Ready to start your story?</h2>
+          <p className="mt-4 max-w-xl text-body-lg text-white/75 leading-relaxed">
+            Let us bring your vision to life with the sophistication it deserves.
+          </p>
+          <div className="h-[1px] bg-gradient-to-r from-transparent via-primary-container/50 to-transparent w-40 mx-auto mt-6" />
+          <Link
+            href="/enquire"
+            className="btn-shimmer mt-8 rounded-md bg-primary-container px-10 py-4 text-btn font-semibold text-on-primary-container
+              shadow-[0_4px_30px_rgba(200,155,60,0.35)] hover:bg-[#b88c2f] hover:shadow-[0_8px_45px_rgba(200,155,60,0.5)]
+              hover:-translate-y-1 transition-all duration-300"
+          >
+            Contact Our Planners
+          </Link>
+        </div>
+      </section>
     </>
   );
 }
