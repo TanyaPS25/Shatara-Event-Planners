@@ -20,7 +20,7 @@ export default function WeddingsPage() {
   };
 
   return (
-    <div className="bg-background min-h-screen text-on-surface antialiased">
+    <div className="bg-[var(--page)] min-h-screen text-[var(--ink)] antialiased">
       {/* ─── Hero Section ─── */}
       <section className="relative h-[85vh] w-full flex items-center justify-center overflow-hidden">
         <Image
@@ -61,7 +61,6 @@ export default function WeddingsPage() {
         </div>
       </section>
 
-      {/* ─── Curated Wedding Experiences ─── */}
       <section id="curated-experiences" className="py-20 max-w-6xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="text-center mb-14">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary-container">Curated Wedding Experiences</span>
@@ -73,65 +72,78 @@ export default function WeddingsPage() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {[
-            {
-              image: "/images/themes/mehndi_magic.png",
-              alt: "Mehndi Magic",
-              title: "Mehndi Magic",
-              desc: "A bohemian heritage fusion featuring beautiful floral arches and vibrant decor canopy.",
-              bullets: ["Hand-painted decor elements", "Intimate seating areas"],
-            },
-            {
-              image: "/images/themes/sangeet_spectacle.png",
-              alt: "Sangeet Spectacle",
-              title: "Sangeet Spectacle",
-              desc: "Cinematic stage production with concert-grade audio, dynamic LED mapping, and automated choreography.",
-              bullets: ["12K LED Backdrop Mapping", "Concert-grade sound curation"],
-            },
-            {
-              image: "/images/themes/cocktail_glam.png",
-              alt: "Cocktail Glam",
-              title: "Cocktail Glam",
-              desc: "Sophisticated mixology lounges with minimalist marble aesthetics, design installations, and lounge seating.",
-              bullets: ["Interactive Mixology Bar", "Curated soundscape curation"],
-            },
-          ].map((card) => (
-            <div key={card.title} className="theme-card group rounded-2xl border border-black/5 bg-white overflow-hidden shadow-sm">
-              <div className="relative aspect-video w-full overflow-hidden">
-                <Image
-                  src={card.image}
-                  alt={card.alt}
-                  fill
-                  className="theme-img object-cover"
-                />
-                {/* Gold shimmer on hover */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ background: 'linear-gradient(135deg, transparent 30%, rgba(200,155,60,0.15) 50%, transparent 70%)' }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-              <div className="p-6">
-                <h3 className="font-display text-2xl font-medium text-on-surface transition-colors duration-300 group-hover:text-primary-container">
-                  {card.title}
-                </h3>
-                <p className="mt-2 text-xs text-on-surface-variant leading-relaxed">{card.desc}</p>
-                <ul className="mt-4 space-y-1.5 text-xs text-on-surface-variant">
-                  {card.bullets.map((b) => (
-                    <li key={b} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary-container flex-shrink-0" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* Card 1: Mehndi Magic */}
+          <div className="group rounded-2xl border border-black/5 bg-white overflow-hidden shadow-sm hover:shadow-md transition">
+            <div className="relative aspect-video w-full overflow-hidden">
+              <Image
+                src="/images/themes/mehndi_magic.png"
+                alt="Mehndi Magic"
+                fill
+                className="object-cover transition duration-500 group-hover:scale-103"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="font-display text-2xl font-medium text-[var(--ink)]">Mehndi Magic</h3>
+              <p className="mt-2 text-xs text-[var(--muted)] leading-relaxed">
+                A bohemian heritage fusion featuring beautiful floral arches and vibrant decor canopy.
+              </p>
+              <ul className="mt-4 space-y-1.5 text-xs text-[var(--muted)]">
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
+                  Hand-painted decor elements
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
+                  Intimate seating areas
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Card 2: Sangeet Spectacle */}
+          <div className="group rounded-2xl border border-black/5 bg-white overflow-hidden shadow-sm hover:shadow-md transition">
+            <div className="relative aspect-video w-full overflow-hidden">
+              <Image
+                src="/images/themes/sangeet_spectacle.png"
+                alt="Sangeet Spectacle"
+                fill
+                className="object-cover transition duration-500 group-hover:scale-103"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="font-display text-2xl font-medium text-[var(--ink)]">Sangeet Spectacle</h3>
+              <p className="mt-2 text-xs text-[var(--muted)] leading-relaxed">
+                Cinematic stage production with concert-grade audio, dynamic LED mapping, and automated choreography.
+              </p>
+              <ul className="mt-4 space-y-1.5 text-xs text-[var(--muted)]">
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
+                  12K LED Backdrop Mapping
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
+                  Concert-grade sound curation
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Card 3: Cocktail Glam */}
+          <div className="group rounded-2xl border border-black/5 bg-white overflow-hidden shadow-sm hover:shadow-md transition">
+            <div className="relative aspect-video w-full overflow-hidden">
+              <Image
+                src="/images/themes/cocktail_glam.png"
+                alt="Cocktail Glam"
+                fill
+                className="object-cover transition duration-500 group-hover:scale-103"
+              />
             </div>
           ))}
-        </div>
+          </div>
       </section>
 
       {/* ─── Technical Precision ─── */}
-      <section className="py-20 bg-surface-container-low border-y border-outline-variant/15">
+      <section className="py-20 bg-stone-100/50 border-y border-black/5">
         <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10">
           <div className="text-center mb-14">
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary-container">Technical Precision</span>
@@ -141,7 +153,7 @@ export default function WeddingsPage() {
 
           <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr_1fr]">
             {/* The Grand Stage */}
-            <div className="feature-box rounded-2xl border border-black/5 bg-white p-6 shadow-sm flex flex-col justify-between">
+            <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm flex flex-col justify-between">
               <div>
                 <span className="text-[0.62rem] font-bold uppercase tracking-wider text-primary-container block mb-2">A / The Grand Stage</span>
                 <p className="text-sm text-on-surface-variant leading-relaxed">
@@ -160,7 +172,7 @@ export default function WeddingsPage() {
               </div>
             </div>
 
-            {/* Light & Audio stats */}
+            {/* Programmed light & Audio */}
             <div className="grid gap-4 flex-col">
               {[
                 { label: "Lighting Precision", stat: "200+ Intelligent Moving Heads" },
@@ -176,8 +188,8 @@ export default function WeddingsPage() {
               ))}
             </div>
 
-            {/* Reliability card */}
-            <div className="relative rounded-2xl overflow-hidden shadow-sm aspect-square lg:aspect-auto min-h-[180px]">
+            {/* Back up power image background card */}
+            <div className="relative rounded-2xl overflow-hidden shadow-sm aspect-square lg:aspect-auto">
               <Image
                 src="/images/themes/celestial_extra.png"
                 alt="Setup reliability"
@@ -194,7 +206,6 @@ export default function WeddingsPage() {
         </div>
       </section>
 
-      {/* ─── Wedding Tier Models ─── */}
       <section className="py-20 max-w-6xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="text-center mb-14">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary-container">Wedding Tier Models</span>
@@ -203,9 +214,9 @@ export default function WeddingsPage() {
           <div className="h-px bg-gradient-to-r from-transparent via-primary-container/40 to-transparent w-32 mx-auto mt-6" />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3 items-start">
+        <div className="grid gap-6 md:grid-cols-3">
           {/* Essential */}
-          <div className="tier-card rounded-2xl border border-black/8 bg-white p-6 shadow-sm flex flex-col justify-between">
+          <div className="rounded-2xl border border-black/8 bg-white p-6 shadow-sm flex flex-col justify-between">
             <div>
               <span className="text-[0.58rem] font-bold uppercase tracking-wider text-on-surface-variant block">Essential</span>
               <p className="font-display text-3xl font-semibold text-on-surface mt-2">
@@ -214,13 +225,10 @@ export default function WeddingsPage() {
               <p className="text-xs text-on-surface-variant leading-relaxed mt-3">
                 Refined planning and production for intimate heritage gatherings of up to 100 guests.
               </p>
-              <ul className="mt-6 space-y-2.5 text-xs text-on-surface-variant border-t border-black/5 pt-4">
+              <ul className="mt-6 space-y-2 text-xs text-[var(--muted)] border-t border-black/5 pt-4">
                 {["Curated Stage Design", "Standard Audio/Visual Setup", "Dedicated On-site Manager"].map((item) => (
-                  <li key={item} className="flex items-center gap-2.5">
-                    <span className="flex-shrink-0 h-4 w-4 rounded-full bg-primary-container/10 flex items-center justify-center">
-                      <span className="text-primary-container text-[0.6rem]">✓</span>
-                    </span>
-                    {item}
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="text-gold-500">✓</span> {item}
                   </li>
                 ))}
               </ul>
@@ -234,9 +242,9 @@ export default function WeddingsPage() {
             </a>
           </div>
 
-          {/* Luxe Fete — featured */}
-          <div className="tier-card-featured rounded-2xl border-2 border-primary-container bg-white p-6 shadow-md flex flex-col justify-between relative lg:-translate-y-3">
-            <span className="badge-popular absolute top-0 right-6 -translate-y-1/2 rounded-full bg-primary-container px-3 py-1 text-[0.58rem] font-bold uppercase tracking-wider text-on-primary-container">
+          {/* Luxe Fete */}
+          <div className="rounded-2xl border-2 border-gold-500 bg-white p-6 shadow-md flex flex-col justify-between relative transform lg:-translate-y-2">
+            <span className="absolute top-0 right-6 -translate-y-1/2 rounded-full bg-gold-500 px-3 py-1 text-[0.58rem] font-bold uppercase tracking-wider text-white">
               Most Popular
             </span>
             <div>
@@ -247,13 +255,10 @@ export default function WeddingsPage() {
               <p className="text-xs text-on-surface-variant leading-relaxed mt-3">
                 Comprehensive full-service management for 200–400 guests with bespoke thematic installations.
               </p>
-              <ul className="mt-6 space-y-2.5 text-xs text-on-surface-variant border-t border-black/5 pt-4">
+              <ul className="mt-6 space-y-2 text-xs text-[var(--muted)] border-t border-black/5 pt-4">
                 {["3D Visual Mockups", "Bespoke Production Teams", "VIP Guest Concierge (15)", "International Catering Liaison"].map((item) => (
-                  <li key={item} className="flex items-center gap-2.5">
-                    <span className="flex-shrink-0 h-4 w-4 rounded-full bg-primary-container/20 flex items-center justify-center">
-                      <span className="text-primary-container text-[0.6rem]">✓</span>
-                    </span>
-                    {item}
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="text-gold-500">✓</span> {item}
                   </li>
                 ))}
               </ul>
@@ -268,7 +273,7 @@ export default function WeddingsPage() {
           </div>
 
           {/* Grandeur */}
-          <div className="tier-card rounded-2xl border border-black/8 bg-white p-6 shadow-sm flex flex-col justify-between">
+          <div className="rounded-2xl border border-black/8 bg-white p-6 shadow-sm flex flex-col justify-between">
             <div>
               <span className="text-[0.58rem] font-bold uppercase tracking-wider text-on-surface-variant block">Grandeur</span>
               <p className="font-display text-3xl font-semibold text-on-surface mt-2">
@@ -277,13 +282,10 @@ export default function WeddingsPage() {
               <p className="text-xs text-on-surface-variant leading-relaxed mt-3">
                 The pinnacle of luxury. Multi-day destination management for 500+ guests with no creative limits.
               </p>
-              <ul className="mt-6 space-y-2.5 text-xs text-on-surface-variant border-t border-black/5 pt-4">
+              <ul className="mt-6 space-y-2 text-xs text-[var(--muted)] border-t border-black/5 pt-4">
                 {["Custom Stage Fabrication", "Celebrity Talent Management", "Global Destination Logistics"].map((item) => (
-                  <li key={item} className="flex items-center gap-2.5">
-                    <span className="flex-shrink-0 h-4 w-4 rounded-full bg-primary-container/10 flex items-center justify-center">
-                      <span className="text-primary-container text-[0.6rem]">✓</span>
-                    </span>
-                    {item}
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="text-gold-500">✓</span> {item}
                   </li>
                 ))}
               </ul>
@@ -300,9 +302,8 @@ export default function WeddingsPage() {
       </section>
 
       {/* ─── Begin Your Journey Form ─── */}
-      <section id="consultation" className="py-20 bg-surface-container-low border-t border-outline-variant/15">
+      <section id="consultation" className="py-20 bg-stone-100/50 border-t border-black/5">
         <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10 grid gap-10 md:grid-cols-2">
-          {/* Info Side */}
           <div>
             <h2 className="font-display text-4xl font-semibold text-on-surface">Begin Your Journey</h2>
             <p className="mt-4 text-sm text-on-surface-variant leading-relaxed">
@@ -328,7 +329,7 @@ export default function WeddingsPage() {
           </div>
 
           {/* Form Side */}
-          <div className="bg-white border border-outline-variant/20 rounded-2xl p-6 sm:p-8 shadow-sm">
+          <div className="bg-white border border-black/5 rounded-2xl p-6 sm:p-8 shadow-sm">
             {isSubmitted ? (
               <div className="text-center py-10">
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 text-2xl font-bold shadow-sm mb-4 border border-emerald-200">
