@@ -121,12 +121,11 @@ export default function CelebrationMatchPage() {
       title="Celebration Match"
       intro="Select two celebration themes and compare them side by side to find your perfect match."
     >
-<<<<<<< HEAD
       {/* Confirmed Theme Display Overlay */}
       {confirmedTheme ? (
         <div className="mx-auto max-w-xl rounded-[2.5rem] border border-gold-500 bg-white p-8 md:p-10 shadow-2xl text-center relative overflow-hidden transition-all duration-500">
           <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600" />
-          
+
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gold-50 text-gold-500 text-3xl shadow-sm mb-6">
             ✓
           </div>
@@ -151,7 +150,6 @@ export default function CelebrationMatchPage() {
             />
           </div>
 
-          {/* Structured highlights in large clear blocks */}
           <div className="grid grid-cols-3 gap-3 border-y border-black/5 py-5 my-6 max-w-md mx-auto text-left">
             <div>
               <span className="text-[0.68rem] text-[var(--muted)] uppercase tracking-wider block">Pricing</span>
@@ -187,7 +185,6 @@ export default function CelebrationMatchPage() {
         </div>
       ) : (
         <>
-          {/* Dynamic Guest Count Selector */}
           <div className="mx-auto max-w-xl rounded-2xl border border-black/5 bg-white p-6 shadow-sm mb-10 text-center">
             <h4 className="text-sm font-bold uppercase tracking-wider text-gold-600 mb-1">Set Guest Count</h4>
             <p className="text-xs text-[var(--muted)] mb-4">
@@ -209,13 +206,11 @@ export default function CelebrationMatchPage() {
             </div>
           </div>
 
-          {/* Theme Grid Cards */}
           <div className="relative grid gap-6 lg:grid-cols-2 mb-12">
             <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[var(--page)] bg-gold-500 font-display text-base font-bold text-white shadow-md max-lg:hidden">
               VS
             </div>
 
-            {/* Slot A */}
             {themeA ? (
               <div className="relative group overflow-hidden rounded-2xl border border-black/5 bg-white p-3 shadow-sm transition hover:shadow-md">
                 <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-stone-100">
@@ -260,7 +255,6 @@ export default function CelebrationMatchPage() {
               </div>
             )}
 
-            {/* Slot B */}
             {themeB ? (
               <div className="relative group overflow-hidden rounded-2xl border border-black/5 bg-white p-3 shadow-sm transition hover:shadow-md">
                 <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-stone-100">
@@ -306,7 +300,6 @@ export default function CelebrationMatchPage() {
             )}
           </div>
 
-          {/* Visual comparison slider */}
           {themeA && themeB && (
             <div className="mb-16">
               <AtmosphereComparison
@@ -318,12 +311,9 @@ export default function CelebrationMatchPage() {
             </div>
           )}
 
-          {/* Side-by-side comparative parameter metrics */}
           {themeA && themeB && (
             <div className="mb-16">
-              {/* Grid cards breakdown */}
               <div className="grid gap-6 md:grid-cols-3 mb-8">
-                {/* Palette */}
                 <div className="rounded-2xl border border-black/8 bg-white p-6 shadow-sm">
                   <span className="text-xs font-bold uppercase tracking-wider text-gold-600 block mb-4">Palette</span>
                   <div className="space-y-4">
@@ -352,7 +342,6 @@ export default function CelebrationMatchPage() {
                   </div>
                 </div>
 
-                {/* Lighting mood */}
                 <div className="rounded-2xl border border-black/8 bg-white p-6 shadow-sm">
                   <span className="text-xs font-bold uppercase tracking-wider text-gold-600 block mb-4">Lighting Mood</span>
                   <div className="space-y-4 text-sm leading-relaxed">
@@ -367,7 +356,6 @@ export default function CelebrationMatchPage() {
                   </div>
                 </div>
 
-                {/* AI matching recommendation card */}
                 <div className="rounded-2xl border border-gold-400/20 bg-gradient-to-b from-amber-500/5 to-transparent p-6 shadow-sm">
                   <span className="text-xs font-bold uppercase tracking-wider text-gold-600 block mb-4">AI Fit Score</span>
                   <div className="space-y-4 text-sm">
@@ -395,7 +383,6 @@ export default function CelebrationMatchPage() {
                 </div>
               </div>
 
-              {/* Specs detailed table */}
               <div className="overflow-hidden rounded-2xl border border-black/8 bg-white shadow-sm">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
@@ -407,7 +394,6 @@ export default function CelebrationMatchPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-black/5 text-sm text-[var(--ink)]">
-                      {/* Price */}
                       <tr>
                         <td className="px-6 py-4 font-semibold uppercase tracking-wider text-[var(--muted)] text-xs bg-stone-50/20">Price</td>
                         <td className="px-6 py-4">
@@ -424,7 +410,6 @@ export default function CelebrationMatchPage() {
                         </td>
                       </tr>
 
-                      {/* Guest Scale */}
                       <tr>
                         <td className="px-6 py-4 font-semibold uppercase tracking-wider text-[var(--muted)] text-xs bg-stone-50/20">Capacity</td>
                         <td className="px-6 py-4">
@@ -441,14 +426,12 @@ export default function CelebrationMatchPage() {
                         </td>
                       </tr>
 
-                      {/* Preferred Venue type */}
                       <tr>
                         <td className="px-6 py-4 font-semibold uppercase tracking-wider text-[var(--muted)] text-xs bg-stone-50/20">Venues</td>
                         <td className="px-6 py-4 leading-relaxed font-medium">{themeA.venueType}</td>
                         <td className="px-6 py-4 leading-relaxed font-medium">{themeB.venueType}</td>
                       </tr>
 
-                      {/* Decors Signature list */}
                       <tr>
                         <td className="px-6 py-4 font-semibold uppercase tracking-wider text-[var(--muted)] text-xs bg-stone-50/20">Key Decor</td>
                         <td className="px-6 py-4">
@@ -473,7 +456,6 @@ export default function CelebrationMatchPage() {
             </div>
           )}
 
-          {/* Quick verdicts and Confirm Action CTA */}
           {themeA && themeB && (
             <div className="rounded-2xl border border-black/8 bg-stone-100 p-8 text-center mb-10">
               <div className="grid gap-6 sm:grid-cols-3 text-center mb-8">
@@ -494,7 +476,6 @@ export default function CelebrationMatchPage() {
                 </div>
               </div>
 
-              {/* Selection Confirmation Trigger CTAs */}
               <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
                 <button
                   onClick={() => setConfirmedTheme(themeA)}
@@ -518,7 +499,6 @@ export default function CelebrationMatchPage() {
             </div>
           )}
 
-          {/* Modal selector */}
           <ThemeSelectorModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
@@ -528,55 +508,6 @@ export default function CelebrationMatchPage() {
           />
         </>
       )}
-=======
-      <div className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-lg border-2 border-dashed border-outline-variant bg-surface-container-low p-10 text-center flex flex-col items-center justify-center min-h-[250px] cursor-pointer hover:border-primary-container transition">
-          <div className="h-12 w-12 rounded-full border border-primary-container/30 flex items-center justify-center text-primary-container text-2xl mb-4 bg-surface-container-lowest">
-            +
-          </div>
-          <p className="font-display text-2xl font-semibold text-on-surface">Select Second Theme</p>
-          <p className="mt-2 text-body-md text-on-surface-variant/80">Compare another style side by side</p>
-        </div>
-        <div className="rounded-lg border border-primary-container bg-surface-container-lowest p-10 flex flex-col justify-center min-h-[250px] relative overflow-hidden shadow-sm">
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-primary-container" />
-          <p className="text-label-md tracking-[0.16em] text-primary-container">Theme A</p>
-          <h3 className="mt-3 font-display text-3xl font-semibold text-on-surface">Royal Wedding</h3>
-          <p className="mt-4 text-body-md text-on-surface-variant leading-relaxed">
-            A high-opulence palette with candelabras, warm spotlights, and an elevated editorial mood.
-          </p>
-        </div>
-      </div>
-
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {[
-          ["Color Palette", "Royal Gold / Sage / Ivory", false],
-          ["Lighting Style", "Warm spotlights and fairy lights", false],
-          ["AI Recommendation", "96% Match", true],
-        ].map(([title, value, isMatch]) => (
-          <div key={title as string} className="rounded-lg border border-outline-variant/20 bg-surface-container-lowest p-6 text-center shadow-sm">
-            <p className="text-label-md tracking-[0.12em] text-primary-container">{title as string}</p>
-            {isMatch ? (
-              <div className="mt-3">
-                <span className="inline-block bg-accent-sage/35 text-accent-sage-text px-4.5 py-1.5 rounded text-sm font-bold tracking-wide">
-                  {value as string}
-                </span>
-              </div>
-            ) : (
-              <p className="mt-3 font-display text-2xl font-semibold text-on-surface">{value as string}</p>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-12 flex justify-center gap-4">
-        <Link href="/enquire" className="rounded-md bg-primary-container px-7 py-3.5 text-btn font-semibold text-on-primary-container hover:bg-[#b88c2f] transition shadow-[0_4px_12px_rgba(200,155,60,0.15)]">
-          Book This Theme
-        </Link>
-        <Link href="/portfolio" className="rounded-md border border-primary-container/40 px-7 py-3.5 text-btn font-semibold text-primary-container hover:bg-primary-container/10 transition">
-          View Portfolio
-        </Link>
-      </div>
->>>>>>> upstream
     </GenericPage>
   );
 }

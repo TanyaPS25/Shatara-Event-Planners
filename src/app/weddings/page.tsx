@@ -21,9 +21,7 @@ export default function WeddingsPage() {
   };
 
   return (
-<<<<<<< HEAD
     <div className="bg-[var(--page)] min-h-screen text-[var(--ink)] antialiased">
-      {/* ─── Hero Section ─── */}
       <section className="relative h-[85vh] w-full flex items-center justify-center overflow-hidden">
         <Image
           src="/images/themes/wedding_hero.png"
@@ -33,7 +31,7 @@ export default function WeddingsPage() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/30" />
-        
+
         <div className="relative z-10 max-w-4xl px-5 text-center text-white">
           <span className="text-xs font-bold uppercase tracking-[0.35em] text-gold-400">
             Royal Intrigue & Majestic Scale
@@ -61,7 +59,6 @@ export default function WeddingsPage() {
         </div>
       </section>
 
-      {/* ─── Curated Wedding Experiences ─── */}
       <section id="curated-experiences" className="py-20 max-w-6xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="text-center mb-14">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-gold-600">Curated Wedding Experiences</span>
@@ -71,7 +68,6 @@ export default function WeddingsPage() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {/* Card 1: Mehndi Magic */}
           <div className="group rounded-2xl border border-black/5 bg-white overflow-hidden shadow-sm hover:shadow-md transition">
             <div className="relative aspect-video w-full overflow-hidden">
               <Image
@@ -99,7 +95,6 @@ export default function WeddingsPage() {
             </div>
           </div>
 
-          {/* Card 2: Sangeet Spectacle */}
           <div className="group rounded-2xl border border-black/5 bg-white overflow-hidden shadow-sm hover:shadow-md transition">
             <div className="relative aspect-video w-full overflow-hidden">
               <Image
@@ -127,7 +122,6 @@ export default function WeddingsPage() {
             </div>
           </div>
 
-          {/* Card 3: Cocktail Glam */}
           <div className="group rounded-2xl border border-black/5 bg-white overflow-hidden shadow-sm hover:shadow-md transition">
             <div className="relative aspect-video w-full overflow-hidden">
               <Image
@@ -157,7 +151,6 @@ export default function WeddingsPage() {
         </div>
       </section>
 
-      {/* ─── Technical Precision ─── */}
       <section className="py-20 bg-stone-100/50 border-y border-black/5">
         <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10">
           <div className="text-center mb-14">
@@ -166,7 +159,6 @@ export default function WeddingsPage() {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr_1fr]">
-            {/* The Grand Stage */}
             <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm flex flex-col justify-between">
               <div>
                 <span className="text-[0.62rem] font-bold uppercase tracking-wider text-gold-600 block mb-2">A / The Grand Stage</span>
@@ -186,7 +178,6 @@ export default function WeddingsPage() {
               </div>
             </div>
 
-            {/* Programmed light & Audio */}
             <div className="grid gap-4 flex-col">
               <div className="rounded-2xl border border-black/5 bg-white p-5 shadow-sm flex items-center justify-between">
                 <div>
@@ -204,7 +195,6 @@ export default function WeddingsPage() {
               </div>
             </div>
 
-            {/* Back up power image background card */}
             <div className="relative rounded-2xl overflow-hidden shadow-sm aspect-square lg:aspect-auto">
               <Image
                 src="/images/themes/celestial_extra.png"
@@ -222,7 +212,6 @@ export default function WeddingsPage() {
         </div>
       </section>
 
-      {/* ─── Wedding Tier Models ─── */}
       <section className="py-20 max-w-6xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="text-center mb-14">
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-gold-600">Wedding Tier Models</span>
@@ -230,7 +219,6 @@ export default function WeddingsPage() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {/* Essential */}
           <div className="rounded-2xl border border-black/8 bg-white p-6 shadow-sm flex flex-col justify-between">
             <div>
               <span className="text-[0.58rem] font-bold uppercase tracking-wider text-[var(--muted)] block">Essential</span>
@@ -239,7 +227,7 @@ export default function WeddingsPage() {
                 Refined planning and production for intimate heritage gatherings of up to 100 guests.
               </p>
               <ul className="mt-6 space-y-2 text-xs text-[var(--muted)] border-t border-black/5 pt-4">
-                {["Curated Stage Design", "Standard Audio/Visual Setup", "Dedicated On-site Manager"].map((item) => (
+                {['Curated Stage Design', 'Standard Audio/Visual Setup', 'Dedicated On-site Manager'].map((item) => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="text-gold-500">✓</span> {item}
                   </li>
@@ -251,7 +239,6 @@ export default function WeddingsPage() {
             </a>
           </div>
 
-          {/* Luxe Fete */}
           <div className="rounded-2xl border-2 border-gold-500 bg-white p-6 shadow-md flex flex-col justify-between relative transform lg:-translate-y-2">
             <span className="absolute top-0 right-6 -translate-y-1/2 rounded-full bg-gold-500 px-3 py-1 text-[0.58rem] font-bold uppercase tracking-wider text-white">
               Most Popular
@@ -263,7 +250,7 @@ export default function WeddingsPage() {
                 Comprehensive full-service management for 200-400 guests with bespoke thematic installations.
               </p>
               <ul className="mt-6 space-y-2 text-xs text-[var(--muted)] border-t border-black/5 pt-4">
-                {["3D Visual Mockups", "Bespoke Production Teams", "VIP Guest Concierge (15)", "International Catering Liaison"].map((item) => (
+                {['3D Visual Mockups', 'Bespoke Production Teams', 'VIP Guest Concierge (15)', 'International Catering Liaison'].map((item) => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="text-gold-500">✓</span> {item}
                   </li>
@@ -275,7 +262,6 @@ export default function WeddingsPage() {
             </a>
           </div>
 
-          {/* Grandeur */}
           <div className="rounded-2xl border border-black/8 bg-white p-6 shadow-sm flex flex-col justify-between">
             <div>
               <span className="text-[0.58rem] font-bold uppercase tracking-wider text-[var(--muted)] block">Grandeur</span>
@@ -284,7 +270,7 @@ export default function WeddingsPage() {
                 The pinnacle of luxury. Multi-day destination management for 500+ guests with no creative limits.
               </p>
               <ul className="mt-6 space-y-2 text-xs text-[var(--muted)] border-t border-black/5 pt-4">
-                {["Custom Stage Fabrication", "Celebrity Talent Management", "Global Destination Logistics"].map((item) => (
+                {['Custom Stage Fabrication', 'Celebrity Talent Management', 'Global Destination Logistics'].map((item) => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="text-gold-500">✓</span> {item}
                   </li>
@@ -298,10 +284,8 @@ export default function WeddingsPage() {
         </div>
       </section>
 
-      {/* ─── Begin Your Journey Form ─── */}
       <section id="consultation" className="py-20 bg-stone-100/50 border-t border-black/5">
         <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10 grid gap-10 md:grid-cols-2">
-          {/* Info Side */}
           <div>
             <h2 className="font-display text-4xl font-semibold text-[var(--ink)]">Begin Your Journey</h2>
             <p className="mt-4 text-sm text-[var(--muted)] leading-relaxed">
@@ -326,7 +310,6 @@ export default function WeddingsPage() {
             </div>
           </div>
 
-          {/* Form Side */}
           <div className="bg-white border border-black/5 rounded-2xl p-6 sm:p-8 shadow-sm">
             {isSubmitted ? (
               <div className="text-center py-10">
@@ -401,45 +384,5 @@ export default function WeddingsPage() {
         </div>
       </section>
     </div>
-=======
-    <GenericPage
-      title="Curate Your Ethereal Experience"
-      intro="From the traditional richness of Indian heritage to the sleek modernity of global galas, explore our curated event palettes designed for life’s most precious milestones."
-      actions={[{ label: "Launch AI Experience", href: "/celebrate-preview" }, { label: "Compare Multiple Themes", href: "/celebration-match", variant: "secondary" }]}
-    >
-      <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr_1.05fr]">
-        <Link
-          href="/celebrate-preview"
-          className="group rounded-lg border border-outline-variant/20 bg-surface-container-lowest p-6 ambient-shadow-gold transition duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(200,155,60,0.08)]"
-        >
-          <p className="text-label-md tracking-[0.14em] text-primary-container font-semibold">Interactive Preview</p>
-          <p className="mt-4 font-display text-2xl font-semibold text-on-surface group-hover:text-primary transition">Launch AI Experience</p>
-          <p className="mt-4 text-body-md text-on-surface-variant leading-relaxed">
-            Visualize your venue in real time with a refined, guided preview flow.
-          </p>
-        </Link>
-        <Link
-          href="/event-calendar"
-          className="group rounded-lg border border-outline-variant/20 bg-surface-container-lowest p-6 ambient-shadow-gold transition duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(200,155,60,0.08)]"
-        >
-          <p className="text-label-md tracking-[0.14em] text-primary-container font-semibold">Theme Library</p>
-          <p className="mt-4 font-display text-2xl font-semibold text-on-surface group-hover:text-primary transition">Seasonal Party</p>
-          <p className="mt-4 text-body-md text-on-surface-variant leading-relaxed">
-            Browse seasonal celebrations and destination-ready moods.
-          </p>
-        </Link>
-        <Link
-          href="/celebration-match"
-          className="group rounded-lg border border-outline-variant/20 bg-surface-container-lowest p-6 ambient-shadow-gold transition duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(200,155,60,0.08)]"
-        >
-          <p className="text-label-md tracking-[0.14em] text-primary-container font-semibold">Theme Comparison</p>
-          <p className="mt-4 font-display text-2xl font-semibold text-on-surface group-hover:text-primary transition">Celebration Match</p>
-          <p className="mt-4 text-body-md text-on-surface-variant leading-relaxed">
-            Compare two celebration themes side by side before you decide.
-          </p>
-        </Link>
-      </div>
-    </GenericPage>
->>>>>>> upstream
   );
 }
