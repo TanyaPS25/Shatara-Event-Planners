@@ -38,7 +38,7 @@ export default async function StoryDetailPage({ params }: Params) {
             {story.longReview}
           </p>
           <Link href="/client-stories" className="mt-8 inline-flex text-sm font-medium text-gold-500">
-            Back to stories
+            ← Back to stories
           </Link>
         </div>
       </div>

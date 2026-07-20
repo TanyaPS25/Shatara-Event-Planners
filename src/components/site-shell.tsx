@@ -13,9 +13,12 @@ function Logo() {
   return (
     <Link
       href="/"
-      className="font-display text-[1.65rem] font-bold tracking-[0.2em] text-primary-container shatara-glow hover:opacity-90 transition-opacity duration-300"
+      className="group relative inline-flex items-center gap-1.5 sm:gap-2.5 font-display text-[1.25rem] sm:text-[1.5rem] xl:text-[1.75rem] font-semibold tracking-[0.16em] sm:tracking-[0.2em] xl:tracking-[0.24em] text-black transition duration-300 hover:opacity-95"
     >
-      SHATARA
+      <span className="text-black transition-transform duration-500 group-hover:rotate-45 text-sm sm:text-xl">✦</span>
+      <span className="whitespace-nowrap text-black">
+        SHATARA
+      </span>
     </Link>
   );
 }
@@ -26,36 +29,29 @@ export function SiteShell({ children }: SiteShellProps) {
 
   // On home: start hidden, reveal on scroll. On other pages: always visible.
   const [navVisible, setNavVisible] = useState(!isHome);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (!isHome) {
-      setNavVisible(true);
-      return;
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
-    setNavVisible(false);
-
-    const handleScroll = () => {
-      setNavVisible(window.scrollY > 60);
+    return () => {
+      document.body.style.overflow = "";
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHome]);
+  }, [mobileMenuOpen]);
 
   return (
     <div className="min-h-screen bg-background text-on-surface antialiased selection:bg-primary-container/20">
-
       {/* ── Fixed Header ── */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 border-b border-outline-variant/20 glass-surface ambient-shadow-gold
           transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
           ${navVisible ? "header-visible" : "header-hidden"}`}
       >
-        <div className="mx-auto flex h-20 w-full max-w-[1280px] items-center justify-between px-4 lg:px-6">
+        <div className="mx-auto grid h-20 w-full max-w-[1280px] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-8 px-[4px] lg:px-[24px]">
           <Logo />
-          
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden items-center gap-8 lg:flex">
             {primaryNav.map((item) => (
               <Link
                 key={item.href}
@@ -66,13 +62,11 @@ export function SiteShell({ children }: SiteShellProps) {
               </Link>
             ))}
           </nav>
-
-          {/* Desktop CTAs */}
-          <div className="hidden lg:flex items-center gap-5">
+          <div className="ml-auto flex items-center gap-5">
             <Link
               href="/client-login"
-              className="rounded-md border border-outline-variant/40 px-5 py-2.5 text-btn text-on-surface-variant
-                hover:border-primary-container hover:text-primary transition-all duration-300"
+              className="hidden rounded-md border border-outline-variant/40 px-5 py-2.5 text-btn text-on-surface-variant
+                hover:border-primary-container hover:text-primary transition-all duration-300 sm:inline-flex"
             >
               Client Login
             </Link>
@@ -85,61 +79,11 @@ export function SiteShell({ children }: SiteShellProps) {
               Enquire Now
             </Link>
           </div>
-
-          {/* Mobile Hamburger Button */}
-          <button
-            className="lg:hidden text-primary-container p-2 focus:outline-none"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile Menu Overlay */}
-        <div 
-          className={`lg:hidden absolute top-20 left-0 w-full bg-surface-container-lowest border-b border-outline-variant/20 shadow-[0_10px_20px_rgba(0,0,0,0.05)] transition-all duration-300 overflow-hidden ${
-            mobileMenuOpen ? "max-h-screen py-6" : "max-h-0 py-0 border-transparent"
-          }`}
-        >
-          <div className="flex flex-col px-6 space-y-2">
-            {primaryNav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block py-3 text-sm font-semibold tracking-widest text-on-surface-variant hover:text-primary transition"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="h-px bg-outline-variant/30 w-full my-4" />
-            <Link
-              href="/client-login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-3 text-sm font-semibold tracking-widest text-on-surface-variant hover:text-primary transition"
-            >
-              Client Login
-            </Link>
-            <Link
-              href="/enquire"
-              onClick={() => setMobileMenuOpen(false)}
-              className="mt-4 block w-full rounded-md bg-primary-container px-6 py-3.5 text-center text-sm font-bold tracking-widest text-on-primary-container shadow-md hover:bg-[#b88c2f]"
-            >
-              ENQUIRE NOW
-            </Link>
-          </div>
         </div>
       </header>
 
       {/* ── Main Content ── */}
-      <main className={`min-h-[80vh] ${isHome ? "" : "pt-20"}`}>
+      <main className="min-h-[80vh] pt-[72px]">
         {children}
       </main>
 
@@ -244,19 +188,19 @@ export function SiteShell({ children }: SiteShellProps) {
           aria-label="Open chat"
         >
           <svg viewBox="0 0 64 64" className="h-11 w-11" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="32" y1="6" x2="32" y2="14" stroke="#c79227" strokeWidth="2.5" strokeLinecap="round"/>
-            <circle cx="32" cy="5" r="3" fill="#c79227"/>
-            <rect x="14" y="14" width="36" height="28" rx="9" fill="#c79227"/>
-            <rect x="17" y="17" width="30" height="22" rx="7" fill="#f5efe5"/>
-            <circle cx="24" cy="27" r="4" fill="#c79227"/>
-            <circle cx="25" cy="26" r="1.5" fill="#fff"/>
-            <circle cx="40" cy="27" r="4" fill="#c79227"/>
-            <circle cx="41" cy="26" r="1.5" fill="#fff"/>
-            <path d="M25 33 Q32 38 39 33" stroke="#c79227" strokeWidth="2" strokeLinecap="round" fill="none"/>
-            <rect x="10" y="22" width="5" height="8" rx="2.5" fill="#c79227"/>
-            <rect x="49" y="22" width="5" height="8" rx="2.5" fill="#c79227"/>
-            <rect x="27" y="42" width="10" height="5" rx="2" fill="#c79227"/>
-            <rect x="20" y="47" width="24" height="8" rx="4" fill="#c79227"/>
+            <line x1="32" y1="6" x2="32" y2="14" stroke="#c79227" strokeWidth="2.5" strokeLinecap="round" />
+            <circle cx="32" cy="5" r="3" fill="#c79227" />
+            <rect x="14" y="14" width="36" height="28" rx="9" fill="#c79227" />
+            <rect x="17" y="17" width="30" height="22" rx="7" fill="#f5efe5" />
+            <circle cx="24" cy="27" r="4" fill="#c79227" />
+            <circle cx="25" cy="26" r="1.5" fill="#fff" />
+            <circle cx="40" cy="27" r="4" fill="#c79227" />
+            <circle cx="41" cy="26" r="1.5" fill="#fff" />
+            <path d="M25 33 Q32 38 39 33" stroke="#c79227" strokeWidth="2" strokeLinecap="round" fill="none" />
+            <rect x="10" y="22" width="5" height="8" rx="2.5" fill="#c79227" />
+            <rect x="49" y="22" width="5" height="8" rx="2.5" fill="#c79227" />
+            <rect x="27" y="42" width="10" height="5" rx="2" fill="#c79227" />
+            <rect x="20" y="47" width="24" height="8" rx="4" fill="#c79227" />
           </svg>
         </Link>
       </div>

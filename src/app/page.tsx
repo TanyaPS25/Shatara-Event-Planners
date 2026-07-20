@@ -52,14 +52,14 @@ function playCinematicWelcome() {
     boom.start(t); boom.stop(t + 2.3);
 
     const notes: [number, OscillatorType, number, number, number][] = [
-      [130.81, 'sine', 0.0, 3.2, 0.28],
-      [164.81, 'sine', 0.1, 3.0, 0.14],
-      [196.00, 'triangle', 0.2, 2.8, 0.12],
-      [261.63, 'sine', 0.3, 2.6, 0.16],
-      [329.63, 'triangle', 0.4, 2.4, 0.10],
-      [392.00, 'triangle', 0.5, 2.2, 0.08],
-      [523.25, 'sine', 0.6, 2.0, 0.07],
-      [1046.5, 'sine', 0.8, 1.5, 0.04],
+      [130.81, 'sine', 0.0, 3.2, 0.28],   // C3 – warm bass
+      [164.81, 'sine', 0.1, 3.0, 0.14],   // E3
+      [196.00, 'triangle', 0.2, 2.8, 0.12],   // G3
+      [261.63, 'sine', 0.3, 2.6, 0.16],   // C4 – mid
+      [329.63, 'triangle', 0.4, 2.4, 0.10],   // E4
+      [392.00, 'triangle', 0.5, 2.2, 0.08],   // G4
+      [523.25, 'sine', 0.6, 2.0, 0.07],   // C5 – shimmer
+      [1046.5, 'sine', 0.8, 1.5, 0.04],   // C6 – sparkle
     ];
 
     notes.forEach(([freq, type, start, dur, vol]) => {
@@ -122,14 +122,16 @@ function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-screen overflow-hidden hero-reveal hero-shimmer"
-      style={{
-        backgroundImage: "url('/hero.jpeg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        willChange: "transform, opacity, filter",
-      }}
+      className="relative w-full h-[65vh] md:h-screen overflow-hidden hero-reveal hero-shimmer"
     >
+      <Image
+        src="/hero.jpeg"
+        alt="Shatara Luxury Event Decor"
+        fill
+        priority
+        className="object-cover object-center"
+        sizes="100vw"
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background/40 z-[1]" />
       <div className="absolute inset-0 z-[1]"
         style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(31,27,20,0.45) 100%)" }} />
@@ -155,6 +157,17 @@ const FEATURES = [
     image: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80",
   },
 ];
+
+/* ── Service card data ── */
+const SERVICES = [
+  { title: "Artful Ambiance", text: "Sculpting atmospheres that resonate with your soul.", href: "/services/artful-ambiance", image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80" },
+  { title: "Culinary Excellence", text: "A symphony of flavors tailored to the most discerning palates.", href: "/services/culinary-excellence", image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" },
+  { title: "Floral Masterpieces", text: "Bespoke botanical arrangements that breathe life into every space.", href: "/services/floral-masterpieces", image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80" },
+  { title: "Exquisite Locales", text: "Prestigious and hidden venues for unforgettable occasions.", href: "/services/exquisite-locales", image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" },
+  { title: "Confectionary Art", text: "Sculptural cakes that taste as divine as they look.", href: "/services/confectionary-art", image: "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=600&q=80" },
+  { title: "Eternal Memories", text: "Cinematic storytelling through world-class photography.", href: "/services/eternal-memories", image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" },
+];
+
 
 /* ── Client stories data ── */
 const STORIES = [
@@ -188,14 +201,7 @@ const GALLERY = [
   "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
 ];
 
-const SERVICES = [
-  { title: "Artful Ambiance", text: "Sculpting atmospheres that resonate with your soul.", href: "/services/artful-ambiance" },
-  { title: "Culinary Excellence", text: "A symphony of flavors tailored to the most discerning palates.", href: "/services/culinary-excellence" },
-  { title: "Floral Masterpieces", text: "Bespoke botanical arrangements that breathe life into every space.", href: "/services/floral-masterpieces" },
-  { title: "Exquisite Locales", text: "Prestigious and hidden venues for unforgettable occasions.", href: "/services/exquisite-locales" },
-  { title: "Confectionary Art", text: "Sculptural cakes that taste as divine as they look.", href: "/services/confectionary-art" },
-  { title: "Eternal Memories", text: "Cinematic storytelling through world-class photography.", href: "/services/eternal-memories" },
-];
+
 
 export default function Home() {
   return (
@@ -205,7 +211,7 @@ export default function Home() {
       {/* ── Feature Highlights ── */}
       <section className="relative w-full bg-background py-16">
         <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-3">
             {FEATURES.map(({ title, text, image }) => (
               <div
                 key={title}
@@ -213,7 +219,6 @@ export default function Home() {
                   transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
                   hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(31,27,20,0.18),0_0_0_1.5px_rgba(200,155,60,0.5)]"
               >
-                {/* Background image */}
                 <Image
                   src={image}
                   alt={title}
@@ -221,7 +226,7 @@ export default function Home() {
                   className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.1]"
                 />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20 transition-all duration-500 group-hover:from-black/80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/25 to-black/5 transition-all duration-500 group-hover:from-black/45" />
                 {/* Gold shimmer on hover */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -260,11 +265,16 @@ export default function Home() {
                 href={href}
                 className="content-card group p-6 flex flex-col"
               >
+                <div className="relative h-48 w-full overflow-hidden rounded-lg mb-4">
+                  <Image src={image} alt={title} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.2) 50%, transparent 75%)' }} />
+                </div>
                 <p className="font-display text-2xl text-on-surface transition-colors duration-300 group-hover:text-primary-container">
                   {title}
                 </p>
                 <p className="mt-4 text-sm leading-7 text-on-surface-variant">{text}</p>
-                {/* Animated read more */}
                 <div className="mt-auto pt-5 flex items-center gap-2 text-[0.72rem] font-bold uppercase tracking-[0.18em] text-primary-container/70 transition-all duration-300 group-hover:text-primary-container">
                   <span>Explore</span>
                   <span className="transition-transform duration-300 group-hover:translate-x-1.5 inline-block">→</span>
@@ -280,21 +290,14 @@ export default function Home() {
         <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
           <div className="text-center mb-10">
             <p className="text-label-md tracking-[0.2em] text-primary-container">Portfolio Glimpse</p>
-            <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments We've Crafted</h2>
+            <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments We&apos;ve Crafted</h2>
             <div className="h-[1px] bg-gradient-to-r from-transparent via-primary-container/40 to-transparent w-40 mx-auto mt-6" />
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
             {GALLERY.map((img, i) => (
               <div key={i} className="gallery-cell h-40">
-                <Image
-                  src={img}
-                  alt={`Gallery ${i + 1}`}
-                  fill
-                  className="object-cover"
-                />
-                {/* Dark overlay — lightens on hover */}
+                <Image src={img} alt={`Gallery ${i + 1}`} fill className="object-cover" />
                 <div className="absolute inset-0 bg-black/30 transition-opacity duration-500 group-hover:opacity-0" />
-                {/* Gold ring on hover */}
                 <div className="absolute inset-0 rounded-xl ring-1 ring-transparent group-hover:ring-primary-container/60 transition-all duration-500" />
               </div>
             ))}
@@ -316,7 +319,7 @@ export default function Home() {
         <div className="mx-auto w-full max-w-[1280px] px-[20px] lg:px-[80px]">
           <div className="text-center">
             <p className="text-label-md tracking-[0.2em] text-primary-container">Client Stories</p>
-            <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments of Poise & Elegance</h2>
+            <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments of Poise &amp; Elegance</h2>
             <p className="mt-4 text-body-md text-on-surface-variant italic">Every celebration leaves behind a beautiful memory.</p>
             <div className="h-[1px] bg-gradient-to-r from-transparent via-primary-container/40 to-transparent w-40 mx-auto mt-6" />
           </div>
@@ -338,7 +341,6 @@ export default function Home() {
                     className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.1]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
-                  {/* Gold shimmer on hover */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                     style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.18) 50%, transparent 75%)' }}

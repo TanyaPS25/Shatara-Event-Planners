@@ -39,6 +39,8 @@ export function AtmosphereComparison({ imageA, imageB, nameA, nameB }: Atmospher
     isDragging.current = false;
   };
 
+  const [containerWidth, setContainerWidth] = useState<number | string>("100%");
+
   useEffect(() => {
     const mouseMoveHandler = (e: MouseEvent) => handleMouseMove(e);
     const touchMoveHandler = (e: TouchEvent) => handleTouchMove(e);
@@ -49,16 +51,30 @@ export function AtmosphereComparison({ imageA, imageB, nameA, nameB }: Atmospher
     window.addEventListener("touchmove", touchMoveHandler);
     window.addEventListener("touchend", mouseUpHandler);
 
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.getBoundingClientRect().width);
+    }
+    const handleResize = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.getBoundingClientRect().width);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("mousemove", mouseMoveHandler);
       window.removeEventListener("mouseup", mouseUpHandler);
       window.removeEventListener("touchmove", touchMoveHandler);
       window.removeEventListener("touchend", mouseUpHandler);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   const startDrag = (e: React.MouseEvent | React.TouchEvent) => {
     isDragging.current = true;
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.getBoundingClientRect().width);
+    }
     if ("touches" in e) {
       if (e.touches.length > 0) {
         handleMove(e.touches[0].clientX);
@@ -105,7 +121,7 @@ export function AtmosphereComparison({ imageA, imageB, nameA, nameB }: Atmospher
           className="absolute inset-y-0 left-0 overflow-hidden"
           style={{ width: `${sliderPosition}%` }}
         >
-          <div className="absolute inset-0 h-[450px] w-[100vw] max-w-[1140px]" style={{ width: containerRef.current?.getBoundingClientRect().width }}>
+          <div className="absolute inset-0 h-[450px]" style={{ width: containerWidth }}>
             <Image
               src={imageA}
               alt={nameA}

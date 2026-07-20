@@ -97,8 +97,8 @@ export default function CelebratePreviewPage() {
                 onClick={() => setPreviewMode("upload")}
                 className={`rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wider transition ${
                   previewMode === "upload"
-                    ? "bg-gold-500 text-white shadow-sm"
-                    : "bg-stone-100 text-[var(--muted)] hover:bg-stone-200"
+                    ? "bg-gold-500 text-black shadow-sm"
+                    : "bg-stone-100 text-black hover:bg-stone-200"
                 }`}
               >
                 Upload Venue Photo
@@ -107,8 +107,8 @@ export default function CelebratePreviewPage() {
                 onClick={() => setPreviewMode("camera")}
                 className={`rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wider transition ${
                   previewMode === "camera"
-                    ? "bg-gold-500 text-white shadow-sm"
-                    : "bg-stone-100 text-[var(--muted)] hover:bg-stone-200"
+                    ? "bg-gold-500 text-black shadow-sm"
+                    : "bg-stone-100 text-black hover:bg-stone-200"
                 }`}
               >
                 Live Camera

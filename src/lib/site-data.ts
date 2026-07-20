@@ -36,6 +36,7 @@ export const primaryNav: NavItem[] = [
   { label: "Portfolio", href: "/portfolio" },
   { label: "Services", href: "/services" },
   { label: "Event Palette", href: "/event-palette" },
+  { label: "Event Palace", href: "/event-palace" },
   { label: "Client Stories", href: "/client-stories" },
   { label: "Contact", href: "/contact" },
   { label: "About Us", href: "/about" },
