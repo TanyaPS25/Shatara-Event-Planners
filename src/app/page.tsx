@@ -128,14 +128,16 @@ function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-screen overflow-hidden hero-reveal hero-shimmer"
-      style={{
-        backgroundImage: "url('/hero.jpeg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        willChange: "transform, opacity, filter",
-      }}
+      className="relative w-full h-[65vh] md:h-screen overflow-hidden hero-reveal hero-shimmer"
     >
+      <Image
+        src="/hero.jpeg"
+        alt="Shatara Luxury Event Decor"
+        fill
+        priority
+        className="object-cover object-center"
+        sizes="100vw"
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-background/40 z-[1]" />
       <div className="absolute inset-0 z-[1]"
         style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(31,27,20,0.45) 100%)" }} />
@@ -209,16 +211,17 @@ export default function Home() {
     <>
       <HeroSection />
 
+
       {/* ── Feature Highlights ── */}
       <section className="relative w-full bg-background py-16">
         <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-8 lg:grid-cols-3">
             {FEATURES.map(({ title, text, image }) => (
-              <div key={title} className="group relative overflow-hidden rounded-xl h-72 cursor-default shadow-md">
+              <div key={title} className="group relative h-80 overflow-hidden rounded-xl cursor-default shadow-md">
                 {/* Background image */}
-                <Image src={image} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                <Image src={image} alt={title} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-110" />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20 transition-all duration-500 group-hover:from-black/80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/25 to-black/5 transition-all duration-500 group-hover:from-black/45" />
                 {/* Gold shimmer on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{ background: 'linear-gradient(135deg, transparent 30%, rgba(200,155,60,0.15) 50%, transparent 70%)' }} />
@@ -243,70 +246,19 @@ export default function Home() {
             <h2 className="mt-3 font-display text-headline-lg text-on-surface">Our Curation Spectrum</h2>
             <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
           </div>
-<<<<<<< HEAD
-  <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-    {[
-      ["Artful Ambiance", "Sculpting atmospheres that resonate with your soul.", "/services/artful-ambiance"],
-      ["Culinary Excellence", "A symphony of flavors tailored to the most discerning palates.", "/services/culinary-excellence"],
-      ["Floral Masterpieces", "Bespoke botanical arrangements that breathe life.", "/services/floral-masterpieces"],
-      ["Exquisite Locales", "Prestigious and hidden venues for unforgettable occasions.", "/services/exquisite-locales"],
-      ["Confectionary Art", "Sculptural cakes that taste as divine as they look.", "/services/confectionary-art"],
-      ["Eternal Memories", "Cinematic storytelling through world-class photography.", "/services/eternal-memories"],
-    ].map(([title, text, href]) => (
-      <Link key={title} href={href} className="rounded-[1.25rem] border border-black/8 bg-white p-6 shadow-[0_10px_30px_rgba(30,20,10,0.06)] transition hover:-translate-y-1">
-        <p className="font-display text-2xl text-[var(--ink)]">{title}</p>
-        <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{text}</p>
-      </Link>
-    ))}
-  </div>
-        </div >
-      </section >
-
-    <section className="bg-[var(--page)] py-20 sm:py-24">
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-10">
-        <div className="text-center">
-          <p className="text-[0.72rem] uppercase tracking-[0.36em] text-gold-500">Client Stories</p>
-          <h2 className="mt-4 font-display text-4xl sm:text-5xl">Client Stories</h2>
-          <p className="mt-4 text-lg italic text-[var(--muted)]">Every celebration leaves behind a beautiful memory.</p>
-        </div>
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
-          {[
-            ["Priya R.", "Birthday Celebration", "/client-stories/priya-r", "Shatara turned my vision of an ethereal garden birthday into a breathtaking reality.", 5, "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80"],
-            ["Arjun K.", "Engagement Ceremony", "/client-stories/arjun-k", "The engagement was a milestone we wanted to be perfect, and Shatara delivered beyond...", 4, "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80"],
-            ["Meena B.", "Baby Shower", "/client-stories/meena-b", "The most elegant baby shower I could have imagined. Shatara curated a space that...", 5, "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80"],
-          ].map(([client, eventType, href, text, rating, avatar]) => {
-            const stars = "★".repeat(rating as number) + "☆".repeat(5 - (rating as number));
-            return (
-              <Link key={client as string} href={href as string} className="rounded-[1.5rem] border border-black/8 bg-white p-6 shadow-[0_10px_30px_rgba(30,20,10,0.06)] transition hover:-translate-y-1">
-                <div className="mx-auto h-20 w-20 overflow-hidden rounded-full border-4 border-[#f2e7d7] bg-[#e8ddcf] relative">
-                  <Image src={avatar as string} alt={client as string} fill className="object-cover" sizes="80px" />
-                </div>
-                <div className="mt-6 text-center">
-                  <div className="text-gold-500">{stars}</div>
-                  <p className="mt-3 font-display text-2xl text-[var(--ink)]">{client as string}</p>
-                  <p className="mt-1 text-[0.72rem] uppercase tracking-[0.24em] text-[var(--muted)]">{eventType as string}</p>
-                  <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{text as string}</p>
-                </div>
-              </Link>
-            );
-          })}
-=======
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map(({ title, text, href, image }) => (
               <Link
                 key={title}
                 href={href}
                 className="group relative overflow-hidden rounded-xl border border-outline-variant/20 bg-surface-container-lowest transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(200,155,60,0.25),0_0_0_1px_rgba(200,155,60,0.35)]"
               >
-                {/* Image header */}
                 <div className="relative h-48 w-full overflow-hidden">
-                  <Image src={image} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
-                  {/* Gold shimmer */}
+                  <Image src={image} alt={title} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                     style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.2) 50%, transparent 75%)' }} />
                 </div>
-                {/* Content */}
                 <div className="p-6">
                   <p className="font-display text-2xl font-bold text-[var(--ink)] group-hover:text-gold-600 transition">{title}</p>
                   <p className="mt-3 text-sm font-semibold text-[var(--muted)] leading-relaxed">{text}</p>
@@ -316,10 +268,9 @@ export default function Home() {
                 </div>
               </Link>
             ))}
->>>>>>> upstream
           </div>
         </div>
-    </section>
+      </section>
 
   {/* ── Gallery Strip ── */ }
   <section className="bg-background py-16">
@@ -329,11 +280,11 @@ export default function Home() {
         <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments We've Crafted</h2>
         <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 lg:gap-5">
         {GALLERY.map((img, i) => (
-          <div key={i} className="group relative h-40 rounded-xl overflow-hidden cursor-pointer">
-            <Image src={img} alt={`Gallery ${i + 1}`} fill className="object-cover transition-transform duration-600 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500" />
+          <div key={i} className="group relative h-44 overflow-hidden rounded-xl cursor-pointer">
+            <Image src={img} alt={`Gallery ${i + 1}`} fill className="object-cover object-center transition-transform duration-600 group-hover:scale-110" />
+            <div className="absolute inset-0 bg-black/18 group-hover:bg-black/5 transition-all duration-500" />
             {/* Gold glow on hover */}
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl ring-1 ring-primary-container/60 shadow-[inset_0_0_20px_rgba(200,155,60,0.15)]" />
           </div>
@@ -356,7 +307,7 @@ export default function Home() {
         <p className="mt-4 text-body-md text-on-surface-variant italic">Every celebration leaves behind a beautiful memory.</p>
         <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
       </div>
-      <div className="mt-14 grid gap-6 lg:grid-cols-3">
+      <div className="mt-14 grid gap-8 lg:grid-cols-3">
         {STORIES.map(({ client, eventType, href, text, image, bg }) => (
           <Link
             key={client}
@@ -365,8 +316,8 @@ export default function Home() {
           >
             {/* Event background image header */}
             <div className="relative h-36 w-full overflow-hidden">
-              <Image src={bg} alt={eventType} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
+              <Image src={bg} alt={eventType} fill className="object-cover object-center transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/15 to-transparent" />
               {/* Gold shimmer on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.18) 50%, transparent 75%)' }} />
@@ -399,7 +350,7 @@ export default function Home() {
       src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1800&q=80"
       alt="CTA Background"
       fill
-      className="object-cover"
+      className="object-cover object-center"
     />
     <div className="absolute inset-0 bg-inverse-surface/80" />
     <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col items-center px-[20px] text-center lg:px-[80px]">

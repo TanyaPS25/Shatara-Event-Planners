@@ -248,23 +248,19 @@ a {
 /* Phase 1: Cinematic reveal — pitch black → dramatic zoom-out → full colour */
 @keyframes hero-reveal {
   0%   {
-    opacity: 0;
-    transform: scale(1.25);
-    filter: brightness(0.1) saturate(0.2);
+    opacity: 0.4;
+    transform: scale(1.12);
+    filter: brightness(0.55) saturate(0.5);
   }
-  18%  {
-    opacity: 0.15;
-    filter: brightness(0.2) saturate(0.4);
+  30%  {
+    opacity: 0.75;
+    transform: scale(1.08);
+    filter: brightness(0.75) saturate(0.75);
   }
-  50%  {
-    opacity: 0.85;
-    transform: scale(1.1);
-    filter: brightness(0.75) saturate(0.85);
-  }
-  80%  {
-    opacity: 1;
+  65%  {
+    opacity: 0.95;
     transform: scale(1.04);
-    filter: brightness(0.95) saturate(1.05);
+    filter: brightness(0.92) saturate(0.95);
   }
   100% {
     opacity: 1;
@@ -346,3 +342,52 @@ button:hover {
   transform: translateY(0);
   pointer-events: auto;
 }
+
+.site-nav-gold {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f7e7aa 0%, #e2b84d 22%, #c8952f 48%, #f5dd8a 72%, #a86f12 100%);
+  background-size: 220% 220%;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(90, 58, 5, 0.18),
+    0 18px 40px rgba(110, 77, 11, 0.18);
+  animation: gold-sheen 8s ease-in-out infinite;
+}
+
+.site-nav-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.35) 45%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.28) 55%, transparent 100%);
+  transform: translateX(-120%);
+  animation: gold-shine 4.8s linear infinite;
+  pointer-events: none;
+}
+
+.site-nav-gold > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes gold-sheen {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gold-shine {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+
