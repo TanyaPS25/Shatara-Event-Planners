@@ -9,9 +9,19 @@ export function SectionHeading({ eyebrow, title, description, align = "center" }
   const center = align === "center";
   return (
     <div className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl text-left"}>
-      {eyebrow ? <p className="text-[0.72rem] uppercase tracking-[0.36em] text-gold-500">{eyebrow}</p> : null}
-      <h2 className="mt-3 font-display text-4xl leading-tight text-[var(--ink)] sm:text-5xl">{title}</h2>
-      {description ? <p className="mt-4 text-base leading-8 text-[var(--muted)]">{description}</p> : null}
+      {eyebrow ? (
+        <p className="text-label-md tracking-[0.18em] text-primary-container">
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2 className={`mt-3 font-display text-headline-lg text-on-surface`}>
+        {title}
+      </h2>
+      {description ? (
+        <p className={`mt-4 text-body-md text-on-surface-variant leading-relaxed ${center ? "mx-auto" : ""}`}>
+          {description}
+        </p>
+      ) : null}
     </div>
   );
 }
