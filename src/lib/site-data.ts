@@ -18,6 +18,8 @@ export type StoryItem = {
   eventType: string;
   description: string;
   image: string;
+  rating: number;
+  longReview: string;
 };
 
 export type MonthItem = {
@@ -33,6 +35,7 @@ export const primaryNav: NavItem[] = [
   { label: "Weddings", href: "/weddings" },
   { label: "Client Stories", href: "/client-stories" },
   { label: "Contact", href: "/contact" },
+  { label: "About Us", href: "/about" },
 ];
 
 export const footerNav = [
@@ -115,58 +118,70 @@ export const services: ServiceItem[] = [
 
 export const stories: StoryItem[] = [
   {
-    slug: "priya-family",
-    client: "Priya & Family",
-    eventType: "Annual Gala",
+    slug: "priya-r",
+    client: "Priya R.",
+    eventType: "Birthday Celebration",
     description:
-      "The attention to detail for our daughter’s birthday was unparalleled. The floral arrangements were fresh and the theme was executed perfectly.",
-    image:
-      "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=1000&q=80",
+      "Shatara turned my vision of an ethereal garden birthday into a breathtaking reality. Every detail, from the floating floral installations to the personalized table settings, was executed with meticulous care.",
+    image: "/images/stories/priya_birthday.png",
+    rating: 5,
+    longReview:
+      "Shatara turned my vision of an ethereal garden birthday into a breathtaking reality. Every detail, from the floating floral installations to the personalized table settings, was executed with meticulous care. The evening was a masterclass in ambient design, with warm glowing micro-lights hanging like stars from the trees and hand-calligraphed menus waiting at every plate. Our guests were mesmerized the second they walked in. The team handled everything from the coordination of the live acoustic trio to the catering transitions seamlessly. I was able to fully enjoy my celebration, knowing that every detail was in perfect hands.",
   },
   {
-    slug: "rahul-sneha",
-    client: "Rahul & Sneha",
-    eventType: "Wedding Celebration",
+    slug: "arjun-k",
+    client: "Arjun K.",
+    eventType: "Engagement Ceremony",
     description:
-      "Planning our wedding with Shatara was the best decision. They managed everything with such poise that we could truly enjoy our big day.",
-    image:
-      "https://images.unsplash.com/photo-1496458590527-3b5b5f4f8d5c?auto=format&fit=crop&w=1000&q=80",
+      "The engagement was a milestone we wanted to be perfect, and Shatara delivered beyond our wildest expectations. Their ability to blend traditional elements with a modern aesthetic was phenomenal.",
+    image: "/images/stories/arjun_engagement.png",
+    rating: 4,
+    longReview:
+      "The engagement was a milestone we wanted to be perfect, and Shatara delivered beyond our wildest expectations. Their ability to blend traditional elements with a modern aesthetic was phenomenal. The floral arch was a true work of art, combining heritage blossoms with structured, contemporary arrangements that set a grand stage. While the planning phases required some fine-tuning to align all the vendors, the execution on the day of the ceremony was flawless. The team was incredibly attentive to our families and created an experience that was both sophisticated and emotionally resonant.",
   },
   {
-    slug: "ananya",
-    client: "Ananya",
-    eventType: "Corporate Launch",
-    description:
-      "Our corporate launch needed to feel elegant and modern. Shatara delivered an experience that our partners still talk about.",
-    image:
-      "https://images.unsplash.com/photo-1485954158468-1c1f2f3ad9f4?auto=format&fit=crop&w=1000&q=80",
-  },
-  {
-    slug: "meena-s",
-    client: "Meena S.",
+    slug: "meena-b",
+    client: "Meena B.",
     eventType: "Baby Shower",
     description:
-      "The most elegant baby shower I could have imagined. Soft palettes and metallic accents made the entire space feel intimate and luxurious.",
-    image:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80",
+      "The most elegant baby shower I could have imagined. Shatara curated a space that felt intimate, yet incredibly luxurious, using a palette of soft pastels and metallic accents that truly stunned our guests.",
+    image: "/images/stories/meena_babyshower.png",
+    rating: 5,
+    longReview:
+      "The most elegant baby shower I could have imagined. Shatara curated a space that felt intimate, yet incredibly luxurious, using a palette of soft pastels and metallic accents that truly stunned our guests. From the custom floral cloud suspended above the main seating area to the exquisite dessert bar featuring hand-painted botanical macarons, everything was a visual feast. The service was impeccable; the waitstaff was attentive, and the flow of the afternoon was perfectly paced. It was a beautiful, stress-free celebration of new beginnings that my family will cherish forever.",
   },
   {
-    slug: "karthik-v",
-    client: "Karthik V.",
-    eventType: "Corporate Event",
+    slug: "rahul-p",
+    client: "Rahul P.",
+    eventType: "Anniversary Celebration",
     description:
-      "Professional execution, perfect timing management, and a seamless event experience. Every aspect was handled efficiently.",
-    image:
-      "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80",
+      "Celebrating 25 years required something extraordinary, and Shatara delivered exactly that. From the nostalgic photo gallery to the exquisite fine dining experience, every moment felt like a masterpiece.",
+    image: "/images/stories/rahul_anniversary.png",
+    rating: 5,
+    longReview:
+      "Celebrating 25 years required something extraordinary, and Shatara delivered exactly that. From the nostalgic photo gallery to the exquisite fine dining experience, every moment felt like a masterpiece. The team created a bespoke retrospective hallway that took our guests through a journey of our quarter-century together, leading into a candlelit dining room that rivaled a Michelin-starred restaurant. The culinary pairings were spectacular, and the live jazz quartet provided the perfect soundtrack. Their execution was flawless, and the memory of this milestone will stay with us forever.",
   },
   {
     slug: "divya-m",
     client: "Divya M.",
     eventType: "Wedding Reception",
     description:
-      "The reception was the pinnacle of our wedding festivities. Shatara’s vision for a midnight star theme was executed with such grace and grandeur.",
-    image:
-      "https://images.unsplash.com/photo-1523438097201-512ae7d59c0b?auto=format&fit=crop&w=1000&q=80",
+      "The reception was the pinnacle of our wedding festivities. Shatara’s vision for a Midnight Star theme was executed with such grace and grandeur that our guests are still talking about it months later.",
+    image: "/images/stories/divya_reception.png",
+    rating: 4,
+    longReview:
+      "The reception was the pinnacle of our wedding festivities. Shatara’s vision for a Midnight Star theme was executed with such grace and grandeur that our guests are still talking about it months later. The deep blue draping, stellar lighting design, and the magnificent crescent moon dance floor backdrop made us feel as if we were dancing in the heavens. We faced a minor delay with the sound setup, but the coordination team quickly adapted and kept the reception schedule moving without our guests noticing a thing. The grandeur of the evening was unmatched.",
+  },
+  {
+    slug: "karthik-v",
+    client: "Karthik V.",
+    eventType: "Corporate Event",
+    description:
+      "Professional execution, perfect time management, and a seamless event experience. Every aspect of our corporate summit was handled efficiently, leaving a lasting impression on our global stakeholders.",
+    image: "/images/stories/karthik_corporate.png",
+    rating: 5,
+    longReview:
+      "Professional execution, perfect time management, and a seamless event experience. Every aspect of our corporate summit was handled efficiently, leaving a lasting impression on our global stakeholders. Organizing a multi-day conference with complex AV requirements, international speakers, and VIP networking lounges is no small feat. Shatara managed the logistics, stage setup, and catering transitions with absolute precision. The feedback from our attendees has been overwhelmingly positive, highlighting the premium environment and flawless organization.",
   },
 ];
 

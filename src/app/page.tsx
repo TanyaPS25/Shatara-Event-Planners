@@ -85,20 +85,25 @@ export default function Home() {
           </div>
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {[
-              ["Priya & Family", "Annual Gala", "/client-stories/priya-family", "The attention to detail for our daughter’s birthday was unparalleled."],
-              ["Rahul & Sneha", "Wedding Celebration", "/client-stories/rahul-sneha", "Planning our wedding with Shatara was the best decision."],
-              ["Ananya", "Corporate Launch", "/client-stories/ananya", "Our corporate launch needed to feel elegant and modern."],
-            ].map(([client, eventType, href, text]) => (
-              <Link key={client} href={href} className="rounded-[1.5rem] border border-black/8 bg-white p-6 shadow-[0_10px_30px_rgba(30,20,10,0.06)] transition hover:-translate-y-1">
-                <div className="mx-auto h-20 w-20 overflow-hidden rounded-full border-4 border-[#f2e7d7] bg-[#e8ddcf]" />
-                <div className="mt-6 text-center">
-                  <div className="text-gold-500">★★★★★</div>
-                  <p className="mt-3 font-display text-2xl text-[var(--ink)]">{client}</p>
-                  <p className="mt-1 text-[0.72rem] uppercase tracking-[0.24em] text-[var(--muted)]">{eventType}</p>
-                  <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{text}</p>
-                </div>
-              </Link>
-            ))}
+              ["Priya R.", "Birthday Celebration", "/client-stories/priya-r", "Shatara turned my vision of an ethereal garden birthday into a breathtaking reality.", 5, "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80"],
+              ["Arjun K.", "Engagement Ceremony", "/client-stories/arjun-k", "The engagement was a milestone we wanted to be perfect, and Shatara delivered beyond...", 4, "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80"],
+              ["Meena B.", "Baby Shower", "/client-stories/meena-b", "The most elegant baby shower I could have imagined. Shatara curated a space that...", 5, "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80"],
+            ].map(([client, eventType, href, text, rating, avatar]) => {
+              const stars = "★".repeat(rating as number) + "☆".repeat(5 - (rating as number));
+              return (
+                <Link key={client as string} href={href as string} className="rounded-[1.5rem] border border-black/8 bg-white p-6 shadow-[0_10px_30px_rgba(30,20,10,0.06)] transition hover:-translate-y-1">
+                  <div className="mx-auto h-20 w-20 overflow-hidden rounded-full border-4 border-[#f2e7d7] bg-[#e8ddcf] relative">
+                    <Image src={avatar as string} alt={client as string} fill className="object-cover" sizes="80px" />
+                  </div>
+                  <div className="mt-6 text-center">
+                    <div className="text-gold-500">{stars}</div>
+                    <p className="mt-3 font-display text-2xl text-[var(--ink)]">{client as string}</p>
+                    <p className="mt-1 text-[0.72rem] uppercase tracking-[0.24em] text-[var(--muted)]">{eventType as string}</p>
+                    <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{text as string}</p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
