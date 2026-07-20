@@ -159,22 +159,22 @@ const FEATURES = [
 /* ── Client stories data ── */
 const STORIES = [
   {
-    client: "Priya & Family", eventType: "Annual Gala", href: "/client-stories/priya-family",
+    client: "Priya R.", eventType: "Birthday Celebration", href: "/client-stories/priya-r",
     text: "The attention to detail for our daughter's birthday was unparalleled. The floral arrangements were fresh and the theme was executed perfectly.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
-    bg: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
+    bg: "/images/stories/priya_birthday.png",
   },
   {
-    client: "Rahul & Sneha", eventType: "Wedding Celebration", href: "/client-stories/rahul-sneha",
+    client: "Arjun K.", eventType: "Engagement Ceremony", href: "/client-stories/arjun-k",
     text: "Planning our wedding with Shatara was the best decision. They managed everything with such poise that we could truly enjoy our big day.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-    bg: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=600&q=80",
+    bg: "/images/stories/arjun_engagement.png",
   },
   {
     client: "Ananya", eventType: "Corporate Launch", href: "/client-stories/ananya",
     text: "Our corporate launch needed to feel elegant and modern. Shatara delivered an experience that our partners still talk about.",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80",
-    bg: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80",
+    bg: "/images/stories/karthik_corporate.png",
   },
 ];
 
