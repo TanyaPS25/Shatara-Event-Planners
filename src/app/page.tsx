@@ -38,7 +38,7 @@ function playCinematicWelcome() {
     reverb.buffer = reverbBuffer;
 
     const dry = ctx.createGain(); dry.gain.setValueAtTime(0.55, t); dry.connect(master);
-    const wet  = ctx.createGain(); wet.gain.setValueAtTime(0.45, t); wet.connect(reverb); reverb.connect(master);
+    const wet = ctx.createGain(); wet.gain.setValueAtTime(0.45, t); wet.connect(reverb); reverb.connect(master);
 
     const connect = (node: AudioNode) => { node.connect(dry); node.connect(wet); };
 
@@ -56,14 +56,14 @@ function playCinematicWelcome() {
 
     /* ── Orchestral chord swell (C major, multi-octave) ── */
     const notes: [number, OscillatorType, number, number, number][] = [
-      [130.81, 'sine',     0.0, 3.2, 0.28],   // C3 – warm bass
-      [164.81, 'sine',     0.1, 3.0, 0.14],   // E3
+      [130.81, 'sine', 0.0, 3.2, 0.28],   // C3 – warm bass
+      [164.81, 'sine', 0.1, 3.0, 0.14],   // E3
       [196.00, 'triangle', 0.2, 2.8, 0.12],   // G3
-      [261.63, 'sine',     0.3, 2.6, 0.16],   // C4 – mid
+      [261.63, 'sine', 0.3, 2.6, 0.16],   // C4 – mid
       [329.63, 'triangle', 0.4, 2.4, 0.10],   // E4
       [392.00, 'triangle', 0.5, 2.2, 0.08],   // G4
-      [523.25, 'sine',     0.6, 2.0, 0.07],   // C5 – shimmer
-      [1046.5, 'sine',     0.8, 1.5, 0.04],   // C6 – sparkle
+      [523.25, 'sine', 0.6, 2.0, 0.07],   // C5 – shimmer
+      [1046.5, 'sine', 0.8, 1.5, 0.04],   // C6 – sparkle
     ];
 
     notes.forEach(([freq, type, start, dur, vol]) => {
@@ -164,12 +164,12 @@ const FEATURES = [
 
 /* ── Service card data ── */
 const SERVICES = [
-  { title: "Artful Ambiance",       text: "Sculpting atmospheres that resonate with your soul.",                   href: "/services/artful-ambiance",    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80" },
-  { title: "Culinary Excellence",   text: "A symphony of flavors tailored to the most discerning palates.",       href: "/services/culinary-excellence", image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" },
-  { title: "Floral Masterpieces",   text: "Bespoke botanical arrangements that breathe life into every space.",    href: "/services/floral-masterpieces", image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80" },
-  { title: "Exquisite Locales",     text: "Prestigious and hidden venues for unforgettable occasions.",            href: "/services/exquisite-locales",   image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" },
-  { title: "Confectionary Art",     text: "Sculptural cakes that taste as divine as they look.",                  href: "/services/confectionary-art",   image: "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=600&q=80" },
-  { title: "Eternal Memories",      text: "Cinematic storytelling through world-class photography.",               href: "/services/eternal-memories",    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" },
+  { title: "Artful Ambiance", text: "Sculpting atmospheres that resonate with your soul.", href: "/services/artful-ambiance", image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80" },
+  { title: "Culinary Excellence", text: "A symphony of flavors tailored to the most discerning palates.", href: "/services/culinary-excellence", image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" },
+  { title: "Floral Masterpieces", text: "Bespoke botanical arrangements that breathe life into every space.", href: "/services/floral-masterpieces", image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80" },
+  { title: "Exquisite Locales", text: "Prestigious and hidden venues for unforgettable occasions.", href: "/services/exquisite-locales", image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" },
+  { title: "Confectionary Art", text: "Sculptural cakes that taste as divine as they look.", href: "/services/confectionary-art", image: "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=600&q=80" },
+  { title: "Eternal Memories", text: "Cinematic storytelling through world-class photography.", href: "/services/eternal-memories", image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" },
 ];
 
 /* ── Client stories data ── */
@@ -243,152 +243,180 @@ export default function Home() {
             <h2 className="mt-3 font-display text-headline-lg text-on-surface">Our Curation Spectrum</h2>
             <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
           </div>
-          <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {[
-              ["Artful Ambiance", "Sculpting atmospheres that resonate with your soul.", "/services/artful-ambiance"],
-              ["Culinary Excellence", "A symphony of flavors tailored to the most discerning palates.", "/services/culinary-excellence"],
-              ["Floral Masterpieces", "Bespoke botanical arrangements that breathe life.", "/services/floral-masterpieces"],
-              ["Exquisite Locales", "Prestigious and hidden venues for unforgettable occasions.", "/services/exquisite-locales"],
-              ["Confectionary Art", "Sculptural cakes that taste as divine as they look.", "/services/confectionary-art"],
-              ["Eternal Memories", "Cinematic storytelling through world-class photography.", "/services/eternal-memories"],
-            ].map(([title, text, href]) => (
-              <Link key={title} href={href} className="rounded-[1.25rem] border border-black/8 bg-white p-6 shadow-[0_10px_30px_rgba(30,20,10,0.06)] transition hover:-translate-y-1">
-                <p className="font-display text-2xl text-[var(--ink)]">{title}</p>
-                <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{text}</p>
+<<<<<<< HEAD
+  <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+    {[
+      ["Artful Ambiance", "Sculpting atmospheres that resonate with your soul.", "/services/artful-ambiance"],
+      ["Culinary Excellence", "A symphony of flavors tailored to the most discerning palates.", "/services/culinary-excellence"],
+      ["Floral Masterpieces", "Bespoke botanical arrangements that breathe life.", "/services/floral-masterpieces"],
+      ["Exquisite Locales", "Prestigious and hidden venues for unforgettable occasions.", "/services/exquisite-locales"],
+      ["Confectionary Art", "Sculptural cakes that taste as divine as they look.", "/services/confectionary-art"],
+      ["Eternal Memories", "Cinematic storytelling through world-class photography.", "/services/eternal-memories"],
+    ].map(([title, text, href]) => (
+      <Link key={title} href={href} className="rounded-[1.25rem] border border-black/8 bg-white p-6 shadow-[0_10px_30px_rgba(30,20,10,0.06)] transition hover:-translate-y-1">
+        <p className="font-display text-2xl text-[var(--ink)]">{title}</p>
+        <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{text}</p>
+      </Link>
+    ))}
+  </div>
+        </div >
+      </section >
+
+    <section className="bg-[var(--page)] py-20 sm:py-24">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-10">
+        <div className="text-center">
+          <p className="text-[0.72rem] uppercase tracking-[0.36em] text-gold-500">Client Stories</p>
+          <h2 className="mt-4 font-display text-4xl sm:text-5xl">Client Stories</h2>
+          <p className="mt-4 text-lg italic text-[var(--muted)]">Every celebration leaves behind a beautiful memory.</p>
+        </div>
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          {[
+            ["Priya R.", "Birthday Celebration", "/client-stories/priya-r", "Shatara turned my vision of an ethereal garden birthday into a breathtaking reality.", 5, "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80"],
+            ["Arjun K.", "Engagement Ceremony", "/client-stories/arjun-k", "The engagement was a milestone we wanted to be perfect, and Shatara delivered beyond...", 4, "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80"],
+            ["Meena B.", "Baby Shower", "/client-stories/meena-b", "The most elegant baby shower I could have imagined. Shatara curated a space that...", 5, "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80"],
+          ].map(([client, eventType, href, text, rating, avatar]) => {
+            const stars = "★".repeat(rating as number) + "☆".repeat(5 - (rating as number));
+            return (
+              <Link key={client as string} href={href as string} className="rounded-[1.5rem] border border-black/8 bg-white p-6 shadow-[0_10px_30px_rgba(30,20,10,0.06)] transition hover:-translate-y-1">
+                <div className="mx-auto h-20 w-20 overflow-hidden rounded-full border-4 border-[#f2e7d7] bg-[#e8ddcf] relative">
+                  <Image src={avatar as string} alt={client as string} fill className="object-cover" sizes="80px" />
+                </div>
+                <div className="mt-6 text-center">
+                  <div className="text-gold-500">{stars}</div>
+                  <p className="mt-3 font-display text-2xl text-[var(--ink)]">{client as string}</p>
+                  <p className="mt-1 text-[0.72rem] uppercase tracking-[0.24em] text-[var(--muted)]">{eventType as string}</p>
+                  <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{text as string}</p>
+                </div>
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[var(--page)] py-20 sm:py-24">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-10">
-          <div className="text-center">
-            <p className="text-[0.72rem] uppercase tracking-[0.36em] text-gold-500">Client Stories</p>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl">Client Stories</h2>
-            <p className="mt-4 text-lg italic text-[var(--muted)]">Every celebration leaves behind a beautiful memory.</p>
-          </div>
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {[
-              ["Priya R.", "Birthday Celebration", "/client-stories/priya-r", "Shatara turned my vision of an ethereal garden birthday into a breathtaking reality.", 5, "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80"],
-              ["Arjun K.", "Engagement Ceremony", "/client-stories/arjun-k", "The engagement was a milestone we wanted to be perfect, and Shatara delivered beyond...", 4, "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80"],
-              ["Meena B.", "Baby Shower", "/client-stories/meena-b", "The most elegant baby shower I could have imagined. Shatara curated a space that...", 5, "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80"],
-            ].map(([client, eventType, href, text, rating, avatar]) => {
-              const stars = "★".repeat(rating as number) + "☆".repeat(5 - (rating as number));
-              return (
-                <Link key={client as string} href={href as string} className="rounded-[1.5rem] border border-black/8 bg-white p-6 shadow-[0_10px_30px_rgba(30,20,10,0.06)] transition hover:-translate-y-1">
-                  <div className="mx-auto h-20 w-20 overflow-hidden rounded-full border-4 border-[#f2e7d7] bg-[#e8ddcf] relative">
-                    <Image src={avatar as string} alt={client as string} fill className="object-cover" sizes="80px" />
-                  </div>
-                  <div className="mt-6 text-center">
-                    <div className="text-gold-500">{stars}</div>
-                    <p className="mt-3 font-display text-2xl text-[var(--ink)]">{client as string}</p>
-                    <p className="mt-1 text-[0.72rem] uppercase tracking-[0.24em] text-[var(--muted)]">{eventType as string}</p>
-                    <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{text as string}</p>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Gallery Strip ── */}
-      <section className="bg-background py-16">
-        <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
-          <div className="text-center mb-10">
-            <p className="text-label-md tracking-[0.2em] text-primary-container">Portfolio Glimpse</p>
-            <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments We've Crafted</h2>
-            <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {GALLERY.map((img, i) => (
-              <div key={i} className="group relative h-40 rounded-xl overflow-hidden cursor-pointer">
-                <Image src={img} alt={`Gallery ${i + 1}`} fill className="object-cover transition-transform duration-600 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500" />
-                {/* Gold glow on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl ring-1 ring-primary-container/60 shadow-[inset_0_0_20px_rgba(200,155,60,0.15)]" />
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Link href="/portfolio" className="inline-flex items-center gap-2 text-label-md tracking-[0.15em] text-primary-container hover:text-primary transition">
-              View Full Portfolio →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Client Stories ── */}
-      <section className="bg-surface-container-low py-20 lg:py-[120px]">
-        <div className="mx-auto w-full max-w-[1280px] px-[20px] lg:px-[80px]">
-          <div className="text-center">
-            <p className="text-label-md tracking-[0.2em] text-primary-container">Client Stories</p>
-            <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments of Poise & Elegance</h2>
-            <p className="mt-4 text-body-md text-on-surface-variant italic">Every celebration leaves behind a beautiful memory.</p>
-            <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
-          </div>
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {STORIES.map(({ client, eventType, href, text, image, bg }) => (
+            );
+          })}
+=======
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {SERVICES.map(({ title, text, href, image }) => (
               <Link
-                key={client}
+                key={title}
                 href={href}
                 className="group relative overflow-hidden rounded-xl border border-outline-variant/20 bg-surface-container-lowest transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(200,155,60,0.25),0_0_0_1px_rgba(200,155,60,0.35)]"
               >
-                {/* Event background image header */}
-                <div className="relative h-36 w-full overflow-hidden">
-                  <Image src={bg} alt={eventType} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
-                  {/* Gold shimmer on hover */}
+                {/* Image header */}
+                <div className="relative h-48 w-full overflow-hidden">
+                  <Image src={image} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+                  {/* Gold shimmer */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.18) 50%, transparent 75%)' }} />
-                  {/* Client avatar overlapping */}
-                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
-                    <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-primary-container shadow-[0_4px_20px_rgba(200,155,60,0.3)]">
-                      <Image src={image} alt={client} fill className="object-cover" />
-                    </div>
-                  </div>
+                    style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.2) 50%, transparent 75%)' }} />
                 </div>
                 {/* Content */}
-                <div className="mt-10 px-6 pb-6 text-center">
-                  <div className="text-primary-container text-sm tracking-widest">★★★★★</div>
-                  <p className="mt-3 font-display text-xl font-semibold text-on-surface">{client}</p>
-                  <p className="mt-1 text-label-md tracking-[0.2em] text-on-surface-variant/80">{eventType}</p>
-                  <p className="mt-4 text-body-md text-on-surface-variant leading-relaxed line-clamp-3">{text}</p>
-                  <span className="mt-5 inline-flex text-label-md tracking-[0.1em] text-primary-container group-hover:text-primary transition pt-4 border-t border-outline-variant/10 w-full justify-center">
-                    Read Story →
-                  </span>
+                <div className="p-6">
+                  <p className="font-display text-2xl font-bold text-[var(--ink)] group-hover:text-gold-600 transition">{title}</p>
+                  <p className="mt-3 text-sm font-semibold text-[var(--muted)] leading-relaxed">{text}</p>
+                  <div className="mt-5 flex items-center justify-between text-xs font-bold uppercase tracking-[0.12em] text-gold-600 pt-4 border-t border-outline-variant/10">
+                    <span>Explore →</span>
+                  </div>
                 </div>
               </Link>
             ))}
+>>>>>>> upstream
           </div>
         </div>
-      </section>
+    </section>
 
-      {/* ── CTA ── */}
-      <section className="relative overflow-hidden py-24 lg:py-[120px]">
-        <Image
-          src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1800&q=80"
-          alt="CTA Background"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-inverse-surface/80" />
-        <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col items-center px-[20px] text-center lg:px-[80px]">
-          <p className="text-label-md tracking-[0.22em] text-primary-container">BEGIN YOUR JOURNEY</p>
-          <h2 className="mt-4 font-display text-4xl sm:text-headline-lg text-white">Ready to start your story?</h2>
-          <p className="mt-4 max-w-xl text-body-lg text-white/75 leading-relaxed">
-            Let us bring your vision to life with the sophistication it deserves.
-          </p>
-          <div className="h-[1px] bg-primary-container/30 w-24 mx-auto mt-6" />
+  {/* ── Gallery Strip ── */ }
+  <section className="bg-background py-16">
+    <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
+      <div className="text-center mb-10">
+        <p className="text-label-md tracking-[0.2em] text-primary-container">Portfolio Glimpse</p>
+        <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments We've Crafted</h2>
+        <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        {GALLERY.map((img, i) => (
+          <div key={i} className="group relative h-40 rounded-xl overflow-hidden cursor-pointer">
+            <Image src={img} alt={`Gallery ${i + 1}`} fill className="object-cover transition-transform duration-600 group-hover:scale-110" />
+            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500" />
+            {/* Gold glow on hover */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl ring-1 ring-primary-container/60 shadow-[inset_0_0_20px_rgba(200,155,60,0.15)]" />
+          </div>
+        ))}
+      </div>
+      <div className="mt-8 text-center">
+        <Link href="/portfolio" className="inline-flex items-center gap-2 text-label-md tracking-[0.15em] text-primary-container hover:text-primary transition">
+          View Full Portfolio →
+        </Link>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Client Stories ── */ }
+  <section className="bg-surface-container-low py-20 lg:py-[120px]">
+    <div className="mx-auto w-full max-w-[1280px] px-[20px] lg:px-[80px]">
+      <div className="text-center">
+        <p className="text-label-md tracking-[0.2em] text-primary-container">Client Stories</p>
+        <h2 className="mt-3 font-display text-headline-lg text-on-surface">Moments of Poise & Elegance</h2>
+        <p className="mt-4 text-body-md text-on-surface-variant italic">Every celebration leaves behind a beautiful memory.</p>
+        <div className="h-[1px] bg-primary-container/20 w-24 mx-auto mt-6" />
+      </div>
+      <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        {STORIES.map(({ client, eventType, href, text, image, bg }) => (
           <Link
-            href="/enquire"
-            className="mt-8 rounded-md bg-primary-container px-10 py-4 text-btn font-semibold text-on-primary-container shadow-[0_4px_30px_rgba(200,155,60,0.35)] hover:bg-[#b88c2f] transition"
+            key={client}
+            href={href}
+            className="group relative overflow-hidden rounded-xl border border-outline-variant/20 bg-surface-container-lowest transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(200,155,60,0.25),0_0_0_1px_rgba(200,155,60,0.35)]"
           >
-            Contact Our Planners
+            {/* Event background image header */}
+            <div className="relative h-36 w-full overflow-hidden">
+              <Image src={bg} alt={eventType} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent" />
+              {/* Gold shimmer on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: 'linear-gradient(120deg, transparent 25%, rgba(200,155,60,0.18) 50%, transparent 75%)' }} />
+              {/* Client avatar overlapping */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
+                <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-primary-container shadow-[0_4px_20px_rgba(200,155,60,0.3)]">
+                  <Image src={image} alt={client} fill className="object-cover" />
+                </div>
+              </div>
+            </div>
+            {/* Content */}
+            <div className="mt-10 px-6 pb-6 text-center">
+              <div className="text-primary-container text-sm tracking-widest">★★★★★</div>
+              <p className="mt-3 font-display text-xl font-semibold text-on-surface">{client}</p>
+              <p className="mt-1 text-label-md tracking-[0.2em] text-on-surface-variant/80">{eventType}</p>
+              <p className="mt-4 text-body-md text-on-surface-variant leading-relaxed line-clamp-3">{text}</p>
+              <span className="mt-5 inline-flex text-label-md tracking-[0.1em] text-primary-container group-hover:text-primary transition pt-4 border-t border-outline-variant/10 w-full justify-center">
+                Read Story →
+              </span>
+            </div>
           </Link>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── CTA ── */ }
+  <section className="relative overflow-hidden py-24 lg:py-[120px]">
+    <Image
+      src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1800&q=80"
+      alt="CTA Background"
+      fill
+      className="object-cover"
+    />
+    <div className="absolute inset-0 bg-inverse-surface/80" />
+    <div className="relative z-10 mx-auto flex w-full max-w-[1280px] flex-col items-center px-[20px] text-center lg:px-[80px]">
+      <p className="text-label-md tracking-[0.22em] text-primary-container">BEGIN YOUR JOURNEY</p>
+      <h2 className="mt-4 font-display text-4xl sm:text-headline-lg text-white">Ready to start your story?</h2>
+      <p className="mt-4 max-w-xl text-body-lg text-white/75 leading-relaxed">
+        Let us bring your vision to life with the sophistication it deserves.
+      </p>
+      <div className="h-[1px] bg-primary-container/30 w-24 mx-auto mt-6" />
+      <Link
+        href="/enquire"
+        className="mt-8 rounded-md bg-primary-container px-10 py-4 text-btn font-semibold text-on-primary-container shadow-[0_4px_30px_rgba(200,155,60,0.35)] hover:bg-[#b88c2f] transition"
+      >
+        Contact Our Planners
+      </Link>
+    </div>
+  </section>
     </>
   );
 }
