@@ -26,6 +26,7 @@ export function SiteShell({ children }: SiteShellProps) {
 
   // On home: start hidden, reveal on scroll. On other pages: always visible.
   const [navVisible, setNavVisible] = useState(!isHome);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     if (!isHome) {
@@ -50,9 +51,11 @@ export function SiteShell({ children }: SiteShellProps) {
           transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
           ${navVisible ? "header-visible" : "header-hidden"}`}
       >
-        <div className="mx-auto grid h-20 w-full max-w-[1280px] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-8 px-[4px] lg:px-[24px]">
+        <div className="mx-auto flex h-20 w-full max-w-[1280px] items-center justify-between px-4 lg:px-6">
           <Logo />
-          <nav className="hidden items-center gap-8 lg:flex">
+          
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-8">
             {primaryNav.map((item) => (
               <Link
                 key={item.href}
@@ -63,11 +66,13 @@ export function SiteShell({ children }: SiteShellProps) {
               </Link>
             ))}
           </nav>
-          <div className="ml-auto flex items-center gap-5">
+
+          {/* Desktop CTAs */}
+          <div className="hidden lg:flex items-center gap-5">
             <Link
               href="/client-login"
-              className="hidden rounded-md border border-outline-variant/40 px-5 py-2.5 text-btn text-on-surface-variant
-                hover:border-primary-container hover:text-primary transition-all duration-300 sm:inline-flex"
+              className="rounded-md border border-outline-variant/40 px-5 py-2.5 text-btn text-on-surface-variant
+                hover:border-primary-container hover:text-primary transition-all duration-300"
             >
               Client Login
             </Link>
@@ -78,6 +83,56 @@ export function SiteShell({ children }: SiteShellProps) {
                 transition-all duration-300"
             >
               Enquire Now
+            </Link>
+          </div>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            className="lg:hidden text-primary-container p-2 focus:outline-none"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div 
+          className={`lg:hidden absolute top-20 left-0 w-full bg-surface-container-lowest border-b border-outline-variant/20 shadow-[0_10px_20px_rgba(0,0,0,0.05)] transition-all duration-300 overflow-hidden ${
+            mobileMenuOpen ? "max-h-screen py-6" : "max-h-0 py-0 border-transparent"
+          }`}
+        >
+          <div className="flex flex-col px-6 space-y-2">
+            {primaryNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block py-3 text-sm font-semibold tracking-widest text-on-surface-variant hover:text-primary transition"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="h-px bg-outline-variant/30 w-full my-4" />
+            <Link
+              href="/client-login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-3 text-sm font-semibold tracking-widest text-on-surface-variant hover:text-primary transition"
+            >
+              Client Login
+            </Link>
+            <Link
+              href="/enquire"
+              onClick={() => setMobileMenuOpen(false)}
+              className="mt-4 block w-full rounded-md bg-primary-container px-6 py-3.5 text-center text-sm font-bold tracking-widest text-on-primary-container shadow-md hover:bg-[#b88c2f]"
+            >
+              ENQUIRE NOW
             </Link>
           </div>
         </div>

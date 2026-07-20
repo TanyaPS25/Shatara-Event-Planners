@@ -194,7 +194,7 @@ export default function EventPalettePage() {
             />
             <EventCard
               href="/puberty"
-              image="https://images.unsplash.com/photo-1496458590527-3b5b5f4f8d5c?auto=format&fit=crop&w=900&q=80"
+              image="/images/portfolio/puberty.jpg"
               category="Puberty Ceremony"
               themesOffered={["Heritage Ceremony", "Modern Milestone"]}
               price="Starts $1,900"

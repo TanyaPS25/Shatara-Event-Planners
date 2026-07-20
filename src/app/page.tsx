@@ -205,7 +205,7 @@ export default function Home() {
       {/* ── Feature Highlights ── */}
       <section className="relative w-full bg-background py-16">
         <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3">
             {FEATURES.map(({ title, text, image }) => (
               <div
                 key={title}
@@ -254,7 +254,7 @@ export default function Home() {
           </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map(({ title, text, href, image }) => (
+            {SERVICES.map(({ title, text, href }) => (
               <Link
                 key={title}
                 href={href}
@@ -320,7 +320,7 @@ export default function Home() {
             <p className="mt-4 text-body-md text-on-surface-variant italic">Every celebration leaves behind a beautiful memory.</p>
             <div className="h-[1px] bg-gradient-to-r from-transparent via-primary-container/40 to-transparent w-40 mx-auto mt-6" />
           </div>
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {STORIES.map(({ client, eventType, href, text, image, bg }) => (
               <Link
                 key={client}
