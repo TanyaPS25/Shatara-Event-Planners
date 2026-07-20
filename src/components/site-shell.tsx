@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
-import { footerNav, primaryNav } from "@/lib/site-data";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { primaryNav } from "@/lib/site-data";
 
 type SiteShellProps = {
   children: React.ReactNode;
@@ -7,89 +11,138 @@ type SiteShellProps = {
 
 function Logo() {
   return (
-    <Link href="/" className="font-display text-[1.55rem] tracking-[0.18em] text-gold-500">
+    <Link
+      href="/"
+      className="font-display text-[1.65rem] font-bold tracking-[0.2em] text-primary-container shatara-glow hover:opacity-90 transition"
+    >
       SHATARA
     </Link>
   );
 }
 
 export function SiteShell({ children }: SiteShellProps) {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  // On home: start hidden, reveal on scroll. On other pages: always visible.
+  const [navVisible, setNavVisible] = useState(!isHome);
+
+  useEffect(() => {
+    if (!isHome) {
+      setNavVisible(true);
+      return;
+    }
+    // Reset when navigating back to home
+    setNavVisible(false);
+
+    const handleScroll = () => {
+      setNavVisible(window.scrollY > 60);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHome]);
+
   return (
-    <div className="min-h-screen bg-[var(--page)] text-[var(--ink)] antialiased">
-      <header className="sticky top-0 z-50 border-b border-black/5 bg-[color:var(--page)]/92 backdrop-blur">
-        <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-5 sm:px-6 lg:px-10">
+    <div className="min-h-screen bg-background text-on-surface antialiased selection:bg-primary-container/20">
+
+      {/* ── Fixed Header ── */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-outline-variant/20 glass-surface ambient-shadow-gold
+          transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+          ${navVisible ? "header-visible" : "header-hidden"}`}
+      >
+        <div className="mx-auto flex h-20 w-full max-w-[1280px] items-center justify-between px-[20px] lg:px-[80px]">
           <Logo />
           <nav className="hidden items-center gap-8 lg:flex">
             {primaryNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[0.72rem] font-medium uppercase tracking-[0.28em] text-[var(--muted)] transition hover:text-[var(--ink)]"
+                className="text-label-md tracking-[0.12em] text-on-surface-variant hover:text-primary transition"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <Link
               href="/client-login"
-              className="hidden rounded-full border border-black/10 px-4 py-2 text-[0.68rem] uppercase tracking-[0.24em] text-[var(--muted)] transition hover:border-gold-500 hover:text-[var(--ink)] sm:inline-flex"
+              className="hidden rounded-md border border-outline-variant/40 px-5 py-2.5 text-btn text-on-surface-variant hover:border-primary-container hover:text-primary transition sm:inline-flex"
             >
               Client Login
             </Link>
             <Link
               href="/enquire"
-              className="rounded-full bg-gold-500 px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-white shadow-[0_10px_30px_rgba(199,154,55,0.28)] transition hover:bg-gold-400"
+              className="rounded-md bg-primary-container px-6 py-2.5 text-btn font-semibold text-on-primary-container shadow-[0_4px_15px_rgba(200,155,60,0.25)] hover:bg-[#b88c2f] transition"
             >
               Enquire Now
             </Link>
           </div>
         </div>
       </header>
-      <main>{children}</main>
-      <footer className="border-t border-black/8 bg-[var(--charcoal)] text-stone-200">
-        <div className="mx-auto grid w-full max-w-[1440px] gap-10 px-5 py-12 sm:px-6 lg:grid-cols-[1.2fr_1fr_1fr] lg:px-10">
-          <div>
-            <Link href="/" className="font-display text-[2rem] tracking-[0.18em] text-gold-400">
+
+      {/* ── Main Content — pt-20 on non-home so content isn't hidden under fixed header ── */}
+      <main className={`min-h-[80vh] ${isHome ? "" : "pt-20"}`}>
+        {children}
+      </main>
+
+      {/* ── Footer ── */}
+      <footer className="border-t border-outline-variant/20 bg-inverse-surface text-inverse-on-surface">
+        <div className="mx-auto grid w-full max-w-[1280px] gap-12 px-[20px] lg:px-[80px] py-16 lg:grid-cols-[1.3fr_1fr_1fr]">
+          <div className="space-y-6">
+            <Link
+              href="/"
+              className="font-display text-[2.2rem] font-bold tracking-[0.2em] text-primary-container shatara-glow"
+            >
               SHATARA
             </Link>
-            <p className="mt-4 max-w-sm text-sm leading-7 text-stone-300">
+            <p className="max-w-sm text-body-md text-inverse-on-surface/80 leading-relaxed">
               Crafting extraordinary moments with precision and poetic elegance since 2012.
             </p>
           </div>
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-gold-400">Navigation</p>
-            <div className="mt-4 grid gap-3 text-sm text-stone-300">
-              {footerNav.map((item) => (
-                <Link key={item.href} href={item.href} className="transition hover:text-white">
+            <p className="text-label-md tracking-[0.15em] text-primary-container">Navigation</p>
+            <div className="mt-6 grid gap-3.5 text-body-md text-inverse-on-surface/75">
+              {primaryNav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="transition hover:text-white hover:translate-x-0.5 inline-block duration-200"
+                >
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href="/client-login"
+                className="transition hover:text-white hover:translate-x-0.5 inline-block duration-200"
+              >
+                Client Login
+              </Link>
+              <Link
+                href="/enquire"
+                className="text-primary-container font-semibold hover:text-inverse-primary transition hover:translate-x-0.5 inline-block duration-200"
+              >
+                Enquire Now →
+              </Link>
             </div>
           </div>
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-gold-400">Follow the Journey</p>
-            <div className="mt-4 flex gap-3">
+            <p className="text-label-md tracking-[0.15em] text-primary-container">Follow the Journey</p>
+            <div className="mt-6 flex gap-3.5">
               {["ig", "pt", "mail"].map((item) => (
                 <span
                   key={item}
-                  className="grid h-9 w-9 place-items-center rounded-full border border-white/12 text-[0.62rem] uppercase tracking-[0.24em] text-stone-300"
+                  className="grid h-10 w-10 place-items-center rounded-md border border-inverse-on-surface/20 text-body-md text-inverse-on-surface/75 hover:border-primary-container hover:text-white transition uppercase cursor-pointer"
                 >
                   {item}
                 </span>
               ))}
             </div>
-            <p className="mt-6 text-sm text-stone-400">© 2024 Shatara Event Planners. All Rights Reserved.</p>
+            <p className="mt-8 text-xs text-inverse-on-surface/50">© 2026 Shatara Event Planners. All Rights Reserved.</p>
           </div>
         </div>
       </footer>
-      <Link
-        href="/contact"
-        className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full border border-gold-200/80 bg-[#f5efe5] text-gold-500 shadow-[0_18px_50px_rgba(0,0,0,0.18)] transition hover:scale-105"
-        aria-label="Open Shatara bot"
-      >
-        ⌂
-      </Link>
+
     </div>
   );
 }

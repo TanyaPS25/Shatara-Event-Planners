@@ -10,9 +10,9 @@ export default function ContactPage() {
           ["Studio", "Mumbai, India"],
           ["Availability", "By appointment"],
         ].map(([label, value]) => (
-          <div key={label} className="rounded-[1.5rem] border border-black/8 bg-white p-8 shadow-[0_12px_30px_rgba(30,20,10,0.06)]">
-            <p className="text-[0.72rem] uppercase tracking-[0.3em] text-gold-500">{label}</p>
-            <p className="mt-4 font-display text-3xl">{value}</p>
+          <div key={label} className="rounded-lg border border-outline-variant/20 bg-surface-container-lowest p-8 shadow-sm">
+            <p className="text-label-md tracking-[0.16em] text-primary-container font-semibold">{label}</p>
+            <p className="mt-4 font-display text-2xl sm:text-3xl font-semibold text-on-surface">{value}</p>
           </div>
         ))}
       </div>

@@ -19,11 +19,17 @@ export default function ServicesPage() {
           />
         ))}
       </div>
-      <div className="mt-12 flex flex-wrap justify-center gap-3">
-        <Link href="/enquire" className="rounded-full bg-gold-500 px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white">
+      <div className="mt-12 flex flex-wrap justify-center gap-4 border-t border-outline-variant/10 pt-8">
+        <Link
+          href="/celebrate-preview"
+          className="rounded-md bg-primary-container px-6 py-3.5 text-btn font-semibold text-on-primary-container hover:bg-[#b88c2f] transition shadow-[0_4px_12px_rgba(200,155,60,0.15)]"
+        >
           Launch AI Experience
         </Link>
-        <Link href="/brochure" className="rounded-full border border-gold-500 px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-gold-600">
+        <Link
+          href="/brochure"
+          className="rounded-md border border-primary-container/40 px-6 py-3.5 text-btn font-semibold text-primary-container hover:bg-primary-container/10 transition"
+        >
           Download Brochure
         </Link>
       </div>
