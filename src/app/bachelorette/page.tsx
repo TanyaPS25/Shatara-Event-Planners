@@ -22,7 +22,7 @@ export default function BachelorettePage() {
     <div className="bg-[var(--page)] min-h-screen text-[var(--ink)] antialiased">
       <section className="relative h-[75vh] w-full flex items-center justify-center overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1529634417960-0f3f1f5b7c9d?auto=format&fit=crop&w=1200&q=80"
+          src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1200&q=80"
           alt="Bachelorette Hero"
           fill
           priority

@@ -59,7 +59,7 @@ export default function SeasonalPartiesPage() {
             <div>
               <div className="relative aspect-video w-full overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=600&q=80"
+                  src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80"
                   alt="Midnight Gala NYE"
                   fill
                   className="object-cover"

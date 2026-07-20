@@ -158,17 +158,17 @@ const FEATURES = [
   {
     title: "Eternal Memories",
     text: "Editorial storytelling captured in real time — a cinematic record of your finest moments.",
-    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
 /* ── Service card data ── */
 const SERVICES = [
-  { title: "Artful Ambiance",       text: "Sculpting atmospheres that resonate with your soul.",                   href: "/services/artful-ambiance",    image: "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=600&q=80" },
+  { title: "Artful Ambiance",       text: "Sculpting atmospheres that resonate with your soul.",                   href: "/services/artful-ambiance",    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80" },
   { title: "Culinary Excellence",   text: "A symphony of flavors tailored to the most discerning palates.",       href: "/services/culinary-excellence", image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" },
   { title: "Floral Masterpieces",   text: "Bespoke botanical arrangements that breathe life into every space.",    href: "/services/floral-masterpieces", image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=600&q=80" },
   { title: "Exquisite Locales",     text: "Prestigious and hidden venues for unforgettable occasions.",            href: "/services/exquisite-locales",   image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" },
-  { title: "Confectionary Art",     text: "Sculptural cakes that taste as divine as they look.",                  href: "/services/confectionary-art",   image: "https://images.unsplash.com/photo-1523438097201-512ae7d59c0b?auto=format&fit=crop&w=600&q=80" },
+  { title: "Confectionary Art",     text: "Sculptural cakes that taste as divine as they look.",                  href: "/services/confectionary-art",   image: "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=600&q=80" },
   { title: "Eternal Memories",      text: "Cinematic storytelling through world-class photography.",               href: "/services/eternal-memories",    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" },
 ];
 
@@ -184,7 +184,7 @@ const STORIES = [
     client: "Rahul & Sneha", eventType: "Wedding Celebration", href: "/client-stories/rahul-sneha",
     text: "Planning our wedding with Shatara was the best decision. They managed everything with such poise that we could truly enjoy our big day.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-    bg: "https://images.unsplash.com/photo-1496458590527-3b5b5f4f8d5c?auto=format&fit=crop&w=600&q=80",
+    bg: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=600&q=80",
   },
   {
     client: "Ananya", eventType: "Corporate Launch", href: "/client-stories/ananya",
@@ -196,10 +196,10 @@ const STORIES = [
 
 /* ── Gallery strip images ── */
 const GALLERY = [
-  "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1529634417960-0f3f1f5b7c9d?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80",
+  "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80",
   "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
 ];
@@ -214,20 +214,20 @@ export default function Home() {
         <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
           <div className="grid gap-6 lg:grid-cols-3">
             {FEATURES.map(({ title, text, image }) => (
-              <div key={title} className="group relative overflow-hidden rounded-xl h-64 cursor-default">
+              <div key={title} className="group relative overflow-hidden rounded-xl h-72 cursor-default shadow-md">
                 {/* Background image */}
                 <Image src={image} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10 transition-all duration-500 group-hover:from-black/60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20 transition-all duration-500 group-hover:from-black/80" />
                 {/* Gold shimmer on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{ background: 'linear-gradient(135deg, transparent 30%, rgba(200,155,60,0.15) 50%, transparent 70%)' }} />
                 {/* Gold border glow on hover */}
                 <div className="absolute inset-0 rounded-xl ring-1 ring-transparent group-hover:ring-primary-container/60 group-hover:shadow-[inset_0_0_30px_rgba(200,155,60,0.1)] transition-all duration-500" />
                 {/* Text */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="font-display text-2xl font-bold text-white group-hover:text-primary-container transition-colors duration-300">{title}</p>
-                  <p className="mt-2 text-sm text-white/75 leading-relaxed">{text}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <p className="font-display text-3xl font-bold text-white drop-shadow group-hover:text-gold-400 transition-colors duration-300">{title}</p>
+                  <p className="mt-2 text-sm font-semibold text-stone-200 drop-shadow-sm leading-relaxed">{text}</p>
                 </div>
               </div>
             ))}
