@@ -11,34 +11,48 @@ type ImageCardProps = {
   meta?: string;
 };
 
-export function ImageCard({ href, image, title, subtitle, description, accent, meta }: ImageCardProps) {
+export function ImageCard({ href, image, title, subtitle, description, meta }: ImageCardProps) {
   return (
     <Link
       href={href}
-      className="group block overflow-hidden rounded-lg border border-outline-variant/20 bg-surface-container-lowest ambient-shadow-gold transition duration-500 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(200,155,60,0.12)]"
+      className="group flex flex-col overflow-hidden rounded-[2rem] bg-white border border-black/5 shadow-[0_15px_40px_rgba(0,0,0,0.03)] hover:-translate-y-1.5 hover:shadow-[0_25px_60px_rgba(30,20,10,0.08)] transition-all duration-500"
     >
-      <div className="relative h-[26rem] overflow-hidden">
+      {/* Top Image Section */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone-100">
         <Image
           src={image}
           alt={title}
           fill
-          className="object-cover transition duration-700 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className={`absolute inset-0 bg-gradient-to-t ${accent ?? "from-black/80 via-black/25 to-transparent"}`} />
-        <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-          <p className="text-[0.72rem] font-medium uppercase tracking-[0.24em] text-inverse-primary">
+        {/* Subtle top-down vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-transparent z-0" />
+      </div>
+
+      {/* Bottom Content Section */}
+      <div className="p-6 flex flex-col justify-between flex-1 bg-white border-t border-black/5">
+        <div>
+          {/* Eyebrow Label */}
+          <span className="text-[0.65rem] font-bold uppercase tracking-[0.25em] text-gold-600 block mb-1">
             {subtitle}
-          </p>
-          <h3 className="mt-2 font-display text-2xl font-semibold leading-tight text-white">
+          </span>
+          
+          {/* Title */}
+          <h3 className="font-display text-2xl font-medium tracking-wide text-stone-900 group-hover:text-gold-600 transition-colors duration-300">
             {title}
           </h3>
-          <p className="mt-3 max-w-md text-body-md text-white/80 leading-relaxed line-clamp-2">
+          
+          {/* Description */}
+          <p className="mt-3 text-xs font-semibold text-stone-500 leading-relaxed tracking-wide line-clamp-3">
             {description}
           </p>
-          <div className="mt-6 flex items-center justify-between text-label-md tracking-[0.14em] text-white/90 border-t border-white/10 pt-4">
-            <span>Explore</span>
-            {meta ? <span>{meta}</span> : <span>View Details</span>}
-          </div>
+        </div>
+
+        {/* Footer CTA */}
+        <div className="mt-6 pt-3.5 border-t border-black/5 flex items-center justify-between">
+          <span className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-stone-400 group-hover:text-gold-600 transition duration-300">
+            {meta || "View Details"} →
+          </span>
         </div>
       </div>
     </Link>

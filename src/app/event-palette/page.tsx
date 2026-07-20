@@ -22,49 +22,54 @@ function EventCard({ href, image, category, themesOffered, price, className = ""
   return (
     <Link
       href={href}
-      className={`group relative flex flex-col justify-end overflow-hidden rounded-2xl shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl ${className}`}
-      style={{ minHeight: "280px" }}
+      className={`group flex flex-col overflow-hidden rounded-[2rem] bg-white border border-black/5 shadow-[0_15px_40px_rgba(0,0,0,0.03)] hover:-translate-y-1.5 hover:shadow-[0_25px_60px_rgba(30,20,10,0.08)] transition-all duration-500 ${className}`}
     >
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105"
-        style={{ backgroundImage: `url(${image})` }}
-      />
-      {/* Gradient Overlay for high-contrast legibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
-
-      {/* Content Area */}
-      <div className="relative z-10 p-6 flex flex-col">
-        {/* Category Badge */}
-        <span className="text-[0.72rem] font-bold uppercase tracking-[0.28em] text-gold-400 drop-shadow-sm mb-1.5">
-          {category}
-        </span>
+      {/* Top Image Section */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone-100">
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+          style={{ backgroundImage: `url(${image})` }}
+        />
+        {/* Subtle top-down vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent z-0" />
         
-        {/* Themes Label */}
-        <p className="text-[0.62rem] font-bold uppercase tracking-wider text-stone-300/80 mb-2">
-          Themes Offered:
-        </p>
+        {/* Floating Price Tag */}
+        {price && (
+          <div className="absolute top-4 right-4 z-10 rounded-full bg-white/95 backdrop-blur-md border border-white/50 px-3.5 py-1 text-[0.62rem] font-bold uppercase tracking-wider text-stone-800 shadow-sm">
+            {price}
+          </div>
+        )}
+      </div>
 
-        {/* Bullets - Large and Clear */}
-        <ul className="space-y-1">
-          {themesOffered.map((theme) => (
-            <li key={theme} className="flex items-center gap-2 text-sm font-semibold text-white drop-shadow">
-              <span className="h-2 w-2 shrink-0 rounded-full bg-gold-400" />
-              {theme}
-            </li>
-          ))}
-        </ul>
+      {/* Bottom Content Section */}
+      <div className="p-6 flex flex-col justify-between flex-1 bg-white border-t border-black/5">
+        <div>
+          {/* Eyebrow Label */}
+          <span className="text-[0.65rem] font-bold uppercase tracking-[0.25em] text-gold-600 block mb-1">
+            {category}
+          </span>
+          
+          {/* Category Title */}
+          <h3 className="font-display text-2xl font-medium tracking-wide text-stone-900 group-hover:text-gold-600 transition-colors duration-300">
+            {category} Experience
+          </h3>
+          
+          {/* Themes Offered list */}
+          <div className="mt-3 pt-3.5 border-t border-black/5">
+            <span className="text-[0.58rem] font-extrabold uppercase tracking-widest text-stone-400 block mb-1.5">
+              Available Styles:
+            </span>
+            <p className="text-xs font-semibold text-stone-500 leading-relaxed tracking-wide">
+              {themesOffered.join("  •  ")}
+            </p>
+          </div>
+        </div>
 
-        {/* Card Footer */}
-        <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-          <span className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-gold-400 group-hover:text-white transition">
+        {/* Footer CTA */}
+        <div className="mt-6 flex items-center justify-between">
+          <span className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-stone-400 group-hover:text-gold-600 transition duration-300">
             View Details →
           </span>
-          {price && (
-            <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-[0.65rem] font-bold text-white backdrop-blur-md">
-              {price}
-            </span>
-          )}
         </div>
       </div>
     </Link>
@@ -114,7 +119,7 @@ export default function EventPalettePage() {
             {/* Weddings */}
             <EventCard
               href="/weddings"
-              image="https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=900&q=80"
+              image="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80"
               category="Wedding"
               themesOffered={["Royal Heritage", "Intimate Zen", "Tropical Festive"]}
               price="Starts $17,000"
@@ -170,7 +175,7 @@ export default function EventPalettePage() {
             {/* Bachelorette */}
             <EventCard
               href="/bachelorette"
-              image="https://images.unsplash.com/photo-1529634417960-0f3f1f5b7c9d?auto=format&fit=crop&w=900&q=80"
+              image="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=80"
               category="Bachelorette"
               themesOffered={["Parisian Style", "Nautical Elite"]}
               price="Starts $1,500"
@@ -182,7 +187,7 @@ export default function EventPalettePage() {
             {/* Graduation */}
             <EventCard
               href="/graduation"
-              image="https://images.unsplash.com/photo-1523438097201-512ae7d59c0b?auto=format&fit=crop&w=900&q=80"
+              image="https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=900&q=80"
               category="Graduation"
               themesOffered={["Graduation Stage", "Confetti Bloom"]}
               price="Starts $1,500"

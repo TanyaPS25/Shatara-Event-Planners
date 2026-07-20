@@ -22,7 +22,7 @@ export default function GraduationPage() {
     <div className="bg-[var(--page)] min-h-screen text-[var(--ink)] antialiased">
       <section className="relative h-[75vh] w-full flex items-center justify-center overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1523438097201-512ae7d59c0b?auto=format&fit=crop&w=1200&q=80"
+          src="https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=1200&q=80"
           alt="Graduation Hero"
           fill
           priority

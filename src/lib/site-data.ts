@@ -58,7 +58,7 @@ export const services: ServiceItem[] = [
     description:
       "Sculpting atmospheres that resonate with your soul, using light and texture to craft magic.",
     image:
-      "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80",
     accent: "from-amber-900/60 via-black/15 to-black/75",
   },
   {
@@ -121,7 +121,7 @@ export const stories: StoryItem[] = [
     description:
       "The attention to detail for our daughter’s birthday was unparalleled. The floral arrangements were fresh and the theme was executed perfectly.",
     image:
-      "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "rahul-sneha",
@@ -130,7 +130,7 @@ export const stories: StoryItem[] = [
     description:
       "Planning our wedding with Shatara was the best decision. They managed everything with such poise that we could truly enjoy our big day.",
     image:
-      "https://images.unsplash.com/photo-1496458590527-3b5b5f4f8d5c?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "ananya",
@@ -139,7 +139,7 @@ export const stories: StoryItem[] = [
     description:
       "Our corporate launch needed to feel elegant and modern. Shatara delivered an experience that our partners still talk about.",
     image:
-      "https://images.unsplash.com/photo-1485954158468-1c1f2f3ad9f4?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "meena-s",
@@ -166,7 +166,7 @@ export const stories: StoryItem[] = [
     description:
       "The reception was the pinnacle of our wedding festivities. Shatara’s vision for a midnight star theme was executed with such grace and grandeur.",
     image:
-      "https://images.unsplash.com/photo-1523438097201-512ae7d59c0b?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=1000&q=80",
   },
 ];
 
@@ -176,14 +176,14 @@ export const months: MonthItem[] = [
     month: "January",
     count: "2 Events",
     image:
-      "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80",
   },
   {
     slug: "february",
     month: "February",
     count: "1 Event",
     image:
-      "https://images.unsplash.com/photo-1529634417960-0f3f1f5b7c9d?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=900&q=80",
   },
   {
     slug: "march",
