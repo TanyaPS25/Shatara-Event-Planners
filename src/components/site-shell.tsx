@@ -25,16 +25,11 @@ function Logo() {
 
 export function SiteShell({ children }: SiteShellProps) {
   const pathname = usePathname();
-  const isActiveNav = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(href + "/"));
+  const isHome = pathname === "/";
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // On home: start hidden, reveal on scroll. On other pages: always visible.
+  const [navVisible, setNavVisible] = useState(!isHome);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
-  // Prevent background scrolling when mobile menu is active
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -49,122 +44,43 @@ export function SiteShell({ children }: SiteShellProps) {
   return (
     <div className="min-h-screen bg-background text-on-surface antialiased selection:bg-primary-container/20">
       {/* ── Fixed Header ── */}
-      <header className="site-nav-gold fixed top-0 left-0 right-0 z-50 border-b border-[#9b6f16]/30 ambient-shadow-gold header-visible">
-              {/* Grid: [logo] [nav-pill] [actions] — three columns that never overlap */}
-              <div className="mx-auto grid min-h-[72px] w-full max-w-[1360px] items-center px-4 py-3 sm:px-6 lg:px-[72px] grid-cols-[auto_1fr_auto] gap-4">
-                {/* ── Logo ── */}
-                <div className="flex items-center">
-                  <Logo />
-                </div>
-
-                {/* ── Centre nav pill (desktop only) ── */}
-                <nav className="hidden min-[1100px]:flex items-center justify-center min-w-0">
-                  <ul className="flex flex-nowrap items-center justify-center gap-1 rounded-full border border-black/10 bg-white/20 px-2 py-1.5 shadow-[0_10px_30px_rgba(120,83,0,0.18)] backdrop-blur-md list-none m-0 whitespace-nowrap">
-                    {primaryNav.map((item) => (
-                      <li key={item.href} className="flex items-center">
-                        <Link
-                          href={item.href}
-                          aria-current={isActiveNav(item.href) ? "page" : undefined}
-                          className={`rounded-full px-3 py-1.5 text-[0.7rem] tracking-[0.1em] transition whitespace-nowrap font-semibold ${
-                            isActiveNav(item.href)
-                              ? "bg-black/12 text-black shadow-[inset_0_0_0_1px_rgba(0,0,0,0.12)]"
-                              : "text-black/80 hover:bg-black/10 hover:text-black"
-                          }`}
-                        >
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-
-                {/* ── Right-side actions (desktop) ── */}
-                <div className="hidden min-[1100px]:flex items-center justify-end gap-2 shrink-0">
-                  <Link
-                    href="/client-login"
-                    className="rounded-full border border-black/15 bg-white/20 px-4 py-1.5 text-[0.7rem] font-semibold text-black hover:border-black/30 hover:bg-white/30 transition whitespace-nowrap"
-                  >
-                    Client Login
-                  </Link>
-                  <Link
-                    href="/enquire"
-                    className="rounded-full border border-black/15 bg-white px-4 py-1.5 text-[0.7rem] font-semibold text-black shadow-[0_8px_22px_rgba(0,0,0,0.14)] hover:bg-[#fff4d6] hover:border-black/25 transition whitespace-nowrap"
-                  >
-                    Enquire Now
-                  </Link>
-                </div>
-
-                {/* Mobile Menu Action & Toggle (visible below 1100px) */}
-                <div className="flex min-[1100px]:hidden items-center gap-3 sm:gap-4 shrink-0 col-start-3">
-                  <Link
-                    href="/enquire"
-                    className="rounded-lg border border-black/15 bg-white px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-black shadow-[0_6px_14px_rgba(0,0,0,0.12)] hover:bg-[#fff4d6] transition whitespace-nowrap flex-shrink-0"
-                  >
-                    Enquire
-                  </Link>
-                  <button
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    className="relative h-9 w-9 sm:h-10 sm:w-10 flex flex-col justify-center items-center border border-black/15 rounded-lg bg-white/25 focus:outline-none"
-                    aria-label="Toggle menu"
-                  >
-                    <span
-                      className={`absolute h-0.5 w-4 sm:w-5 bg-black transition-all duration-300 ${
-                        mobileMenuOpen ? "rotate-45" : "-translate-y-1 sm:-translate-y-1.5"
-                      }`}
-                    />
-                    <span
-                      className={`absolute h-0.5 w-4 sm:w-5 bg-black transition-all duration-300 ${
-                        mobileMenuOpen ? "opacity-0" : ""
-                      }`}
-                    />
-                    <span
-                      className={`absolute h-0.5 w-4 sm:w-5 bg-black transition-all duration-300 ${
-                        mobileMenuOpen ? "-rotate-45" : "translate-y-1 sm:translate-y-1.5"
-                      }`}
-                    />
-                  </button>
-                </div>
-              </div>
-      </header>
-
-      {/* ── Mobile Menu Overlay ── */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[linear-gradient(180deg,#f2cf71_0%,#d6a73c_38%,#9d6c12_100%)] backdrop-blur-md flex flex-col pt-28 px-6 min-[1300px]:hidden overflow-y-auto">
-          <div className="max-w-md mx-auto w-full flex flex-col">
-            <nav className="flex flex-col gap-3 text-center mt-6">
-              {primaryNav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  aria-current={isActiveNav(item.href) ? "page" : undefined}
-                  className={`font-display text-2xl font-semibold tracking-wide rounded-2xl border px-4 py-3 transition ${
-                    isActiveNav(item.href)
-                      ? "border-black/25 bg-black/12 text-black"
-                      : "border-black/15 text-black/85 hover:border-black/30 hover:bg-white/20 hover:text-black"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="mt-10 flex flex-col gap-4 pb-12">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-outline-variant/20 glass-surface ambient-shadow-gold
+          transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+          ${navVisible ? "header-visible" : "header-hidden"}`}
+      >
+        <div className="mx-auto grid h-20 w-full max-w-[1280px] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-8 px-[4px] lg:px-[24px]">
+          <Logo />
+          <nav className="hidden items-center gap-8 lg:flex">
+            {primaryNav.map((item) => (
               <Link
-                href="/client-login"
-                className="w-full text-center rounded-full border border-black/15 bg-white/20 py-3.5 text-sm font-bold text-black hover:border-black/30 transition"
+                key={item.href}
+                href={item.href}
+                className="text-label-md tracking-[0.12em] text-on-surface-variant hover:text-primary transition"
               >
-                Client Login
+                {item.label}
               </Link>
-              <Link
-                href="/enquire"
-                className="w-full text-center rounded-full bg-black py-3.5 text-sm font-bold text-white shadow-lg shadow-black/20 hover:bg-neutral-900 transition"
-              >
-                Enquire Now
-              </Link>
-            </div>
+            ))}
+          </nav>
+          <div className="ml-auto flex items-center gap-5">
+            <Link
+              href="/client-login"
+              className="hidden rounded-md border border-outline-variant/40 px-5 py-2.5 text-btn text-on-surface-variant
+                hover:border-primary-container hover:text-primary transition-all duration-300 sm:inline-flex"
+            >
+              Client Login
+            </Link>
+            <Link
+              href="/enquire"
+              className="btn-shimmer rounded-md bg-primary-container px-6 py-2.5 text-btn font-semibold text-on-primary-container
+                shadow-[0_4px_15px_rgba(200,155,60,0.25)] hover:bg-[#b88c2f] hover:shadow-[0_6px_25px_rgba(200,155,60,0.38)]
+                transition-all duration-300"
+            >
+              Enquire Now
+            </Link>
           </div>
         </div>
-      )}
+      </header>
 
       {/* ── Main Content ── */}
       <main className="min-h-[80vh] pt-[72px]">
@@ -272,19 +188,19 @@ export function SiteShell({ children }: SiteShellProps) {
           aria-label="Open chat"
         >
           <svg viewBox="0 0 64 64" className="h-11 w-11" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="32" y1="6" x2="32" y2="14" stroke="#c79227" strokeWidth="2.5" strokeLinecap="round"/>
-            <circle cx="32" cy="5" r="3" fill="#c79227"/>
-            <rect x="14" y="14" width="36" height="28" rx="9" fill="#c79227"/>
-            <rect x="17" y="17" width="30" height="22" rx="7" fill="#f5efe5"/>
-            <circle cx="24" cy="27" r="4" fill="#c79227"/>
-            <circle cx="25" cy="26" r="1.5" fill="#fff"/>
-            <circle cx="40" cy="27" r="4" fill="#c79227"/>
-            <circle cx="41" cy="26" r="1.5" fill="#fff"/>
-            <path d="M25 33 Q32 38 39 33" stroke="#c79227" strokeWidth="2" strokeLinecap="round" fill="none"/>
-            <rect x="10" y="22" width="5" height="8" rx="2.5" fill="#c79227"/>
-            <rect x="49" y="22" width="5" height="8" rx="2.5" fill="#c79227"/>
-            <rect x="27" y="42" width="10" height="5" rx="2" fill="#c79227"/>
-            <rect x="20" y="47" width="24" height="8" rx="4" fill="#c79227"/>
+            <line x1="32" y1="6" x2="32" y2="14" stroke="#c79227" strokeWidth="2.5" strokeLinecap="round" />
+            <circle cx="32" cy="5" r="3" fill="#c79227" />
+            <rect x="14" y="14" width="36" height="28" rx="9" fill="#c79227" />
+            <rect x="17" y="17" width="30" height="22" rx="7" fill="#f5efe5" />
+            <circle cx="24" cy="27" r="4" fill="#c79227" />
+            <circle cx="25" cy="26" r="1.5" fill="#fff" />
+            <circle cx="40" cy="27" r="4" fill="#c79227" />
+            <circle cx="41" cy="26" r="1.5" fill="#fff" />
+            <path d="M25 33 Q32 38 39 33" stroke="#c79227" strokeWidth="2" strokeLinecap="round" fill="none" />
+            <rect x="10" y="22" width="5" height="8" rx="2.5" fill="#c79227" />
+            <rect x="49" y="22" width="5" height="8" rx="2.5" fill="#c79227" />
+            <rect x="27" y="42" width="10" height="5" rx="2" fill="#c79227" />
+            <rect x="20" y="47" width="24" height="8" rx="4" fill="#c79227" />
           </svg>
         </Link>
       </div>

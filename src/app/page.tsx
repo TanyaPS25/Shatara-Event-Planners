@@ -172,22 +172,22 @@ const SERVICES = [
 /* ── Client stories data ── */
 const STORIES = [
   {
-    client: "Priya & Family", eventType: "Annual Gala", href: "/client-stories/priya-family",
+    client: "Priya R.", eventType: "Birthday Celebration", href: "/client-stories/priya-r",
     text: "The attention to detail for our daughter's birthday was unparalleled. The floral arrangements were fresh and the theme was executed perfectly.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
-    bg: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
+    bg: "/images/stories/priya_birthday.png",
   },
   {
-    client: "Rahul & Sneha", eventType: "Wedding Celebration", href: "/client-stories/rahul-sneha",
+    client: "Arjun K.", eventType: "Engagement Ceremony", href: "/client-stories/arjun-k",
     text: "Planning our wedding with Shatara was the best decision. They managed everything with such poise that we could truly enjoy our big day.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-    bg: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=600&q=80",
+    bg: "/images/stories/arjun_engagement.png",
   },
   {
     client: "Ananya", eventType: "Corporate Launch", href: "/client-stories/ananya",
     text: "Our corporate launch needed to feel elegant and modern. Shatara delivered an experience that our partners still talk about.",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80",
-    bg: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80",
+    bg: "/images/stories/karthik_corporate.png",
   },
 ];
 
@@ -211,7 +211,7 @@ export default function Home() {
       {/* ── Feature Highlights ── */}
       <section className="relative w-full bg-background py-16">
         <div className="mx-auto max-w-[1280px] px-[20px] lg:px-[80px]">
-          <div className="grid gap-8 lg:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-3">
             {FEATURES.map(({ title, text, image }) => (
               <div
                 key={title}
@@ -259,7 +259,7 @@ export default function Home() {
           </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map(({ title, text, href, image }) => (
+            {SERVICES.map(({ title, text, href }) => (
               <Link
                 key={title}
                 href={href}
@@ -323,7 +323,7 @@ export default function Home() {
             <p className="mt-4 text-body-md text-on-surface-variant italic">Every celebration leaves behind a beautiful memory.</p>
             <div className="h-[1px] bg-gradient-to-r from-transparent via-primary-container/40 to-transparent w-40 mx-auto mt-6" />
           </div>
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {STORIES.map(({ client, eventType, href, text, image, bg }) => (
               <Link
                 key={client}

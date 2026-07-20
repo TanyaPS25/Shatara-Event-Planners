@@ -138,8 +138,24 @@ export default function WeddingsPage() {
                 className="object-cover transition duration-500 group-hover:scale-103"
               />
             </div>
-          ))}
+            <div className="p-6">
+              <h3 className="font-display text-2xl font-medium text-[var(--ink)]">Cocktail Glam</h3>
+              <p className="mt-2 text-xs text-[var(--muted)] leading-relaxed">
+                A sleek, sophisticated evening experience with custom bars and moody lighting.
+              </p>
+              <ul className="mt-4 space-y-1.5 text-xs text-[var(--muted)]">
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
+                  Custom mixology stations
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
+                  Premium lounge seating
+                </li>
+              </ul>
+            </div>
           </div>
+        </div>
       </section>
 
       {/* ─── Technical Precision ─── */}
