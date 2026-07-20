@@ -18,6 +18,8 @@ export type StoryItem = {
   eventType: string;
   description: string;
   image: string;
+  rating: number;
+  longReview: string;
 };
 
 export type MonthItem = {
@@ -33,6 +35,7 @@ export const primaryNav: NavItem[] = [
   { label: "Event Palette", href: "/event-palette" },
   { label: "Client Stories", href: "/client-stories" },
   { label: "Contact", href: "/contact" },
+  { label: "About Us", href: "/about" },
 ];
 
 export const footerNav = [
@@ -115,22 +118,22 @@ export const services: ServiceItem[] = [
 
 export const stories: StoryItem[] = [
   {
-    slug: "priya-family",
-    client: "Priya & Family",
-    eventType: "Annual Gala",
+    slug: "priya-r",
+    client: "Priya R.",
+    eventType: "Birthday Celebration",
     description:
       "The attention to detail for our daughter’s birthday was unparalleled. The floral arrangements were fresh and the theme was executed perfectly.",
     image:
-      "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=1000&q=80",
   },
   {
-    slug: "rahul-sneha",
-    client: "Rahul & Sneha",
-    eventType: "Wedding Celebration",
+    slug: "arjun-k",
+    client: "Arjun K.",
+    eventType: "Engagement Ceremony",
     description:
       "Planning our wedding with Shatara was the best decision. They managed everything with such poise that we could truly enjoy our big day.",
     image:
-      "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1496458590527-3b5b5f4f8d5c?auto=format&fit=crop&w=1000&q=80",
   },
   {
     slug: "ananya",
@@ -139,25 +142,29 @@ export const stories: StoryItem[] = [
     description:
       "Our corporate launch needed to feel elegant and modern. Shatara delivered an experience that our partners still talk about.",
     image:
-      "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1485954158468-1c1f2f3ad9f4?auto=format&fit=crop&w=1000&q=80",
   },
   {
-    slug: "meena-s",
-    client: "Meena S.",
+    slug: "meena-b",
+    client: "Meena B.",
     eventType: "Baby Shower",
     description:
-      "The most elegant baby shower I could have imagined. Soft palettes and metallic accents made the entire space feel intimate and luxurious.",
-    image:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1000&q=80",
+      "The most elegant baby shower I could have imagined. Shatara curated a space that felt intimate, yet incredibly luxurious, using a palette of soft pastels and metallic accents that truly stunned our guests.",
+    image: "/images/stories/meena_babyshower.png",
+    rating: 5,
+    longReview:
+      "The most elegant baby shower I could have imagined. Shatara curated a space that felt intimate, yet incredibly luxurious, using a palette of soft pastels and metallic accents that truly stunned our guests. From the custom floral cloud suspended above the main seating area to the exquisite dessert bar featuring hand-painted botanical macarons, everything was a visual feast. The service was impeccable; the waitstaff was attentive, and the flow of the afternoon was perfectly paced. It was a beautiful, stress-free celebration of new beginnings that my family will cherish forever.",
   },
   {
-    slug: "karthik-v",
-    client: "Karthik V.",
-    eventType: "Corporate Event",
+    slug: "rahul-p",
+    client: "Rahul P.",
+    eventType: "Anniversary Celebration",
     description:
-      "Professional execution, perfect timing management, and a seamless event experience. Every aspect was handled efficiently.",
-    image:
-      "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80",
+      "Celebrating 25 years required something extraordinary, and Shatara delivered exactly that. From the nostalgic photo gallery to the exquisite fine dining experience, every moment felt like a masterpiece.",
+    image: "/images/stories/rahul_anniversary.png",
+    rating: 5,
+    longReview:
+      "Celebrating 25 years required something extraordinary, and Shatara delivered exactly that. From the nostalgic photo gallery to the exquisite fine dining experience, every moment felt like a masterpiece. The team created a bespoke retrospective hallway that took our guests through a journey of our quarter-century together, leading into a candlelit dining room that rivaled a Michelin-starred restaurant. The culinary pairings were spectacular, and the live jazz quartet provided the perfect soundtrack. Their execution was flawless, and the memory of this milestone will stay with us forever.",
   },
   {
     slug: "divya-m",
@@ -166,7 +173,7 @@ export const stories: StoryItem[] = [
     description:
       "The reception was the pinnacle of our wedding festivities. Shatara’s vision for a midnight star theme was executed with such grace and grandeur.",
     image:
-      "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1523438097201-512ae7d59c0b?auto=format&fit=crop&w=1000&q=80",
   },
 ];
 
