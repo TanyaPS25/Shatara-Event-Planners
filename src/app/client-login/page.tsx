@@ -39,10 +39,10 @@ const FAKE_USER = {
     { name: "Live Band", status: "POSTPONED", color: "bg-accent-pink/40 text-accent-pink-text" },
   ],
   gallery: [
-    "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=200&q=80",
-    "https://images.unsplash.com/photo-1496458590527-3b5b5f4f8d5c?auto=format&fit=crop&w=200&q=80",
+    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=200&q=80",
+    "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=200&q=80",
     "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=200&q=80",
-    "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=200&q=80",
+    "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=200&q=80",
   ],
   docs: [
     { name: "Final Quotation.pdf", sub: "Updated Oct 04" },
