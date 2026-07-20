@@ -1,0 +1,38 @@
+{
+  "venues": [
+    { "id": "v1", "name": "Grand Ballroom", "imageUrl": "/assets/venues/v1.jpg" },
+    { "id": "v2", "name": "Royal Pavilion", "imageUrl": "/assets/venues/v2.jpg" }
+  ],
+  "themes": [
+    { "id": "royal-gold",          "name": "Royal Gold",            "category": "Wedding",    "colorTint": "#D4AF37", "emoji": "👑" },
+    { "id": "destination-wedding", "name": "Destination Wedding",   "category": "Wedding",    "colorTint": "#5BA4CF", "emoji": "🌅" },
+    { "id": "garden-romance",      "name": "Garden Romance",        "category": "Wedding",    "colorTint": "#A8D5A2", "emoji": "🌿" },
+    { "id": "royal-palace",        "name": "Royal Palace",          "category": "Wedding",    "colorTint": "#9B59B6", "emoji": "🏰" },
+    { "id": "beach-wedding",       "name": "Beach Wedding",         "category": "Wedding",    "colorTint": "#48CAE4", "emoji": "🌊" },
+    { "id": "rustic-chic",         "name": "Rustic Chic",           "category": "Wedding",    "colorTint": "#C9A96E", "emoji": "🪵" },
+    { "id": "mehndi-magic",        "name": "Mehndi Magic",          "category": "Wedding",    "colorTint": "#F4A261", "emoji": "🪔" },
+    { "id": "sangeet-spectacle",   "name": "Sangeet Spectacle",     "category": "Wedding",    "colorTint": "#E63946", "emoji": "💃" },
+    { "id": "cocktail-glam",       "name": "Cocktail Glam",         "category": "Wedding",    "colorTint": "#2D3047", "emoji": "🥂" },
+    { "id": "minimal-white",       "name": "Minimal White",         "category": "Wedding",    "colorTint": "#E8EEF4", "emoji": "🤍" },
+    { "id": "barbie-dreamworld",   "name": "Barbie Dreamworld",     "category": "Birthday",   "colorTint": "#FF69B4", "emoji": "👸" },
+    { "id": "spiderman-adventure", "name": "Spiderman Adventure",   "category": "Birthday",   "colorTint": "#DC2626", "emoji": "🕷️" },
+    { "id": "cartoon-wonderland",  "name": "Cartoon Wonderland",    "category": "Birthday",   "colorTint": "#FACC15", "emoji": "🎪" },
+    { "id": "disney-princess",     "name": "Disney Princess",       "category": "Birthday",   "colorTint": "#C084FC", "emoji": "✨" },
+    { "id": "avengers-assemble",   "name": "Avengers Assemble",     "category": "Birthday",   "colorTint": "#1D4ED8", "emoji": "⚡" },
+    { "id": "neon-glow",           "name": "Neon Glow Party",       "category": "Birthday",   "colorTint": "#39FF14", "emoji": "🌈" },
+    { "id": "golden-birthday",     "name": "Golden Birthday",       "category": "Birthday",   "colorTint": "#FFD700", "emoji": "🎂" },
+    { "id": "under-the-sea",       "name": "Under the Sea",         "category": "Birthday",   "colorTint": "#06B6D4", "emoji": "🐚" },
+    { "id": "safari-adventure",    "name": "Safari Adventure",      "category": "Birthday",   "colorTint": "#92400E", "emoji": "🦁" },
+    { "id": "boho-safari",         "name": "Boho Safari",           "category": "Babyshower", "colorTint": "#C2410C", "emoji": "🌾" },
+    { "id": "celestial-dream",     "name": "Celestial Dream",       "category": "Babyshower", "colorTint": "#A78BFA", "emoji": "🌙" },
+    { "id": "botanical-forest",    "name": "Botanical Forest",      "category": "Babyshower", "colorTint": "#15803D", "emoji": "🌱" },
+    { "id": "rainbow-clouds",      "name": "Rainbow Clouds",        "category": "Babyshower", "colorTint": "#F472B6", "emoji": "☁️" },
+    { "id": "elephant-joy",        "name": "Elephant Joy",          "category": "Babyshower", "colorTint": "#94A3B8", "emoji": "🐘" },
+    { "id": "modern-luxury",       "name": "Modern Luxury",         "category": "Corporate",  "colorTint": "#1E293B", "emoji": "🏢" },
+    { "id": "awards-night",        "name": "Awards Night",          "category": "Corporate",  "colorTint": "#B8860B", "emoji": "🏆" },
+    { "id": "diwali-gala",         "name": "Diwali Gala",           "category": "Festival",   "colorTint": "#F59E0B", "emoji": "🪔" },
+    { "id": "christmas-winter",    "name": "Christmas Winter",      "category": "Festival",   "colorTint": "#22C55E", "emoji": "🎄" },
+    { "id": "halloween-spooky",    "name": "Halloween Spooky",      "category": "Festival",   "colorTint": "#EA580C", "emoji": "🎃" },
+    { "id": "celestial-extra",     "name": "Celestial Extra",       "category": "Wedding",    "colorTint": "#0B132B", "emoji": "🌌" }
+  ]
+}
