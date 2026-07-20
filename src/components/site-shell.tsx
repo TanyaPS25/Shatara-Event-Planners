@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { primaryNav } from "@/lib/site-data";
-import ChatBot from "@/components/ChatBot";
 
 type SiteShellProps = {
   children: React.ReactNode;
@@ -133,7 +132,6 @@ export function SiteShell({ children }: SiteShellProps) {
             </div>
           </div>
           <div>
-<<<<<<< HEAD
             <p className="text-xs uppercase tracking-[0.3em] text-gold-400">Follow the Journey</p>
             <div className="mt-4 flex gap-3">
               <a
@@ -175,49 +173,38 @@ export function SiteShell({ children }: SiteShellProps) {
           </div >
         </div >
       </footer >
-<<<<<<< HEAD
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2 group">
-      {/* Tooltip */}
-      <span className="mb-1 hidden group-hover:flex items-center gap-1.5 rounded-full bg-[var(--charcoal)] px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white shadow-lg whitespace-nowrap">
-        <span>✨</span> Chat with us
-      </span>
-      {/* Pulse ring */}
-      <span className="absolute bottom-0 right-0 h-16 w-16 rounded-full bg-gold-400/15 animate-ping pointer-events-none" />
-      <Link
-        href="/contact"
-        className="relative grid h-16 w-16 place-items-center rounded-full bg-[#f5efe5] shadow-[0_8px_32px_rgba(0,0,0,0.18)] transition hover:scale-110 hover:shadow-[0_12px_40px_rgba(199,146,39,0.2)] border-2 border-gold-400/30 overflow-hidden"
-        aria-label="Open chat"
-      >
-        {/* Cute Robot SVG */}
-        <svg viewBox="0 0 64 64" className="h-11 w-11" fill="none" xmlns="http://www.w3.org/2000/svg">
-          {/* Antenna */}
-          <line x1="32" y1="6" x2="32" y2="14" stroke="#c79227" strokeWidth="2.5" strokeLinecap="round" />
-          <circle cx="32" cy="5" r="3" fill="#c79227" />
-          {/* Robot Head */}
-          <rect x="14" y="14" width="36" height="28" rx="9" fill="#c79227" />
-          {/* Face plate */}
-          <rect x="17" y="17" width="30" height="22" rx="7" fill="#f5efe5" />
-          {/* Left Eye */}
-          <circle cx="24" cy="27" r="4" fill="#c79227" />
-          <circle cx="25" cy="26" r="1.5" fill="#fff" />
-          {/* Right Eye */}
-          <circle cx="40" cy="27" r="4" fill="#c79227" />
-          <circle cx="41" cy="26" r="1.5" fill="#fff" />
-          {/* Smile */}
-          <path d="M25 33 Q32 38 39 33" stroke="#c79227" strokeWidth="2" strokeLinecap="round" fill="none" />
-          {/* Ears / bolts */}
-          <rect x="10" y="22" width="5" height="8" rx="2.5" fill="#c79227" />
-          <rect x="49" y="22" width="5" height="8" rx="2.5" fill="#c79227" />
-          {/* Neck */}
-          <rect x="27" y="42" width="10" height="5" rx="2" fill="#c79227" />
-          {/* Body stub */}
-          <rect x="20" y="47" width="24" height="8" rx="4" fill="#c79227" />
-        </svg>
-      </Link>
+      {/* ── Floating Chat Button ── */}
+      <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2 group">
+        {/* Tooltip */}
+        <span className="mb-1 hidden group-hover:flex items-center gap-1.5 rounded-full bg-[#1f1b14] px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white shadow-lg whitespace-nowrap">
+          <span>✨</span> Chat with us
+        </span>
+        {/* Pulse ring */}
+        <span className="absolute bottom-0 right-0 h-16 w-16 rounded-full bg-primary-container/15 animate-ping pointer-events-none" />
+        <Link
+          href="/contact"
+          className="relative grid h-16 w-16 place-items-center rounded-full bg-[#f5efe5] shadow-[0_8px_32px_rgba(0,0,0,0.18)]
+            transition-all duration-300 hover:scale-110 hover:shadow-[0_12px_40px_rgba(199,146,39,0.28)]
+            border-2 border-primary-container/30 overflow-hidden"
+          aria-label="Open chat"
+        >
+          <svg viewBox="0 0 64 64" className="h-11 w-11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="32" y1="6" x2="32" y2="14" stroke="#c79227" strokeWidth="2.5" strokeLinecap="round"/>
+            <circle cx="32" cy="5" r="3" fill="#c79227"/>
+            <rect x="14" y="14" width="36" height="28" rx="9" fill="#c79227"/>
+            <rect x="17" y="17" width="30" height="22" rx="7" fill="#f5efe5"/>
+            <circle cx="24" cy="27" r="4" fill="#c79227"/>
+            <circle cx="25" cy="26" r="1.5" fill="#fff"/>
+            <circle cx="40" cy="27" r="4" fill="#c79227"/>
+            <circle cx="41" cy="26" r="1.5" fill="#fff"/>
+            <path d="M25 33 Q32 38 39 33" stroke="#c79227" strokeWidth="2" strokeLinecap="round" fill="none"/>
+            <rect x="10" y="22" width="5" height="8" rx="2.5" fill="#c79227"/>
+            <rect x="49" y="22" width="5" height="8" rx="2.5" fill="#c79227"/>
+            <rect x="27" y="42" width="10" height="5" rx="2" fill="#c79227"/>
+            <rect x="20" y="47" width="24" height="8" rx="4" fill="#c79227"/>
+          </svg>
+        </Link>
+      </div>
     </div>
-=======
-
->>>>>>> upstream
-    </div >
   );
 }

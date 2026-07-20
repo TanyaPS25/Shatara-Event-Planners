@@ -68,7 +68,6 @@ export default function ContactPage() {
             <p className="mt-4 text-[0.65rem] uppercase tracking-[0.24em] text-gold-500 font-bold">Availability</p>
             <p className="mt-2 font-display text-2xl text-[var(--ink)]">By appointment</p>
           </div>
-        ))}
         </div>
 
         {/* CTA Button */}
