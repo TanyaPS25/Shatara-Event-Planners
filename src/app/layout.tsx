@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Playfair_Display, Poppins, Inter } from "next/font/google";
 import { SiteShell } from "@/components/site-shell";
 
 export const metadata: Metadata = {
@@ -8,16 +8,22 @@ export const metadata: Metadata = {
   description: "Luxury event planning and celebration experiences.",
 };
 
-const display = Cormorant_Garamond({
+const display = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-display",
 });
 
-const body = Manrope({
+const body = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-body",
+});
+
+const utility = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-utility",
 });
 
 export default function RootLayout({
@@ -27,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${display.variable} ${body.variable} bg-[var(--page)] font-body text-[var(--ink)]`}>
+      <body className={`${display.variable} ${body.variable} ${utility.variable} bg-background font-body text-on-surface antialiased`}>
         <SiteShell>{children}</SiteShell>
       </body>
     </html>
