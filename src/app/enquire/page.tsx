@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { GenericPage } from "@/components/generic-page";
+import { AvailabilityCalendar } from "@/components/availability-calendar";
 
 export default function EnquirePage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     eventType: "Wedding Ceremony",
-    location: "Lake Como, Italy",
+    location: "Mumbai, Maharashtra",
     preferredDate: "",
     timeOfDay: "Evening (Sunset Gala)",
     aesthetic: "Poetic Mix",
@@ -17,6 +18,8 @@ export default function EnquirePage() {
   });
   
   const [submitted, setSubmitted] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +31,8 @@ export default function EnquirePage() {
       title="Manifest Your Extraordinary Event"
       intro="Step into the world of Shatara, where your vision meets our meticulous craftsmanship. Complete our curated intake process to begin your journey toward a truly bespoke celebration."
     >
+
+
       <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
         {submitted ? (
           <div className="rounded-lg border border-outline-variant/20 bg-surface-container-lowest p-8 text-center ambient-shadow-gold flex flex-col items-center justify-center min-h-[400px]">
@@ -46,7 +51,7 @@ export default function EnquirePage() {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="rounded-lg border border-outline-variant/20 bg-surface-container-lowest p-8 ambient-shadow-gold">
+          <form ref={formRef} onSubmit={handleSubmit} className="rounded-lg border border-outline-variant/20 bg-surface-container-lowest p-8 ambient-shadow-gold">
             <h3 className="font-display text-2xl font-semibold text-on-surface mb-6 border-b border-outline-variant/10 pb-4">Curated Intake Form</h3>
             
             <div className="grid gap-6 sm:grid-cols-2">
@@ -98,11 +103,11 @@ export default function EnquirePage() {
                   onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                   className="rounded-md border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-on-surface text-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition w-full appearance-none cursor-pointer"
                 >
-                  <option>Mumbai, India</option>
-                  <option>Lake Como, Italy</option>
-                  <option>Los Angeles, CA</option>
-                  <option>London, UK</option>
-                  <option>Private Island, Maldives</option>
+                  <option>Mumbai, Maharashtra</option>
+                  <option>Udaipur, Rajasthan</option>
+                  <option>Goa, India</option>
+                  <option>Jaipur, Rajasthan</option>
+                  <option>Kerala, India</option>
                 </select>
               </div>
 
@@ -114,8 +119,22 @@ export default function EnquirePage() {
                   required
                   value={formData.preferredDate}
                   onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-                  className="rounded-md border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-on-surface text-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition w-full cursor-pointer"
+                  className="rounded-md border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-on-surface text-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition w-full cursor-pointer h-[46px]"
                 />
+              </div>
+
+              {/* Small trigger box */}
+              <div>
+                <label className="text-label-md tracking-[0.14em] text-primary-container block mb-2 font-semibold">Check Openings</label>
+                <div 
+                  onClick={() => setShowCalendar(true)}
+                  className="rounded-md border border-primary-container/40 bg-[#fdf6ec] px-4 py-3 cursor-pointer hover:border-primary-container hover:shadow-sm transition flex items-center justify-between group h-[46px]"
+                >
+                  <span className="text-primary-container text-body-md font-medium">Live Availability</span>
+                  <span className="text-primary-container transition-transform group-hover:scale-110">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  </span>
+                </div>
               </div>
               <div>
                 <label htmlFor="timeOfDay" className="text-label-md tracking-[0.14em] text-primary-container block mb-2 font-semibold">Time of Day</label>
@@ -215,6 +234,29 @@ export default function EnquirePage() {
           </div>
         </div>
       </div>
+
+      {/* Calendar Modal */}
+      {showCalendar && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-xl hide-scrollbar relative bg-surface-container-lowest">
+            <button 
+              onClick={() => setShowCalendar(false)}
+              className="absolute top-6 right-6 h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition text-white z-10"
+            >
+              ✕
+            </button>
+            <AvailabilityCalendar 
+              onContinue={(date, venue, eventType) => {
+                setFormData({ ...formData, preferredDate: date, location: venue, eventType });
+                setShowCalendar(false);
+                formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              initialEventType={formData.eventType}
+              initialVenue={formData.location}
+            />
+          </div>
+        </div>
+      )}
     </GenericPage>
   );
 }

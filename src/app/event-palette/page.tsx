@@ -192,10 +192,9 @@ export default function EventPalettePage() {
               themesOffered={["Graduation Stage", "Confetti Bloom"]}
               price="Starts $1,500"
             />
-            {/* Puberty */}
             <EventCard
               href="/puberty"
-              image="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=80"
+              image="https://images.unsplash.com/photo-1496458590527-3b5b5f4f8d5c?auto=format&fit=crop&w=900&q=80"
               category="Puberty Ceremony"
               themesOffered={["Heritage Ceremony", "Modern Milestone"]}
               price="Starts $1,900"
