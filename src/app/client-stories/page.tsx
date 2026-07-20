@@ -14,6 +14,7 @@ export default function ClientStoriesPage() {
             client={story.client}
             eventType={story.eventType}
             description={story.description}
+            rating={story.rating}
           />
         ))}
       </div>
