@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+	--page: #f7f0e7;
+	--page-soft: #fbf7f1;
+	--ink: #18120d;
+	--muted: #6f6256;
+	--charcoal: #201913;
+	--gold-400: #d3a542;
+	--gold-500: #c79227;
+	--gold-600: #b6821b;
+}
+
+@theme {
+	--color-gold-400: var(--gold-400);
+	--color-gold-500: var(--gold-500);
+	--color-gold-600: var(--gold-600);
+	--color-page: var(--page);
+	--color-page-soft: var(--page-soft);
+	--color-ink: var(--ink);
+	--color-muted: var(--muted);
+	--color-charcoal: var(--charcoal);
+	--font-display: var(--font-display);
+	--font-body: var(--font-body);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-body), sans-serif;
+	background:
+		radial-gradient(circle at top, rgba(211, 165, 66, 0.08), transparent 28%),
+		linear-gradient(180deg, #f8f2ea 0%, #f4ece1 100%);
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.font-display {
+	font-family: var(--font-display), serif;
+}
+
+.font-body {
+	font-family: var(--font-body), sans-serif;
+}
