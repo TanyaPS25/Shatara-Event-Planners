@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { supabase } from "@/lib/supabase";
 
 /* ───── Types ───── */
 type Screen = "login" | "signup" | "home" | "progress";
 
-/* ───── Fake account data ───── */
+/* ───── Fake account data for dashboard demo ───── */
 const FAKE_USER = {
   name: "Sarah",
   greeting: "Welcome back, Sarah 👋",
@@ -56,10 +57,30 @@ function LoginScreen({ onLogin, onSignup }: { onLogin: () => void; onSignup: () 
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!id || !pass) { setError("Please fill in all fields."); return; }
+    if (!id || !pass) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email: id,
+      password: pass,
+    });
+
+    setLoading(false);
+
+    if (authError) {
+      setError(authError.message);
+      return;
+    }
+
     onLogin();
   };
 
@@ -85,10 +106,11 @@ function LoginScreen({ onLogin, onSignup }: { onLogin: () => void; onSignup: () 
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div>
-              <label className="text-label-md tracking-[0.1em] text-primary-container block mb-2">Email or Phone Number</label>
+              <label className="text-label-md tracking-[0.1em] text-primary-container block mb-2">Email Address</label>
               <input
-                type="text"
-                placeholder="name@example.com or +91 9000000000"
+                type="email"
+                required
+                placeholder="name@example.com"
                 value={id}
                 onChange={e => { setId(e.target.value); setError(""); }}
                 className="w-full rounded-md border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-body-md text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition"
@@ -98,6 +120,7 @@ function LoginScreen({ onLogin, onSignup }: { onLogin: () => void; onSignup: () 
               <label className="text-label-md tracking-[0.1em] text-primary-container block mb-2">Password</label>
               <input
                 type="password"
+                required
                 placeholder="Enter your password"
                 value={pass}
                 onChange={e => { setPass(e.target.value); setError(""); }}
@@ -113,9 +136,10 @@ function LoginScreen({ onLogin, onSignup }: { onLogin: () => void; onSignup: () 
             </div>
             <button
               type="submit"
-              className="w-full rounded-md bg-primary-container py-3.5 text-btn font-semibold text-on-primary-container hover:bg-[#b88c2f] transition shadow-[0_4px_12px_rgba(200,155,60,0.2)] cursor-pointer"
+              disabled={loading}
+              className="w-full rounded-md bg-primary-container py-3.5 text-btn font-semibold text-on-primary-container hover:bg-[#b88c2f] disabled:bg-stone-400 transition shadow-[0_4px_12px_rgba(200,155,60,0.2)] cursor-pointer disabled:cursor-not-allowed"
             >
-              Sign In
+              {loading ? "Signing In..." : "Sign In"}
             </button>
           </form>
 
@@ -137,17 +161,54 @@ function LoginScreen({ onLogin, onSignup }: { onLogin: () => void; onSignup: () 
 function SignupScreen({ onBack, onSignup }: { onBack: () => void; onSignup: () => void }) {
   const [form, setForm] = useState({ name: "", email: "", phone: "", pass: "", confirm: "" });
   const [error, setError] = useState("");
+  const [infoMsg, setInfoMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.pass) { setError("Please fill in all required fields."); return; }
     if (form.pass !== form.confirm) { setError("Passwords do not match."); return; }
-    onSignup();
+
+    setLoading(true);
+    setError("");
+    setInfoMsg("");
+
+    const { data, error: authError } = await supabase.auth.signUp({
+      email: form.email,
+      password: form.pass,
+      options: {
+        data: {
+          name: form.name,
+          phone: form.phone,
+        },
+      },
+    });
+
+    setLoading(false);
+
+    if (authError) {
+      if (authError.message.toLowerCase().includes("rate limit")) {
+        setError("Supabase email rate limit reached. Please wait 2–3 minutes before trying again, or disable 'Confirm Email' in your Supabase Auth settings for instant signups.");
+      } else {
+        setError(authError.message);
+      }
+      return;
+    }
+
+    if (data?.user && !data.session) {
+      setInfoMsg("Account created. Please check your email to confirm your account.");
+      return;
+    }
+
+    if (data?.session) {
+      onSignup();
+    }
   };
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm(prev => ({ ...prev, [k]: e.target.value }));
     setError("");
+    setInfoMsg("");
   };
 
   return (
@@ -167,15 +228,21 @@ function SignupScreen({ onBack, onSignup }: { onBack: () => void; onSignup: () =
             <div className="mt-4 rounded-md bg-error-container/30 border border-error/20 p-3 text-on-error-container text-sm">{error}</div>
           )}
 
+          {infoMsg && (
+            <div className="mt-4 rounded-md bg-emerald-50 border border-emerald-200 p-3 text-emerald-800 text-sm font-medium">
+              {infoMsg}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div>
               <label className="text-label-md tracking-[0.1em] text-primary-container block mb-2">Full Name *</label>
-              <input type="text" placeholder="Your full name" value={form.name} onChange={set("name")}
+              <input type="text" required placeholder="Your full name" value={form.name} onChange={set("name")}
                 className="w-full rounded-md border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-body-md text-on-surface focus:border-primary-container focus:outline-none transition" />
             </div>
             <div>
               <label className="text-label-md tracking-[0.1em] text-primary-container block mb-2">Email Address *</label>
-              <input type="email" placeholder="name@example.com" value={form.email} onChange={set("email")}
+              <input type="email" required placeholder="name@example.com" value={form.email} onChange={set("email")}
                 className="w-full rounded-md border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-body-md text-on-surface focus:border-primary-container focus:outline-none transition" />
             </div>
             <div>
@@ -185,17 +252,20 @@ function SignupScreen({ onBack, onSignup }: { onBack: () => void; onSignup: () =
             </div>
             <div>
               <label className="text-label-md tracking-[0.1em] text-primary-container block mb-2">Password *</label>
-              <input type="password" placeholder="Create a password" value={form.pass} onChange={set("pass")}
+              <input type="password" required placeholder="Create a password" value={form.pass} onChange={set("pass")}
                 className="w-full rounded-md border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-body-md text-on-surface focus:border-primary-container focus:outline-none transition" />
             </div>
             <div>
               <label className="text-label-md tracking-[0.1em] text-primary-container block mb-2">Confirm Password *</label>
-              <input type="password" placeholder="Repeat your password" value={form.confirm} onChange={set("confirm")}
+              <input type="password" required placeholder="Repeat your password" value={form.confirm} onChange={set("confirm")}
                 className="w-full rounded-md border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-body-md text-on-surface focus:border-primary-container focus:outline-none transition" />
             </div>
-            <button type="submit"
-              className="w-full rounded-md bg-primary-container py-3.5 text-btn font-semibold text-on-primary-container hover:bg-[#b88c2f] transition shadow-[0_4px_12px_rgba(200,155,60,0.2)] cursor-pointer">
-              Create Account
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full rounded-md bg-primary-container py-3.5 text-btn font-semibold text-on-primary-container hover:bg-[#b88c2f] disabled:bg-stone-400 transition shadow-[0_4px_12px_rgba(200,155,60,0.2)] cursor-pointer disabled:cursor-not-allowed"
+            >
+              {loading ? "Creating Account..." : "Create Account"}
             </button>
           </form>
 
@@ -212,14 +282,16 @@ function SignupScreen({ onBack, onSignup }: { onBack: () => void; onSignup: () =
 }
 
 /* ───── Screen: Home Dashboard (choose action) ───── */
-function HomeScreen({ onProgress, onLogout }: { onProgress: () => void; onLogout: () => void }) {
+function HomeScreen({ onProgress, onLogout, userName }: { onProgress: () => void; onLogout: () => void; userName?: string }) {
+  const displayName = userName || "Sarah";
+
   return (
     <div className="min-h-[80vh] flex items-center justify-center py-16 px-[20px]">
       <div className="w-full max-w-2xl">
         <div className="text-center mb-10">
           <p className="font-display text-4xl font-bold tracking-[0.2em] text-primary-container">SHATARA</p>
           <div className="h-[1px] bg-primary-container/20 w-16 mx-auto mt-4 mb-6" />
-          <h1 className="font-display text-3xl font-semibold text-on-surface">Welcome back, Sarah 👋</h1>
+          <h1 className="font-display text-3xl font-semibold text-on-surface">Welcome back, {displayName} 👋</h1>
           <p className="mt-2 text-body-md text-on-surface-variant">What would you like to do today?</p>
         </div>
 
@@ -414,13 +486,43 @@ function ProgressScreen({ onBack }: { onBack: () => void }) {
   );
 }
 
-
 /* ───── Root Page ───── */
 export default function ClientLoginPage() {
   const [screen, setScreen] = useState<Screen>("login");
+  const [userName, setUserName] = useState<string>("");
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        const name = session.user.user_metadata?.name || session.user.email?.split("@")[0];
+        setUserName(name || "");
+        setScreen("home");
+      }
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        const name = session.user.user_metadata?.name || session.user.email?.split("@")[0];
+        setUserName(name || "");
+        setScreen("home");
+      } else {
+        setScreen("login");
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUserName("");
+    setScreen("login");
+  };
 
   if (screen === "login") return <LoginScreen onLogin={() => setScreen("home")} onSignup={() => setScreen("signup")} />;
   if (screen === "signup") return <SignupScreen onBack={() => setScreen("login")} onSignup={() => setScreen("home")} />;
-  if (screen === "home") return <HomeScreen onProgress={() => setScreen("progress")} onLogout={() => setScreen("login")} />;
+  if (screen === "home") return <HomeScreen onProgress={() => setScreen("progress")} onLogout={handleLogout} userName={userName} />;
   return <ProgressScreen onBack={() => setScreen("home")} />;
 }

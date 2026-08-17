@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { GenericPage } from "@/components/generic-page";
+import { supabase } from "@/lib/supabase";
 
 export default function EnquirePage() {
   const [formData, setFormData] = useState({
@@ -15,11 +16,38 @@ export default function EnquirePage() {
     aesthetic: "Poetic Mix",
     communication: "Email",
   });
-  
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitted, setSubmitted] = useState(false);
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const detailsMessage = [
+      `Event Type: ${formData.eventType}`,
+      formData.preferredDate ? `Preferred Date: ${formData.preferredDate}` : null,
+      `Time of Day: ${formData.timeOfDay}`,
+    ]
+      .filter(Boolean)
+      .join(" | ");
+
+    const { error } = await supabase.from("bookings").insert({
+      name: formData.name,
+      email: formData.email,
+      location: formData.location,
+      aesthetic: formData.aesthetic,
+      communication: formData.communication,
+      message: detailsMessage,
+    });
+
+    if (error) {
+      console.error("Booking submission error:", error);
+      alert(
+        error.code === "42501"
+          ? "Row-Level Security (RLS) error: Please add an INSERT policy on public.bookings in Supabase for anon users."
+          : `Submission error: ${error.message || "Failed to submit enquiry."}`
+      );
+      return;
+    }
+
     setSubmitted(true);
   };
 
@@ -48,7 +76,7 @@ export default function EnquirePage() {
         ) : (
           <form onSubmit={handleSubmit} className="rounded-lg border border-outline-variant/20 bg-surface-container-lowest p-8 ambient-shadow-gold">
             <h3 className="font-display text-2xl font-semibold text-on-surface mb-6 border-b border-outline-variant/10 pb-4">Curated Intake Form</h3>
-            
+
             <div className="grid gap-6 sm:grid-cols-2">
               <div>
                 <label htmlFor="name" className="text-label-md tracking-[0.14em] text-primary-container block mb-2 font-semibold">Name</label>
@@ -74,7 +102,7 @@ export default function EnquirePage() {
                   className="rounded-md border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-on-surface text-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition w-full"
                 />
               </div>
-              
+
               <div>
                 <label htmlFor="eventType" className="text-label-md tracking-[0.14em] text-primary-container block mb-2 font-semibold">Event Type</label>
                 <select
@@ -196,7 +224,7 @@ export default function EnquirePage() {
               Your dedicated planner is here to help you refine the event vision and next steps.
             </p>
           </div>
-          
+
           <div className="rounded-lg border border-outline-variant/20 bg-surface-container-lowest p-6 ambient-shadow-gold">
             <p className="text-label-md tracking-[0.14em] text-primary-container border-b border-outline-variant/10 pb-3 font-semibold">Your Progress</p>
             <div className="mt-4 space-y-4">

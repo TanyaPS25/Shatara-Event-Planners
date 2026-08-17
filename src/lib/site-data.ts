@@ -60,8 +60,7 @@ export const services: ServiceItem[] = [
     eyebrow: "DESIGNING ATMOSPHERES",
     description:
       "Sculpting atmospheres that resonate with your soul, using light and texture to craft magic.",
-    image:
-      "https://images.unsplash.com/photo-1519167758481-83f29f5cc2ed?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/services/artful-ambiance.jpg",
     accent: "from-amber-900/60 via-black/15 to-black/75",
   },
   {
@@ -70,8 +69,7 @@ export const services: ServiceItem[] = [
     eyebrow: "SIGNATURE MENUS",
     description:
       "A symphony of flavors tailored to the most discerning palates, presented with artistic flair.",
-    image:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/services/culinary-excellence.jpg",
     accent: "from-stone-900/50 via-black/20 to-black/75",
   },
   {
@@ -80,8 +78,7 @@ export const services: ServiceItem[] = [
     eyebrow: "BOTANICAL STORYTELLING",
     description:
       "Bespoke botanical arrangements that breathe life into every moment.",
-    image:
-      "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/services/floral-masterpieces.jpg",
     accent: "from-emerald-950/55 via-black/20 to-black/75",
   },
   {
@@ -90,8 +87,7 @@ export const services: ServiceItem[] = [
     eyebrow: "DESTINATION CURATION",
     description:
       "Access to the world’s most prestigious and hidden venues, from villas to private islands.",
-    image:
-      "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/services/exquisite-locales.jpg",
     accent: "from-sky-900/55 via-black/10 to-black/75",
   },
   {
@@ -100,8 +96,7 @@ export const services: ServiceItem[] = [
     eyebrow: "SCULPTED SWEETNESS",
     description:
       "Sculptural cakes that taste as divine as they look, serving as the centerpiece of your celebration.",
-    image:
-      "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/services/confectionary-art.jpg",
     accent: "from-amber-950/60 via-black/10 to-black/75",
   },
   {
@@ -110,8 +105,7 @@ export const services: ServiceItem[] = [
     eyebrow: "CINEMATIC STORYTELLING",
     description:
       "Cinematic storytelling through the lens of world-class photography and live entertainment.",
-    image:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/services/eternal-memories.png",
     accent: "from-zinc-900/65 via-black/20 to-black/80",
   },
 ];
